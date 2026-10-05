@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "The all-in-one sales CRM built for real estate teams. Track leads, manage pipelines, monitor attendance, and close deals faster with FieldScore.",
   keywords: ["CRM", "real estate", "sales", "lead management", "field sales"],
+  icons: {
+    icon: "/fieldscore_favicon.ico",
+  },
 };
 
 export default function RootLayout({
