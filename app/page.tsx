@@ -609,33 +609,9 @@ export default function LandingPage() {
                 ))}
               </div>
               {/* App store badges */}
-              <div className="flex items-center gap-3 mt-6">
+              <div className="flex flex-col gap-3 mt-6">
                 <a href="#" aria-label="Download on the App Store" className="block hover:opacity-80 transition-opacity">
-                  <svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="120" height="40" rx="6" fill="#000"/>
-                    <rect x="0.5" y="0.5" width="119" height="39" rx="5.5" stroke="#A6A6A6" fill="none"/>
-                    <g fill="#fff">
-                      <path d="M24.769 20.3a4.949 4.949 0 012.356-4.151 5.066 5.066 0 00-3.99-2.158c-1.68-.176-3.308 1.005-4.164 1.005-.872 0-2.19-.988-3.608-.958a5.315 5.315 0 00-4.473 2.728c-1.934 3.348-.491 8.269 1.361 10.976.927 1.325 2.01 2.805 3.428 2.753 1.387-.058 1.905-.885 3.58-.885 1.658 0 2.144.885 3.59.852 1.489-.025 2.426-1.332 3.32-2.669a10.962 10.962 0 001.52-3.092 4.782 4.782 0 01-2.92-4.4zM22.037 12.21a4.872 4.872 0 001.115-3.49 4.957 4.957 0 00-3.208 1.66 4.636 4.636 0 00-1.144 3.36 4.1 4.1 0 003.237-1.53z"/>
-                      <text x="42" y="15" fontSize="8" fontFamily="Arial,sans-serif" letterSpacing="0.5">Download on the</text>
-                      <text x="42" y="28" fontSize="14" fontFamily="Arial,sans-serif" fontWeight="bold">App Store</text>
-                    </g>
-                  </svg>
-                </a>
-                <a href="#" aria-label="Get it on Google Play" className="block hover:opacity-80 transition-opacity">
-                  <svg width="135" height="40" viewBox="0 0 135 40" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="135" height="40" rx="6" fill="#000"/>
-                    <rect x="0.5" y="0.5" width="134" height="39" rx="5.5" stroke="#A6A6A6" fill="none"/>
-                    <g>
-                      <path d="M11.54 7.66l10.07 10.07a1.12 1.12 0 010 1.58L11.54 29.38a1.12 1.12 0 01-1.58-1.58l9.28-9.28L9.96 9.24a1.12 1.12 0 011.58-1.58z" fill="#00E5FF"/>
-                      <path d="M9.96 9.24l9.28 9.28-9.28 9.28a1.12 1.12 0 010-1.58L18.24 18l-8.28-8.18a1.12 1.12 0 010-.58z" fill="#00BCD4"/>
-                      <path d="M21.61 17.73L11.54 7.66a1.12 1.12 0 00-.5-.3l10.57 10.37z" fill="#1976D2"/>
-                      <path d="M21.61 19.31L11.04 29.68c.15-.04.34-.13.5-.3l10.07-10.07z" fill="#E91E63"/>
-                    </g>
-                    <g fill="#fff">
-                      <text x="30" y="12" fontSize="6" fontFamily="Arial,sans-serif" letterSpacing="0.5" fill="#B3B3B3">GET IT ON</text>
-                      <text x="30" y="28" fontSize="15" fontFamily="Arial,sans-serif" fontWeight="bold">Google Play</text>
-                    </g>
-                  </svg>
+                  <Image src="/image copy.png" alt="Download on App Store and Google Play" width={280} height={84} className="w-36 h-auto" />
                 </a>
               </div>
             </div>
