@@ -17,6 +17,7 @@ import {
   TrendingUp,
   Menu,
   X,
+  ChevronDown,
   ChevronRight,
   Star,
   Activity,
@@ -33,6 +34,7 @@ const NAV_LINKS = [
   { label: "Features", href: "#features" },
   { label: "How it Works", href: "#how-it-works" },
   { label: "Results", href: "#results" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 const FEATURES = [
@@ -117,6 +119,7 @@ const TESTIMONIALS = [
 
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-brand-bg overflow-hidden">
@@ -734,6 +737,83 @@ export default function LandingPage() {
                 <p className={`text-3xl lg:text-4xl font-black ${stat.color}`}>{stat.value}</p>
                 <p className="text-sm font-semibold text-brand-text mt-2">{stat.label}</p>
                 <p className="text-xs text-brand-muted mt-1">{stat.sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== FAQ ========== */}
+      <section id="faq" className="py-20 lg:py-28 bg-brand-surface relative overflow-hidden">
+        <div className="absolute inset-0 grid-pattern opacity-30" />
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
+              <CheckCircle2 className="w-4 h-4" /> FAQ
+            </div>
+            <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
+              Frequently Asked <span className="gradient-text">Questions</span>
+            </h2>
+            <p className="text-lg text-brand-dim">
+              Everything you need to know about FieldScore.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            {[
+              {
+                q: "What is FieldScore?",
+                a: "FieldScore is an all-in-one sales CRM built specifically for real estate teams. It helps you capture leads, manage pipelines, track attendance, make calls, and close deals faster — all from your mobile device.",
+              },
+              {
+                q: "Who is FieldScore designed for?",
+                a: "FieldScore adapts to your role. Sales executives get tools for field work and lead follow-ups. Managers get performance tracking and team monitoring. Owners get complete visibility with analytics and reports.",
+              },
+              {
+                q: "Is there a free trial available?",
+                a: "Yes! You can start a 10-day free trial with no credit card required. Experience the full power of FieldScore before committing to a plan.",
+              },
+              {
+                q: "Does FieldScore work on mobile?",
+                a: "FieldScore is mobile-first. Our app is available on Google Play and is designed to work seamlessly in the field — with GPS tracking, one-tap calling, offline support, and real-time sync.",
+              },
+              {
+                q: "How does GPS attendance tracking work?",
+                a: "Team members check in and out with GPS verification. FieldScore automatically logs location, tracks active hours, detects late marks, and provides managers with real-time field visibility — no manual timesheets needed.",
+              },
+              {
+                q: "Can I import my existing leads?",
+                a: "Yes. You can import leads from spreadsheets, websites, property portals, ad campaigns, and walk-ins. FieldScore supports bulk import and automatic lead capture from multiple sources.",
+              },
+              {
+                q: "How does the call management feature work?",
+                a: "FieldScore includes an integrated dialer with one-tap calling. Every call is automatically logged to the lead timeline. AI-powered call summaries capture key details so your team never has to write manual notes.",
+              },
+              {
+                q: "Is my data secure?",
+                a: "Absolutely. FieldScore uses industry-standard encryption, role-based access controls, and secure cloud infrastructure to ensure your data is protected at all times.",
+              },
+            ].map((faq, i) => (
+              <div
+                key={i}
+                className="bg-brand-card border border-brand-border rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between p-5 text-left"
+                >
+                  <span className="text-sm font-semibold text-brand-text pr-4">{faq.q}</span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-brand-dim shrink-0 transition-transform duration-200 ${
+                      openFaq === i ? "rotate-180 text-cyan-400" : ""
+                    }`}
+                  />
+                </button>
+                {openFaq === i && (
+                  <div className="px-5 pb-5 -mt-1">
+                    <p className="text-sm text-brand-dim leading-relaxed">{faq.a}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
