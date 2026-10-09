@@ -226,62 +226,11 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* ========== DASHBOARD PREVIEW ========== */}
+          {/* ========== HERO BANNER IMAGE ========== */}
           <div className="mt-16 lg:mt-20 relative max-w-5xl mx-auto">
             <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-teal-500/10 rounded-[2rem] blur-2xl" />
-            <div className="relative rounded-2xl border border-brand-border bg-brand-card shadow-elevated overflow-hidden">
-              {/* Browser bar */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-brand-surface border-b border-brand-border">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-amber-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
-                </div>
-                <div className="flex-1 flex justify-center">
-                  <div className="bg-brand-bg rounded-lg px-4 py-1 text-xs text-brand-muted border border-brand-border">
-                    app.fieldscore.io/dashboard
-                  </div>
-                </div>
-              </div>
-              {/* Dashboard content */}
-              <div className="p-5 lg:p-6 bg-brand-surface">
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-                  {[
-                    { label: "Total Leads", value: "1,247", change: "+12%", gradient: "from-cyan-500 to-blue-600" },
-                    { label: "Active Deals", value: "389", change: "+8%", gradient: "from-blue-500 to-cyan-500" },
-                    { label: "Won This Month", value: "67", change: "+23%", gradient: "from-emerald-500 to-teal-500" },
-                    { label: "Revenue", value: "42.5 Cr", change: "+18%", gradient: "from-violet-500 to-blue-500" },
-                  ].map((stat) => (
-                    <div key={stat.label} className="bg-brand-card rounded-xl p-4 border border-brand-border shadow-soft">
-                      <p className="text-[11px] text-brand-dim font-medium">{stat.label}</p>
-                      <p className="text-xl font-bold mt-1 text-brand-text">{stat.value}</p>
-                      <span className="inline-flex items-center gap-0.5 mt-1 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded-full">
-                        <ArrowUpRight className="w-3 h-3" /> {stat.change}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <div className="bg-brand-card rounded-xl p-4 border border-brand-border shadow-soft">
-                  <p className="text-sm font-semibold text-brand-text mb-3">Sales Pipeline</p>
-                  <div className="flex gap-1 h-8 rounded-lg overflow-hidden">
-                    {[
-                      { flex: 142, color: "bg-cyan-400" },
-                      { flex: 98, color: "bg-blue-400" },
-                      { flex: 67, color: "bg-sky-400" },
-                      { flex: 45, color: "bg-amber-400" },
-                      { flex: 28, color: "bg-violet-400" },
-                      { flex: 67, color: "bg-emerald-400" },
-                    ].map((bar, i) => (
-                      <div key={i} className={`${bar.color} rounded-sm`} style={{ flex: bar.flex }} />
-                    ))}
-                  </div>
-                  <div className="flex justify-between mt-2">
-                    {["New (142)", "Contacted (98)", "Qualified (67)", "Visit (45)", "Negotiation (28)", "Won (67)"].map((label) => (
-                      <span key={label} className="text-[10px] text-brand-muted hidden sm:block">{label}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            <div className="relative rounded-2xl border border-brand-border shadow-elevated overflow-hidden">
+              <Image src="/ss-hero-banner.png" alt="FieldScore - Choose Your Role, Do More Together" width={1200} height={500} className="w-full h-auto" priority />
             </div>
           </div>
         </div>
@@ -300,6 +249,41 @@ export default function LandingPage() {
               <div key={stat.label} className="text-center">
                 <p className="text-3xl lg:text-4xl font-black text-cyan-400">{stat.value}</p>
                 <p className="text-sm text-brand-dim mt-1 font-medium">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== APP SCREENSHOTS SHOWCASE ========== */}
+      <section className="py-20 lg:py-28 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
+              <Play className="w-4 h-4" /> See It in Action
+            </div>
+            <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
+              Designed for the <span className="gradient-text">Field</span>
+            </h2>
+            <p className="text-lg text-brand-dim max-w-2xl mx-auto">
+              A mobile-first CRM that works where your team works — on the ground, in the field, closing deals.
+            </p>
+          </div>
+
+          {/* Phone mockups row */}
+          <div className="flex gap-6 justify-center items-end flex-wrap lg:flex-nowrap">
+            {[
+              { src: "/ss-lead-mgmt.png", alt: "Lead Management", label: "Lead Management" },
+              { src: "/ss-dashboard.png", alt: "Sales Dashboard", label: "Dashboard" },
+              { src: "/ss-field-tracking.png", alt: "Field Tracking", label: "Field Tracking" },
+              { src: "/ss-call-mgmt.png", alt: "Call Management", label: "Call Tracking" },
+              { src: "/ss-team-mgmt.png", alt: "Team Management", label: "Team Management" },
+            ].map((screen, i) => (
+              <div key={i} className={`group flex flex-col items-center gap-3 ${i === 1 ? "lg:-mt-4" : ""}`}>
+                <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated bg-brand-card hover:shadow-glow transition-all duration-300 hover:-translate-y-2">
+                  <Image src={screen.src} alt={screen.alt} width={240} height={480} className="w-44 lg:w-52 h-auto" />
+                </div>
+                <span className="text-xs font-semibold text-brand-dim group-hover:text-cyan-400 transition-colors">{screen.label}</span>
               </div>
             ))}
           </div>
@@ -416,28 +400,172 @@ export default function LandingPage() {
               </Link>
             </div>
 
-            <div className="relative">
+            <div className="relative flex justify-center">
               <div className="orb w-[300px] h-[300px] bg-cyan-500/10 -top-16 -right-16" />
-              <div className="space-y-3 relative">
+              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
+                <Image src="/ss-dashboard.png" alt="FieldScore Sales Dashboard" width={300} height={600} className="w-64 lg:w-72 h-auto" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== FEATURE: LEAD MANAGEMENT ========== */}
+      <section className="py-20 lg:py-28 bg-brand-surface relative overflow-hidden">
+        <div className="absolute inset-0 dot-pattern opacity-20" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="relative flex justify-center lg:order-1">
+              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
+                <Image src="/ss-lead-mgmt.png" alt="FieldScore Lead Management" width={300} height={600} className="w-64 lg:w-72 h-auto" />
+              </div>
+            </div>
+            <div className="lg:order-2">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-6">
+                <Target className="w-4 h-4" /> Lead Management
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
+                Never Lose a Lead <span className="gradient-text">Again</span>
+              </h2>
+              <p className="text-brand-dim mb-8 leading-relaxed text-lg">
+                Manage leads, make calls, schedule follow-ups and close more deals — all in one place.
+              </p>
+              <div className="space-y-4">
                 {[
-                  { icon: MapPin, label: "Field Team Tracking", sub: "19 of 24 checked in today", value: "79%", color: "text-emerald-400", bg: "bg-emerald-500/10" },
-                  { icon: Target, label: "Conversion Rate", sub: "This month's performance", value: "18.4%", color: "text-cyan-400", bg: "bg-cyan-500/10" },
-                  { icon: TrendingUp, label: "Revenue This Quarter", sub: "+23% vs last quarter", value: "42.5 Cr", color: "text-violet-400", bg: "bg-violet-500/10" },
-                  { icon: Phone, label: "Calls Today", sub: "Team average: 16 calls", value: "121", color: "text-blue-400", bg: "bg-blue-500/10" },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-4 bg-brand-card rounded-2xl p-5 border border-brand-border shadow-soft hover:shadow-card transition-shadow">
-                    <div className={`w-12 h-12 rounded-2xl ${item.bg} flex items-center justify-center`}>
-                      <item.icon className={`w-6 h-6 ${item.color}`} />
+                  "Capture leads from multiple sources automatically",
+                  "Smart categorization with custom tags and filters",
+                  "One-tap calling with auto-logged history",
+                  "Set follow-up reminders that never slip",
+                  "Track lead journey from first contact to close",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-white" />
                     </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-semibold text-brand-text">{item.label}</p>
-                      <p className="text-xs text-brand-dim">{item.sub}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className={`text-xl font-black ${item.color}`}>{item.value}</p>
-                    </div>
+                    <span className="text-sm text-brand-body">{item}</span>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== FEATURE: FIELD TRACKING ========== */}
+      <section className="py-20 lg:py-28 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-semibold mb-6">
+                <MapPin className="w-4 h-4" /> Field Tracking
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
+                On the Ground. <span className="gradient-text">Always in Sync.</span>
+              </h2>
+              <p className="text-brand-dim mb-8 leading-relaxed text-lg">
+                Track field visits, GPS location and site activities in real-time. Know exactly where your team is and what they&apos;re doing.
+              </p>
+              <div className="space-y-4">
+                {[
+                  "Live GPS tracking with check-in/check-out",
+                  "Site visit logging with photo verification",
+                  "Real-time field activity feed",
+                  "Automated attendance with geo-fencing",
+                  "Route optimization for field agents",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-sm text-brand-body">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative flex justify-center">
+              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
+                <Image src="/ss-field-tracking.png" alt="FieldScore GPS Field Tracking" width={300} height={600} className="w-64 lg:w-72 h-auto" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== FEATURE: CALL MANAGEMENT ========== */}
+      <section className="py-20 lg:py-28 bg-brand-surface relative overflow-hidden">
+        <div className="absolute inset-0 grid-pattern opacity-30" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="relative flex justify-center lg:order-1">
+              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
+                <Image src="/ss-call-mgmt.png" alt="FieldScore Call Management" width={300} height={600} className="w-64 lg:w-72 h-auto" />
+              </div>
+            </div>
+            <div className="lg:order-2">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-sm font-semibold mb-6">
+                <Phone className="w-4 h-4" /> Call Management
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
+                Every Call Becomes <span className="gradient-text">Progress</span>
+              </h2>
+              <p className="text-brand-dim mb-8 leading-relaxed text-lg">
+                AI-powered call summaries automatically captured into your CRM. No more manual call notes.
+              </p>
+              <div className="space-y-4">
+                {[
+                  "Integrated dialer with one-tap calling",
+                  "AI call summaries and transcription",
+                  "Automatic call logging to lead timeline",
+                  "Call analytics with team performance metrics",
+                  "Smart follow-up suggestions after every call",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-sm text-brand-body">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== FEATURE: TEAM MANAGEMENT ========== */}
+      <section className="py-20 lg:py-28 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 text-violet-400 text-sm font-semibold mb-6">
+                <Users className="w-4 h-4" /> Team Management
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
+                Empower Your <span className="gradient-text">Team</span>
+              </h2>
+              <p className="text-brand-dim mb-8 leading-relaxed text-lg">
+                Track performance, manage activity and drive better results. Give your team the tools they need to succeed.
+              </p>
+              <div className="space-y-4">
+                {[
+                  "Role-based access for sales teams, managers, and owners",
+                  "Real-time performance leaderboards",
+                  "Goal setting and tracking per team member",
+                  "Leave management and shift scheduling",
+                  "Detailed activity reports and analytics",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-sm text-brand-body">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative flex justify-center">
+              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
+                <Image src="/ss-team-mgmt.png" alt="FieldScore Team Management" width={300} height={600} className="w-64 lg:w-72 h-auto" />
               </div>
             </div>
           </div>
@@ -569,16 +697,30 @@ export default function LandingPage() {
       <section className="py-20 lg:py-28 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#060B18] via-cyan-900/40 to-[#0D1B2A]" />
         <div className="absolute inset-0 dot-pattern opacity-10" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <h2 className="text-3xl lg:text-5xl font-black mb-6 text-brand-text">
-            Ready to Transform Your Sales?
-          </h2>
-          <p className="text-lg text-brand-dim mb-10 max-w-2xl mx-auto">
-            Join hundreds of real estate teams already closing more deals with FieldScore.
-          </p>
-          <Link href="/signup" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-base px-10 py-4 rounded-2xl hover:shadow-glow-strong transition-all shadow-glow active:scale-[0.98]">
-            Get Started for Free <ArrowRight className="w-5 h-5" />
-          </Link>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <h2 className="text-3xl lg:text-5xl font-black mb-6 text-brand-text">
+                Ready to Transform Your Sales?
+              </h2>
+              <p className="text-lg text-brand-dim mb-10 max-w-xl">
+                Choose your role and get started. FieldScore adapts to sales teams, managers, and owners — giving everyone the right tools to succeed.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link href="/signup" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-base px-10 py-4 rounded-2xl hover:shadow-glow-strong transition-all shadow-glow active:scale-[0.98]">
+                  Get Started for Free <ArrowRight className="w-5 h-5" />
+                </Link>
+                <a href="https://play.google.com/store/apps/details?id=com.simsinfotech.workspace" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-brand-card border border-brand-border text-brand-text font-bold text-base px-8 py-4 rounded-2xl hover:border-cyan-500/30 transition-all">
+                  <Play className="w-4 h-4" /> Download App
+                </a>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated">
+                <Image src="/ss-role-select.png" alt="Choose Your Role - FieldScore" width={300} height={600} className="w-64 lg:w-72 h-auto" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
