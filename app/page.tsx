@@ -610,7 +610,7 @@ export default function LandingPage() {
               </div>
               {/* App store badges */}
               <div className="flex flex-col gap-3 mt-6">
-                <a href="#" aria-label="Download on the App Store" className="block hover:opacity-80 transition-opacity">
+                <a href="https://play.google.com/store/apps/details?id=com.simsinfotech.workspace" target="_blank" rel="noopener noreferrer" aria-label="Download on App Store and Google Play" className="block hover:opacity-80 transition-opacity">
                   <Image src="/image copy.png" alt="Download on App Store and Google Play" width={280} height={84} className="w-36 h-auto" />
                 </a>
               </div>
