@@ -230,7 +230,7 @@ export default function LandingPage() {
           <div className="mt-16 lg:mt-20 relative max-w-5xl mx-auto">
             <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-teal-500/10 rounded-[2rem] blur-2xl" />
             <div className="relative rounded-2xl border border-brand-border shadow-elevated overflow-hidden">
-              <Image src="/ss-hero-banner.png" alt="FieldScore - Choose Your Role, Do More Together" width={1200} height={500} className="w-full h-auto" priority />
+              <Image src="/ss-hero-banner.png" alt="FieldScore - Choose Your Role, Do More Together" width={1200} height={554} className="w-full h-auto" priority unoptimized />
             </div>
           </div>
         </div>
@@ -281,7 +281,7 @@ export default function LandingPage() {
             ].map((screen, i) => (
               <div key={i} className={`group flex flex-col items-center gap-3 ${i === 1 ? "lg:-mt-4" : ""}`}>
                 <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated bg-brand-card hover:shadow-glow transition-all duration-300 hover:-translate-y-2">
-                  <Image src={screen.src} alt={screen.alt} width={240} height={480} className="w-44 lg:w-52 h-auto" />
+                  <Image src={screen.src} alt={screen.alt} width={240} height={427} className="w-44 lg:w-48 h-auto" unoptimized />
                 </div>
                 <span className="text-xs font-semibold text-brand-dim group-hover:text-cyan-400 transition-colors">{screen.label}</span>
               </div>
@@ -403,7 +403,7 @@ export default function LandingPage() {
             <div className="relative flex justify-center">
               <div className="orb w-[300px] h-[300px] bg-cyan-500/10 -top-16 -right-16" />
               <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
-                <Image src="/ss-dashboard.png" alt="FieldScore Sales Dashboard" width={300} height={600} className="w-64 lg:w-72 h-auto" />
+                <Image src="/ss-dashboard.png" alt="FieldScore Sales Dashboard" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
               </div>
             </div>
           </div>
@@ -417,7 +417,7 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative flex justify-center lg:order-1">
               <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
-                <Image src="/ss-lead-mgmt.png" alt="FieldScore Lead Management" width={300} height={600} className="w-64 lg:w-72 h-auto" />
+                <Image src="/ss-lead-mgmt.png" alt="FieldScore Lead Management" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
               </div>
             </div>
             <div className="lg:order-2">
@@ -484,7 +484,7 @@ export default function LandingPage() {
             </div>
             <div className="relative flex justify-center">
               <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
-                <Image src="/ss-field-tracking.png" alt="FieldScore GPS Field Tracking" width={300} height={600} className="w-64 lg:w-72 h-auto" />
+                <Image src="/ss-field-tracking.png" alt="FieldScore GPS Field Tracking" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
               </div>
             </div>
           </div>
@@ -498,7 +498,7 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative flex justify-center lg:order-1">
               <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
-                <Image src="/ss-call-mgmt.png" alt="FieldScore Call Management" width={300} height={600} className="w-64 lg:w-72 h-auto" />
+                <Image src="/ss-call-mgmt.png" alt="FieldScore Call Management" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
               </div>
             </div>
             <div className="lg:order-2">
@@ -565,7 +565,7 @@ export default function LandingPage() {
             </div>
             <div className="relative flex justify-center">
               <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
-                <Image src="/ss-team-mgmt.png" alt="FieldScore Team Management" width={300} height={600} className="w-64 lg:w-72 h-auto" />
+                <Image src="/ss-team-mgmt.png" alt="FieldScore Team Management" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
               </div>
             </div>
           </div>
@@ -717,7 +717,7 @@ export default function LandingPage() {
             </div>
             <div className="flex justify-center">
               <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated">
-                <Image src="/ss-role-select.png" alt="Choose Your Role - FieldScore" width={300} height={600} className="w-64 lg:w-72 h-auto" />
+                <Image src="/ss-role-select.png" alt="Choose Your Role - FieldScore" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
               </div>
             </div>
           </div>
