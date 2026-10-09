@@ -11,16 +11,16 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-brand-bg flex">
       {/* Left - Decorative */}
-      <div className="hidden lg:flex flex-1 items-center justify-center relative overflow-hidden bg-gradient-to-br from-cyan-600 via-cyan-700 to-blue-700">
+      <div className="hidden lg:flex flex-1 items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#060B18] via-[#0A1628] to-[#0D1B2A]">
         <div className="absolute inset-0 dot-pattern opacity-10" />
-        <div className="orb w-[400px] h-[400px] bg-cyan-100/30 top-20 right-20" />
-        <div className="orb w-[300px] h-[300px] bg-blue-100/30 bottom-20 left-20" style={{ animationDelay: "3s" }} />
+        <div className="orb w-[400px] h-[400px] bg-cyan-500/15 top-20 right-20" />
+        <div className="orb w-[300px] h-[300px] bg-blue-600/15 bottom-20 left-20" style={{ animationDelay: "3s" }} />
         <div className="relative z-10 max-w-md text-center px-8">
-          <div className="w-20 h-20 rounded-3xl bg-white/15 backdrop-blur-sm flex items-center justify-center mx-auto mb-8 border border-white/20 overflow-hidden">
+          <div className="w-20 h-20 rounded-3xl bg-cyan-500/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-8 border border-cyan-500/20 overflow-hidden">
             <Image src="/IMG_9578.PNG" alt="FieldScore" width={80} height={80} className="w-16 h-16 object-contain" />
           </div>
-          <h2 className="text-3xl font-black mb-4 text-white">Manage Sales Like a Pro</h2>
-          <p className="text-cyan-100 leading-relaxed">
+          <h2 className="text-3xl font-black mb-4 text-brand-text">Manage Sales Like a Pro</h2>
+          <p className="text-brand-dim leading-relaxed">
             Track leads, monitor your field team, manage pipelines, and close deals faster with FieldScore.
           </p>
           <div className="mt-10 grid grid-cols-3 gap-3">
@@ -29,9 +29,9 @@ export default function LoginPage() {
               { value: "67", label: "Won" },
               { value: "18.4%", label: "Conv. Rate" },
             ].map((s) => (
-              <div key={s.label} className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
-                <p className="text-xl font-black text-white">{s.value}</p>
-                <p className="text-xs text-cyan-200 mt-0.5">{s.label}</p>
+              <div key={s.label} className="bg-brand-card/60 backdrop-blur-sm rounded-2xl p-4 border border-brand-border">
+                <p className="text-xl font-black text-cyan-400">{s.value}</p>
+                <p className="text-xs text-brand-dim mt-0.5">{s.label}</p>
               </div>
             ))}
           </div>

@@ -18,9 +18,9 @@ import {
 import { calls, formatDuration } from "@/lib/mock-data";
 
 const DIRECTION_STYLES = {
-  inbound: { icon: PhoneIncoming, color: "text-blue-600", bg: "bg-blue-50", label: "Inbound" },
-  outbound: { icon: PhoneOutgoing, color: "text-emerald-600", bg: "bg-emerald-50", label: "Outbound" },
-  missed: { icon: PhoneMissed, color: "text-red-600", bg: "bg-red-50", label: "Missed" },
+  inbound: { icon: PhoneIncoming, color: "text-blue-400", bg: "bg-blue-500/10", label: "Inbound" },
+  outbound: { icon: PhoneOutgoing, color: "text-emerald-400", bg: "bg-emerald-500/10", label: "Outbound" },
+  missed: { icon: PhoneMissed, color: "text-red-400", bg: "bg-red-500/10", label: "Missed" },
 };
 
 export default function CallsPage() {
@@ -49,15 +49,15 @@ export default function CallsPage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <Phone className="w-4 h-4 text-cyan-600" />
+            <Phone className="w-4 h-4 text-cyan-400" />
             <span className="text-xs text-brand-dim">Total Calls</span>
           </div>
           <p className="text-2xl font-black text-brand-text">{totalCalls}</p>
-          <p className="text-xs text-emerald-600 flex items-center gap-1 mt-1"><ArrowUpRight className="w-3 h-3" /> +12% today</p>
+          <p className="text-xs text-emerald-400 flex items-center gap-1 mt-1"><ArrowUpRight className="w-3 h-3" /> +12% today</p>
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <Clock className="w-4 h-4 text-blue-600" />
+            <Clock className="w-4 h-4 text-blue-400" />
             <span className="text-xs text-brand-dim">Total Duration</span>
           </div>
           <p className="text-2xl font-black text-brand-text">{formatDuration(totalDuration)}</p>
@@ -65,7 +65,7 @@ export default function CallsPage() {
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <BarChart3 className="w-4 h-4 text-violet-600" />
+            <BarChart3 className="w-4 h-4 text-violet-400" />
             <span className="text-xs text-brand-dim">Avg Duration</span>
           </div>
           <p className="text-2xl font-black text-brand-text">{formatDuration(avgDuration)}</p>
@@ -73,10 +73,10 @@ export default function CallsPage() {
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <TrendingUp className="w-4 h-4 text-emerald-600" />
+            <TrendingUp className="w-4 h-4 text-emerald-400" />
             <span className="text-xs text-brand-dim">Connect Rate</span>
           </div>
-          <p className="text-2xl font-black text-emerald-600">{((calls.filter(c => c.duration > 0).length / totalCalls) * 100).toFixed(0)}%</p>
+          <p className="text-2xl font-black text-emerald-400">{((calls.filter(c => c.duration > 0).length / totalCalls) * 100).toFixed(0)}%</p>
           <p className="text-xs text-brand-dim mt-1">calls connected</p>
         </div>
       </div>
@@ -134,7 +134,7 @@ export default function CallsPage() {
                   <p className="text-xs text-brand-dim">{call.timestamp.split(" ").slice(1).join(" ")}</p>
                 </div>
                 {call.recording && (
-                  <button className="w-8 h-8 rounded-xl bg-cyan-50 flex items-center justify-center text-cyan-600 hover:bg-cyan-500/15 transition-colors shrink-0">
+                  <button className="w-8 h-8 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 hover:bg-cyan-500/15 transition-colors shrink-0">
                     <Play className="w-4 h-4" />
                   </button>
                 )}

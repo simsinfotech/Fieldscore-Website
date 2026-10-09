@@ -21,10 +21,10 @@ import { tasks, priorityColors, taskStatusColors, taskStatusLabels, type TaskSta
 
 const STATUS_COLUMNS: { status: TaskStatus; icon: React.ElementType; color: string }[] = [
   { status: "todo", icon: CheckSquare, color: "text-slate-400" },
-  { status: "in_progress", icon: Clock, color: "text-blue-600" },
-  { status: "review", icon: AlertTriangle, color: "text-violet-600" },
-  { status: "done", icon: CheckCircle2, color: "text-emerald-600" },
-  { status: "blocked", icon: XCircle, color: "text-red-600" },
+  { status: "in_progress", icon: Clock, color: "text-blue-400" },
+  { status: "review", icon: AlertTriangle, color: "text-violet-400" },
+  { status: "done", icon: CheckCircle2, color: "text-emerald-400" },
+  { status: "blocked", icon: XCircle, color: "text-red-400" },
 ];
 
 export default function TasksPage() {

@@ -17,11 +17,11 @@ import {
 import { stats, pipeline, formatCurrency } from "@/lib/mock-data";
 
 const PERFORMANCE_METRICS = [
-  { label: "Leads Generated", value: "312", change: "+18%", up: true, icon: Target, color: "text-cyan-600", bg: "bg-cyan-50" },
-  { label: "Calls Made", value: "1,847", change: "+12%", up: true, icon: Phone, color: "text-blue-600", bg: "bg-blue-50" },
-  { label: "Site Visits", value: "156", change: "+23%", up: true, icon: MapPin, color: "text-amber-500", bg: "bg-amber-50" },
-  { label: "Deals Closed", value: "67", change: "+31%", up: true, icon: Zap, color: "text-emerald-600", bg: "bg-emerald-50" },
-  { label: "Revenue", value: "42.5 Cr", change: "+18.7%", up: true, icon: IndianRupee, color: "text-violet-600", bg: "bg-violet-50" },
+  { label: "Leads Generated", value: "312", change: "+18%", up: true, icon: Target, color: "text-cyan-400", bg: "bg-cyan-500/10" },
+  { label: "Calls Made", value: "1,847", change: "+12%", up: true, icon: Phone, color: "text-blue-400", bg: "bg-blue-500/10" },
+  { label: "Site Visits", value: "156", change: "+23%", up: true, icon: MapPin, color: "text-amber-400", bg: "bg-amber-500/10" },
+  { label: "Deals Closed", value: "67", change: "+31%", up: true, icon: Zap, color: "text-emerald-400", bg: "bg-emerald-500/10" },
+  { label: "Revenue", value: "42.5 Cr", change: "+18.7%", up: true, icon: IndianRupee, color: "text-violet-400", bg: "bg-violet-500/10" },
   { label: "Avg Deal Size", value: "63.4L", change: "+5.7%", up: true, icon: BarChart3, color: "text-pink-400", bg: "bg-pink-500/10" },
 ];
 
@@ -60,7 +60,7 @@ export default function AnalyticsPage() {
               <div className={`w-10 h-10 rounded-xl ${metric.bg} flex items-center justify-center`}>
                 <metric.icon className={`w-5 h-5 ${metric.color}`} />
               </div>
-              <div className={`flex items-center gap-1 text-xs font-medium ${metric.up ? "text-emerald-600" : "text-red-600"}`}>
+              <div className={`flex items-center gap-1 text-xs font-medium ${metric.up ? "text-emerald-400" : "text-red-400"}`}>
                 {metric.up ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
                 {metric.change}
               </div>
@@ -168,9 +168,9 @@ export default function AnalyticsPage() {
                 <tr key={performer.rank}>
                   <td>
                     <span className={`w-7 h-7 inline-flex items-center justify-center rounded-full text-xs font-bold ${
-                      performer.rank === 1 ? "bg-amber-50 text-amber-500" :
+                      performer.rank === 1 ? "bg-amber-500/10 text-amber-400" :
                       performer.rank === 2 ? "bg-brand-surface text-slate-400" :
-                      performer.rank === 3 ? "bg-orange-50 text-orange-500" :
+                      performer.rank === 3 ? "bg-orange-500/10 text-orange-400" :
                       "bg-brand-surface text-brand-dim"
                     }`}>
                       {performer.rank}
@@ -184,7 +184,7 @@ export default function AnalyticsPage() {
                       <span className="font-semibold text-sm text-brand-text">{performer.name}</span>
                     </div>
                   </td>
-                  <td><span className="text-sm font-semibold text-emerald-600">{performer.deals}</span></td>
+                  <td><span className="text-sm font-semibold text-emerald-400">{performer.deals}</span></td>
                   <td><span className="text-sm">{performer.revenue}</span></td>
                   <td><span className="text-sm text-brand-dim">{performer.calls}</span></td>
                   <td>
@@ -221,7 +221,7 @@ export default function AnalyticsPage() {
               <p className="text-xs text-brand-dim mt-1">leads generated</p>
               <div className="mt-3 pt-3 border-t border-brand-border/50 flex items-center justify-between">
                 <span className="text-xs text-brand-dim">{source.converted} converted</span>
-                <span className="text-xs font-semibold text-emerald-600">{source.rate}</span>
+                <span className="text-xs font-semibold text-emerald-400">{source.rate}</span>
               </div>
             </div>
           ))}

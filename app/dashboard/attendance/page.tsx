@@ -17,11 +17,11 @@ import { attendance } from "@/lib/mock-data";
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const STATUS_STYLES: Record<string, { bg: string; text: string; label: string }> = {
-  present: { bg: "bg-emerald-50", text: "text-emerald-600", label: "Present" },
-  late: { bg: "bg-amber-50", text: "text-amber-500", label: "Late" },
-  absent: { bg: "bg-red-50", text: "text-red-600", label: "Absent" },
-  "half-day": { bg: "bg-blue-50", text: "text-blue-600", label: "Half Day" },
-  leave: { bg: "bg-violet-50", text: "text-violet-600", label: "Leave" },
+  present: { bg: "bg-emerald-500/10", text: "text-emerald-400", label: "Present" },
+  late: { bg: "bg-amber-500/10", text: "text-amber-400", label: "Late" },
+  absent: { bg: "bg-red-500/10", text: "text-red-400", label: "Absent" },
+  "half-day": { bg: "bg-blue-500/10", text: "text-blue-400", label: "Half Day" },
+  leave: { bg: "bg-violet-500/10", text: "text-violet-400", label: "Leave" },
 };
 
 function generateCalendarDays(year: number, month: number) {
@@ -61,8 +61,8 @@ export default function AttendancePage() {
           onClick={() => setCheckedIn(!checkedIn)}
           className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all ${
             checkedIn
-              ? "bg-red-50 text-red-600 border border-red-500/20 hover:bg-red-500/15"
-              : "bg-emerald-50 text-emerald-600 border border-emerald-500/20 hover:bg-emerald-500/15"
+              ? "bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/15"
+              : "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/15"
           }`}
         >
           <div className={`w-2 h-2 rounded-full ${checkedIn ? "bg-emerald-500 animate-pulse" : "bg-red-500"}`} />
@@ -75,7 +75,7 @@ export default function AttendancePage() {
         <div className="bg-brand-card border border-cyan-500/20 rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-sm font-medium text-emerald-600">Active Session</span>
+            <span className="text-sm font-medium text-emerald-400">Active Session</span>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
@@ -84,11 +84,11 @@ export default function AttendancePage() {
             </div>
             <div>
               <p className="text-xs text-brand-dim mb-1">Active Duration</p>
-              <p className="text-lg font-bold text-cyan-600">5h 42m</p>
+              <p className="text-lg font-bold text-cyan-400">5h 42m</p>
             </div>
             <div>
               <p className="text-xs text-brand-dim mb-1">Location</p>
-              <p className="text-sm font-medium flex items-center gap-1"><MapPin className="w-3 h-3 text-cyan-600" /> Prestige Lakeside Office</p>
+              <p className="text-sm font-medium flex items-center gap-1"><MapPin className="w-3 h-3 text-cyan-400" /> Prestige Lakeside Office</p>
             </div>
             <div>
               <p className="text-xs text-brand-dim mb-1">Sessions Today</p>
@@ -102,34 +102,34 @@ export default function AttendancePage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
             <span className="text-xs text-brand-dim">Present Days</span>
           </div>
-          <p className="text-2xl font-black text-emerald-600">{totalPresent}</p>
+          <p className="text-2xl font-black text-emerald-400">{totalPresent}</p>
           <p className="text-xs text-brand-dim mt-1">out of 10 working days</p>
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <AlertTriangle className="w-4 h-4 text-amber-500" />
+            <AlertTriangle className="w-4 h-4 text-amber-400" />
             <span className="text-xs text-brand-dim">Late Marks</span>
           </div>
-          <p className="text-2xl font-black text-amber-500">{totalLate}</p>
+          <p className="text-2xl font-black text-amber-400">{totalLate}</p>
           <p className="text-xs text-brand-dim mt-1">after 9:30 AM threshold</p>
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <Timer className="w-4 h-4 text-cyan-600" />
+            <Timer className="w-4 h-4 text-cyan-400" />
             <span className="text-xs text-brand-dim">Avg. Active Hours</span>
           </div>
-          <p className="text-2xl font-black text-cyan-600">{Math.floor(avgMinutes / 60)}h {avgMinutes % 60}m</p>
+          <p className="text-2xl font-black text-cyan-400">{Math.floor(avgMinutes / 60)}h {avgMinutes % 60}m</p>
           <p className="text-xs text-brand-dim mt-1">per working day</p>
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <TrendingUp className="w-4 h-4 text-violet-600" />
+            <TrendingUp className="w-4 h-4 text-violet-400" />
             <span className="text-xs text-brand-dim">Attendance Rate</span>
           </div>
-          <p className="text-2xl font-black text-violet-600">80%</p>
+          <p className="text-2xl font-black text-violet-400">80%</p>
           <p className="text-xs text-brand-dim mt-1">this month</p>
         </div>
       </div>
@@ -163,14 +163,14 @@ export default function AttendancePage() {
                   key={i}
                   className={`aspect-square flex flex-col items-center justify-center rounded-xl text-sm transition-colors cursor-pointer ${
                     !day ? "" :
-                    isToday ? "bg-cyan-50 border border-cyan-500/20" :
+                    isToday ? "bg-cyan-500/10 border border-cyan-500/20" :
                     record ? `${STATUS_STYLES[record.status]?.bg} hover:opacity-80` :
                     "hover:bg-brand-card-hover"
                   }`}
                 >
                   {day && (
                     <>
-                      <span className={`font-medium ${isToday ? "text-cyan-600" : record ? STATUS_STYLES[record.status]?.text : "text-brand-dim"}`}>
+                      <span className={`font-medium ${isToday ? "text-cyan-400" : record ? STATUS_STYLES[record.status]?.text : "text-brand-dim"}`}>
                         {day}
                       </span>
                       {record && record.active_minutes > 0 && (
@@ -221,7 +221,7 @@ export default function AttendancePage() {
                       <span className="text-xs text-brand-dim">In: {record.check_in}</span>
                       <span className="text-xs text-brand-dim">Out: {record.check_out}</span>
                       {record.active_minutes > 0 && (
-                        <span className="text-xs text-cyan-600">{Math.floor(record.active_minutes / 60)}h {record.active_minutes % 60}m</span>
+                        <span className="text-xs text-cyan-400">{Math.floor(record.active_minutes / 60)}h {record.active_minutes % 60}m</span>
                       )}
                     </div>
                   </div>
