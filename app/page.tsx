@@ -178,54 +178,108 @@ export default function LandingPage() {
         <div className="orb w-[300px] h-[300px] bg-teal-500/15 top-40 right-1/4" style={{ animationDelay: "4s" }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-semibold mb-8 shadow-soft">
-              <Sparkles className="w-4 h-4" />
-              Built for Real Estate Sales Teams
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </div>
-
-            <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black tracking-tight leading-[1.05] mb-6">
-              Close Deals{" "}
-              <span className="gradient-text">Faster</span>
-              <br />
-              <span className="text-brand-dim font-bold text-4xl sm:text-5xl lg:text-6xl">with FieldScore CRM</span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-brand-dim max-w-2xl mx-auto mb-10 leading-relaxed">
-              The all-in-one platform that helps real estate teams capture leads, track pipelines, monitor attendance, and close more deals.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/signup" className="btn-primary text-base inline-flex items-center justify-center gap-2 !py-4 !px-8 rounded-2xl shadow-glow">
-                Start Free Trial <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link href="/dashboard" className="btn-secondary text-base inline-flex items-center justify-center gap-2 !py-4 !px-8 rounded-2xl">
-                <Play className="w-4 h-4" /> Live Demo
-              </Link>
-            </div>
-
-            {/* Social proof */}
-            <div className="flex items-center justify-center gap-6 mt-10">
-              <div className="flex -space-x-2">
-                {["VM", "AD", "SK", "RK", "PM"].map((init, i) => (
-                  <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[10px] font-bold text-white border-2 border-brand-bg">
-                    {init}
-                  </div>
-                ))}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            {/* Left side — Text content */}
+            <div>
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-semibold mb-8 shadow-soft">
+                <Sparkles className="w-4 h-4" />
+                Built for Real Estate Sales Teams
               </div>
-              <div className="text-left">
-                <div className="flex items-center gap-1">
-                  {[1,2,3,4,5].map((i) => (
-                    <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.08] mb-6">
+                Close Deals{" "}
+                <span className="gradient-text">Faster</span>
+                <br />
+                <span className="text-brand-dim font-bold text-3xl sm:text-4xl lg:text-5xl">with FieldScore CRM</span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-brand-dim max-w-xl mb-4 leading-relaxed">
+                The all-in-one platform that helps real estate teams capture leads, track pipelines, monitor attendance, and close more deals.
+              </p>
+
+              <p className="text-sm text-brand-muted max-w-xl mb-8 leading-relaxed">
+                FieldScore adapts to your role — whether you&apos;re a sales executive on the field, a manager tracking performance, or an owner looking for complete visibility. Get the right tools to succeed from day one.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3 mb-6">
+                <Link href="/dashboard" className="btn-secondary text-sm inline-flex items-center justify-center gap-2 !py-3.5 !px-6 rounded-xl">
+                  <Play className="w-4 h-4" /> Book a Demo
+                </Link>
+                <Link href="/signup" className="btn-primary text-sm inline-flex items-center justify-center gap-2 !py-3.5 !px-6 rounded-xl shadow-glow">
+                  Start 10-day Free Trial <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+
+              <p className="text-xs text-brand-muted">No Credit Card Required</p>
+
+              {/* Social proof */}
+              <div className="flex items-center gap-6 mt-8 pt-8 border-t border-brand-border/50">
+                <div className="flex -space-x-2">
+                  {["VM", "AD", "SK", "RK", "PM"].map((init, i) => (
+                    <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[10px] font-bold text-white border-2 border-brand-bg">
+                      {init}
+                    </div>
                   ))}
                 </div>
-                <p className="text-xs text-brand-dim mt-0.5">Trusted by 500+ sales teams</p>
+                <div className="text-left">
+                  <div className="flex items-center gap-1">
+                    {[1,2,3,4,5].map((i) => (
+                      <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                    ))}
+                  </div>
+                  <p className="text-xs text-brand-dim mt-0.5">Trusted by 500+ sales teams</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right side — App screenshots collage */}
+            <div className="relative flex justify-center items-center lg:min-h-[520px]">
+              {/* Glow behind */}
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-blue-500/10 to-teal-500/5 rounded-3xl blur-3xl" />
+
+              {/* Main center screenshot */}
+              <div className="relative z-10 rounded-2xl border border-brand-border overflow-hidden shadow-elevated">
+                <Image src="/ss-dashboard.png" alt="FieldScore Dashboard" width={240} height={427} className="w-48 sm:w-56 h-auto" unoptimized />
+              </div>
+
+              {/* Left screenshot — offset behind */}
+              <div className="absolute left-0 sm:left-4 lg:-left-2 top-8 z-0 rounded-2xl border border-brand-border overflow-hidden shadow-elevated opacity-75 -rotate-6">
+                <Image src="/ss-lead-mgmt.png" alt="Lead Management" width={240} height={427} className="w-40 sm:w-44 h-auto" unoptimized />
+              </div>
+
+              {/* Right screenshot — offset behind */}
+              <div className="absolute right-0 sm:right-4 lg:-right-2 top-8 z-0 rounded-2xl border border-brand-border overflow-hidden shadow-elevated opacity-75 rotate-6">
+                <Image src="/ss-call-mgmt.png" alt="Call Management" width={240} height={427} className="w-40 sm:w-44 h-auto" unoptimized />
+              </div>
+
+              {/* Floating stat card — top right */}
+              <div className="absolute -top-2 right-4 lg:right-0 z-20 bg-brand-card border border-brand-border rounded-xl px-4 py-3 shadow-elevated">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                    <TrendingUp className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-brand-dim">Conversion</p>
+                    <p className="text-sm font-bold text-emerald-400">+34%</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating stat card — bottom left */}
+              <div className="absolute -bottom-2 left-4 lg:left-0 z-20 bg-brand-card border border-brand-border rounded-xl px-4 py-3 shadow-elevated">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center">
+                    <Target className="w-4 h-4 text-cyan-400" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-brand-dim">Active Leads</p>
+                    <p className="text-sm font-bold text-cyan-400">1,247</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
