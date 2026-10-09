@@ -226,13 +226,6 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* ========== HERO BANNER IMAGE ========== */}
-          <div className="mt-16 lg:mt-20 relative max-w-5xl mx-auto">
-            <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-teal-500/10 rounded-[2rem] blur-2xl" />
-            <div className="relative rounded-2xl border border-brand-border shadow-elevated overflow-hidden">
-              <Image src="/ss-hero-banner.png" alt="FieldScore - Choose Your Role, Do More Together" width={1200} height={554} className="w-full h-auto" priority unoptimized />
-            </div>
-          </div>
         </div>
       </section>
 
