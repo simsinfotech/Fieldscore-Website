@@ -43,64 +43,64 @@ const FEATURES = [
     title: "Lead Management",
     description: "Track every lead from first contact to deal. Smart categorization, auto-assignment, and real-time updates.",
     gradient: "from-cyan-500 to-blue-500",
-    bg: "bg-cyan-500/10",
-    iconColor: "text-cyan-400",
+    bg: "bg-cyan-50",
+    iconColor: "text-cyan-600",
   },
   {
     icon: Layers,
     title: "Sales Pipeline",
     description: "Visual 6-stage pipeline from New to Won. Track deals, conversion rates, and spot bottlenecks instantly.",
     gradient: "from-violet-500 to-purple-500",
-    bg: "bg-violet-500/10",
-    iconColor: "text-violet-400",
+    bg: "bg-violet-50",
+    iconColor: "text-violet-600",
   },
   {
     icon: Clock,
     title: "Attendance Tracking",
     description: "GPS-verified check-in/out with session tracking, active hours, and automated late-mark detection.",
     gradient: "from-pink-500 to-rose-500",
-    bg: "bg-pink-500/10",
-    iconColor: "text-pink-400",
+    bg: "bg-pink-50",
+    iconColor: "text-pink-600",
   },
   {
     icon: Phone,
     title: "Call Management",
     description: "Integrated calling with auto-logging, recording, and transcription. Track every conversation.",
     gradient: "from-blue-500 to-cyan-500",
-    bg: "bg-blue-500/10",
-    iconColor: "text-blue-400",
+    bg: "bg-blue-50",
+    iconColor: "text-blue-600",
   },
   {
     icon: Building2,
     title: "Property Listings",
     description: "Centralized inventory with RERA details, pricing, and availability. Match leads to properties.",
     gradient: "from-amber-500 to-orange-500",
-    bg: "bg-amber-500/10",
-    iconColor: "text-amber-400",
+    bg: "bg-amber-50",
+    iconColor: "text-amber-500",
   },
   {
     icon: BarChart3,
     title: "Smart Analytics",
     description: "Real-time KPIs, performance scorecards, activity heatmaps, and earnings dashboards.",
     gradient: "from-emerald-500 to-teal-500",
-    bg: "bg-emerald-500/10",
-    iconColor: "text-emerald-400",
+    bg: "bg-emerald-50",
+    iconColor: "text-emerald-600",
   },
   {
     icon: Users,
     title: "Team Management",
     description: "Role-based access, team monitoring, leave management, and real-time field tracking.",
     gradient: "from-sky-500 to-blue-500",
-    bg: "bg-sky-500/10",
-    iconColor: "text-sky-400",
+    bg: "bg-sky-50",
+    iconColor: "text-sky-600",
   },
   {
     icon: Bell,
     title: "Smart Notifications",
     description: "Real-time alerts for leads, visits, calls, tasks, and deals. Never miss a follow-up.",
     gradient: "from-rose-500 to-pink-500",
-    bg: "bg-rose-500/10",
-    iconColor: "text-rose-400",
+    bg: "bg-rose-50",
+    iconColor: "text-rose-600",
   },
 ];
 
@@ -176,16 +176,16 @@ export default function LandingPage() {
       <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
         {/* Background decorations */}
         <div className="absolute inset-0 dot-pattern opacity-40" />
-        <div className="orb w-[600px] h-[600px] bg-cyan-500/20 -top-60 -right-60" />
-        <div className="orb w-[500px] h-[500px] bg-blue-600/20 -bottom-40 -left-40" style={{ animationDelay: "2s" }} />
-        <div className="orb w-[300px] h-[300px] bg-teal-500/15 top-40 right-1/4" style={{ animationDelay: "4s" }} />
+        <div className="orb w-[600px] h-[600px] bg-cyan-200/30 -top-60 -right-60" />
+        <div className="orb w-[500px] h-[500px] bg-blue-200/30 -bottom-40 -left-40" style={{ animationDelay: "2s" }} />
+        <div className="orb w-[300px] h-[300px] bg-teal-200/25 top-40 right-1/4" style={{ animationDelay: "4s" }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left side — Text content */}
             <div>
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-semibold mb-8 shadow-soft">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200 text-cyan-600 text-sm font-semibold mb-8 shadow-soft">
                 <Sparkles className="w-4 h-4" />
                 Built for Real Estate Sales Teams
               </div>
@@ -220,7 +220,7 @@ export default function LandingPage() {
               <div className="flex items-center gap-6 mt-8 pt-8 border-t border-brand-border/50">
                 <div className="flex -space-x-2">
                   {["VM", "AD", "SK", "RK", "PM"].map((init, i) => (
-                    <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[10px] font-bold text-white border-2 border-brand-bg">
+                    <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[10px] font-bold text-white border-2 border-white">
                       {init}
                     </div>
                   ))}
@@ -228,7 +228,7 @@ export default function LandingPage() {
                 <div className="text-left">
                   <div className="flex items-center gap-1">
                     {[1,2,3,4,5].map((i) => (
-                      <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                      <Star key={i} className="w-4 h-4 text-amber-500 fill-amber-500" />
                     ))}
                   </div>
                   <p className="text-xs text-brand-dim mt-0.5">Trusted by 500+ sales teams</p>
@@ -239,7 +239,7 @@ export default function LandingPage() {
             {/* Right side — App screenshots collage */}
             <div className="relative flex justify-center items-center lg:min-h-[520px]">
               {/* Glow behind */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-blue-500/10 to-teal-500/5 rounded-3xl blur-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-100/40 via-blue-100/50 to-teal-100/40 rounded-3xl blur-3xl" />
 
               {/* Main center screenshot */}
               <div className="relative z-10 rounded-2xl border border-brand-border overflow-hidden shadow-elevated">
@@ -259,12 +259,12 @@ export default function LandingPage() {
               {/* Floating stat card — top right */}
               <div className="absolute -top-2 right-4 lg:right-0 z-20 bg-brand-card border border-brand-border rounded-xl px-4 py-3 shadow-elevated">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                    <TrendingUp className="w-4 h-4 text-emerald-400" />
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+                    <TrendingUp className="w-4 h-4 text-emerald-600" />
                   </div>
                   <div>
                     <p className="text-[10px] text-brand-dim">Conversion</p>
-                    <p className="text-sm font-bold text-emerald-400">+34%</p>
+                    <p className="text-sm font-bold text-emerald-600">+34%</p>
                   </div>
                 </div>
               </div>
@@ -272,12 +272,12 @@ export default function LandingPage() {
               {/* Floating stat card — bottom left */}
               <div className="absolute -bottom-2 left-4 lg:left-0 z-20 bg-brand-card border border-brand-border rounded-xl px-4 py-3 shadow-elevated">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center">
-                    <Target className="w-4 h-4 text-cyan-400" />
+                  <div className="w-8 h-8 rounded-lg bg-cyan-50 flex items-center justify-center">
+                    <Target className="w-4 h-4 text-cyan-600" />
                   </div>
                   <div>
                     <p className="text-[10px] text-brand-dim">Active Leads</p>
-                    <p className="text-sm font-bold text-cyan-400">1,247</p>
+                    <p className="text-sm font-bold text-cyan-600">1,247</p>
                   </div>
                 </div>
               </div>
@@ -287,7 +287,7 @@ export default function LandingPage() {
       </section>
 
       {/* ========== STATS BAR ========== */}
-      <section className="py-12 bg-gradient-to-r from-[#060B18] via-cyan-900/40 to-[#0D1B2A] border-y border-brand-border">
+      <section className="py-12 bg-gradient-to-r from-cyan-600 via-cyan-700 to-blue-700 border-y border-brand-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -297,8 +297,8 @@ export default function LandingPage() {
               { value: "4.9/5", label: "App Rating" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <p className="text-3xl lg:text-4xl font-black text-cyan-400">{stat.value}</p>
-                <p className="text-sm text-brand-dim mt-1 font-medium">{stat.label}</p>
+                <p className="text-3xl lg:text-4xl font-black text-white">{stat.value}</p>
+                <p className="text-sm text-cyan-100 mt-1 font-medium">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -309,7 +309,7 @@ export default function LandingPage() {
       <section className="py-20 lg:py-28 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-4">
               <Play className="w-4 h-4" /> See It in Action
             </div>
             <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
@@ -333,7 +333,7 @@ export default function LandingPage() {
                 <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated bg-brand-card hover:shadow-glow transition-all duration-300 hover:-translate-y-2">
                   <Image src={screen.src} alt={screen.alt} width={240} height={427} className="w-44 lg:w-48 h-auto" unoptimized />
                 </div>
-                <span className="text-xs font-semibold text-brand-dim group-hover:text-cyan-400 transition-colors">{screen.label}</span>
+                <span className="text-xs font-semibold text-brand-dim group-hover:text-cyan-600 transition-colors">{screen.label}</span>
               </div>
             ))}
           </div>
@@ -342,10 +342,10 @@ export default function LandingPage() {
 
       {/* ========== FEATURES - BENTO GRID ========== */}
       <section id="features" className="py-20 lg:py-28 relative">
-        <div className="orb w-[400px] h-[400px] bg-cyan-500/10 top-20 -right-20" />
+        <div className="orb w-[400px] h-[400px] bg-cyan-100/40 top-20 -right-20" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-4">
               <Zap className="w-4 h-4" /> Powerful Features
             </div>
             <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
@@ -381,7 +381,7 @@ export default function LandingPage() {
         <div className="absolute inset-0 grid-pattern opacity-50" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 text-violet-400 text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-50 text-violet-600 text-sm font-semibold mb-4">
               <Activity className="w-4 h-4" /> Simple Process
             </div>
             <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
@@ -420,7 +420,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-semibold mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 text-sm font-semibold mb-6">
                 <TrendingUp className="w-4 h-4" /> Real-time Insights
               </div>
               <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
@@ -445,13 +445,13 @@ export default function LandingPage() {
                   </div>
                 ))}
               </div>
-              <Link href="/dashboard" className="inline-flex items-center gap-2 mt-8 text-cyan-400 font-semibold hover:gap-3 transition-all text-sm">
+              <Link href="/dashboard" className="inline-flex items-center gap-2 mt-8 text-cyan-600 font-semibold hover:gap-3 transition-all text-sm">
                 Explore the Dashboard <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
 
             <div className="relative flex justify-center">
-              <div className="orb w-[300px] h-[300px] bg-cyan-500/10 -top-16 -right-16" />
+              <div className="orb w-[300px] h-[300px] bg-cyan-100/40 -top-16 -right-16" />
               <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
                 <Image src="/ss-dashboard.png" alt="FieldScore Sales Dashboard" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
               </div>
@@ -471,7 +471,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="lg:order-2">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-6">
                 <Target className="w-4 h-4" /> Lead Management
               </div>
               <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
@@ -506,7 +506,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-semibold mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 text-sm font-semibold mb-6">
                 <MapPin className="w-4 h-4" /> Field Tracking
               </div>
               <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
@@ -552,7 +552,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="lg:order-2">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-sm font-semibold mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-6">
                 <Phone className="w-4 h-4" /> Call Management
               </div>
               <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
@@ -587,7 +587,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 text-violet-400 text-sm font-semibold mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-50 text-violet-600 text-sm font-semibold mb-6">
                 <Users className="w-4 h-4" /> Team Management
               </div>
               <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
@@ -635,7 +635,7 @@ export default function LandingPage() {
               <div key={t.name} className="bg-brand-card rounded-2xl p-6 border border-brand-border shadow-soft hover:shadow-elevated transition-all">
                 <div className="flex gap-1 mb-4">
                   {[1,2,3,4,5].map((i) => (
-                    <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                    <Star key={i} className="w-4 h-4 text-amber-500 fill-amber-500" />
                   ))}
                 </div>
                 <p className="text-sm text-brand-body leading-relaxed mb-6">&ldquo;{t.text}&rdquo;</p>
@@ -656,10 +656,10 @@ export default function LandingPage() {
 
       {/* ========== RESULTS & IMPACT ========== */}
       <section id="results" className="py-20 lg:py-28 relative">
-        <div className="orb w-[400px] h-[400px] bg-cyan-500/10 bottom-20 -left-20" />
+        <div className="orb w-[400px] h-[400px] bg-cyan-100/40 bottom-20 -left-20" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-4">
               <TrendingUp className="w-4 h-4" /> Proven Results
             </div>
             <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
@@ -687,21 +687,21 @@ export default function LandingPage() {
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between py-3 border-b border-brand-border/50 last:border-0">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-red-500/10 flex items-center justify-center">
-                        <item.icon className="w-4 h-4 text-red-400" />
+                      <div className="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center">
+                        <item.icon className="w-4 h-4 text-red-600" />
                       </div>
                       <span className="text-sm text-brand-body">{item.label}</span>
                     </div>
-                    <span className="text-sm font-bold text-red-400">{item.value}</span>
+                    <span className="text-sm font-bold text-red-600">{item.value}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* After */}
-            <div className="bg-brand-card border border-cyan-500/20 rounded-2xl p-8 shadow-glow relative overflow-hidden">
+            <div className="bg-brand-card border border-cyan-300 rounded-2xl p-8 shadow-glow relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-600" />
-              <h3 className="text-lg font-bold text-cyan-400 mb-1">After FieldScore</h3>
+              <h3 className="text-lg font-bold text-cyan-600 mb-1">After FieldScore</h3>
               <p className="text-xs text-brand-muted mb-6">Results within the first 90 days</p>
               <div className="space-y-4">
                 {[
@@ -713,12 +713,12 @@ export default function LandingPage() {
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between py-3 border-b border-brand-border/50 last:border-0">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-cyan-500/10 flex items-center justify-center">
-                        <item.icon className="w-4 h-4 text-cyan-400" />
+                      <div className="w-9 h-9 rounded-xl bg-cyan-50 flex items-center justify-center">
+                        <item.icon className="w-4 h-4 text-cyan-600" />
                       </div>
                       <span className="text-sm text-brand-body">{item.label}</span>
                     </div>
-                    <span className="text-sm font-bold text-cyan-400">{item.value}</span>
+                    <span className="text-sm font-bold text-cyan-600">{item.value}</span>
                   </div>
                 ))}
               </div>
@@ -728,10 +728,10 @@ export default function LandingPage() {
           {/* Impact metrics */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
             {[
-              { value: "+34%", label: "Lead Conversion", sub: "average improvement", color: "text-cyan-400", bg: "bg-cyan-500/10", border: "border-cyan-500/20" },
-              { value: "3x", label: "Faster Response", sub: "to new leads", color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
-              { value: "60%", label: "Less Manual Work", sub: "with automation", color: "text-violet-400", bg: "bg-violet-500/10", border: "border-violet-500/20" },
-              { value: "2.5x", label: "More Site Visits", sub: "per agent per month", color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" },
+              { value: "+34%", label: "Lead Conversion", sub: "average improvement", color: "text-cyan-600", bg: "bg-cyan-50", border: "border-cyan-200" },
+              { value: "3x", label: "Faster Response", sub: "to new leads", color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-200" },
+              { value: "60%", label: "Less Manual Work", sub: "with automation", color: "text-violet-600", bg: "bg-violet-50", border: "border-violet-200" },
+              { value: "2.5x", label: "More Site Visits", sub: "per agent per month", color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-200" },
             ].map((stat) => (
               <div key={stat.label} className={`bg-brand-card border ${stat.border} rounded-2xl p-6 text-center shadow-soft hover:shadow-elevated transition-all`}>
                 <p className={`text-3xl lg:text-4xl font-black ${stat.color}`}>{stat.value}</p>
@@ -748,7 +748,7 @@ export default function LandingPage() {
         <div className="absolute inset-0 grid-pattern opacity-30" />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-4">
               <CheckCircle2 className="w-4 h-4" /> FAQ
             </div>
             <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
@@ -805,7 +805,7 @@ export default function LandingPage() {
                   <span className="text-sm font-semibold text-brand-text pr-4">{faq.q}</span>
                   <ChevronDown
                     className={`w-5 h-5 text-brand-dim shrink-0 transition-transform duration-200 ${
-                      openFaq === i ? "rotate-180 text-cyan-400" : ""
+                      openFaq === i ? "rotate-180 text-cyan-600" : ""
                     }`}
                   />
                 </button>
@@ -822,28 +822,28 @@ export default function LandingPage() {
 
       {/* ========== CTA ========== */}
       <section className="py-20 lg:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#060B18] via-cyan-900/40 to-[#0D1B2A]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 via-cyan-700 to-blue-700" />
         <div className="absolute inset-0 dot-pattern opacity-10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
-              <h2 className="text-3xl lg:text-5xl font-black mb-6 text-brand-text">
+              <h2 className="text-3xl lg:text-5xl font-black mb-6 text-white">
                 Ready to Transform Your Sales?
               </h2>
-              <p className="text-lg text-brand-dim mb-10 max-w-xl">
+              <p className="text-lg text-cyan-100 mb-10 max-w-xl">
                 Choose your role and get started. FieldScore adapts to sales teams, managers, and owners — giving everyone the right tools to succeed.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link href="/signup" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-base px-10 py-4 rounded-2xl hover:shadow-glow-strong transition-all shadow-glow active:scale-[0.98]">
+                <Link href="/signup" className="inline-flex items-center justify-center gap-2 bg-white text-cyan-700 font-bold text-base px-10 py-4 rounded-2xl hover:shadow-glow-strong transition-all shadow-glow active:scale-[0.98]">
                   Get Started for Free <ArrowRight className="w-5 h-5" />
                 </Link>
-                <a href="https://play.google.com/store/apps/details?id=com.simsinfotech.workspace" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-brand-card border border-brand-border text-brand-text font-bold text-base px-8 py-4 rounded-2xl hover:border-cyan-500/30 transition-all">
+                <a href="https://play.google.com/store/apps/details?id=com.simsinfotech.workspace" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/30 text-white font-bold text-base px-8 py-4 rounded-2xl hover:bg-white/20 transition-all">
                   <Play className="w-4 h-4" /> Download App
                 </a>
               </div>
             </div>
             <div className="flex justify-center">
-              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated">
+              <div className="relative rounded-2xl border border-white/20 overflow-hidden shadow-elevated">
                 <Image src="/ss-role-select.png" alt="Choose Your Role - FieldScore" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
               </div>
             </div>
@@ -872,7 +872,7 @@ export default function LandingPage() {
                   { label: "LinkedIn", path: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" },
                   { label: "Instagram", path: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" },
                 ].map((social) => (
-                  <a key={social.label} href="#" aria-label={social.label} className="w-9 h-9 rounded-lg bg-brand-card border border-brand-border flex items-center justify-center text-brand-dim hover:text-cyan-400 hover:border-cyan-500/30 transition-all">
+                  <a key={social.label} href="#" aria-label={social.label} className="w-9 h-9 rounded-lg bg-brand-card border border-brand-border flex items-center justify-center text-brand-dim hover:text-cyan-600 hover:border-cyan-200 transition-all">
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d={social.path} /></svg>
                   </a>
                 ))}
@@ -890,7 +890,7 @@ export default function LandingPage() {
               <h4 className="font-bold mb-4 text-sm text-brand-text">Features</h4>
               <div className="space-y-2.5">
                 {["Lead Management", "Sales Pipeline", "Call Management", "Property Listings", "Team Management", "Smart Analytics"].map((item) => (
-                  <a key={item} href="#features" className="block text-sm text-brand-dim hover:text-cyan-400 transition-colors">{item}</a>
+                  <a key={item} href="#features" className="block text-sm text-brand-dim hover:text-cyan-600 transition-colors">{item}</a>
                 ))}
               </div>
             </div>
@@ -900,7 +900,7 @@ export default function LandingPage() {
               <h4 className="font-bold mb-4 text-sm text-brand-text">Tools</h4>
               <div className="space-y-2.5">
                 {["Attendance Tracking", "Task Management", "Notifications", "GPS Tracking", "Auto Dialer", "Reports"].map((item) => (
-                  <a key={item} href="#features" className="block text-sm text-brand-dim hover:text-cyan-400 transition-colors">{item}</a>
+                  <a key={item} href="#features" className="block text-sm text-brand-dim hover:text-cyan-600 transition-colors">{item}</a>
                 ))}
               </div>
             </div>
@@ -910,7 +910,7 @@ export default function LandingPage() {
               <h4 className="font-bold mb-4 text-sm text-brand-text">Company</h4>
               <div className="space-y-2.5">
                 {["About Us", "Blog", "Careers", "Contact", "Partners"].map((item) => (
-                  <a key={item} href="#" className="block text-sm text-brand-dim hover:text-cyan-400 transition-colors">{item}</a>
+                  <a key={item} href="#" className="block text-sm text-brand-dim hover:text-cyan-600 transition-colors">{item}</a>
                 ))}
               </div>
             </div>
@@ -920,7 +920,7 @@ export default function LandingPage() {
               <h4 className="font-bold mb-4 text-sm text-brand-text">Legal</h4>
               <div className="space-y-2.5">
                 {["Privacy Policy", "Terms of Service", "Cookie Policy", "GDPR"].map((item) => (
-                  <a key={item} href="#" className="block text-sm text-brand-dim hover:text-cyan-400 transition-colors">{item}</a>
+                  <a key={item} href="#" className="block text-sm text-brand-dim hover:text-cyan-600 transition-colors">{item}</a>
                 ))}
               </div>
             </div>

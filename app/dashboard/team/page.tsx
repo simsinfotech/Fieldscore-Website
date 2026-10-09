@@ -48,31 +48,31 @@ export default function TeamPage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <Users className="w-4 h-4 text-cyan-400" />
+            <Users className="w-4 h-4 text-cyan-600" />
             <span className="text-xs text-brand-dim">Total Members</span>
           </div>
           <p className="text-2xl font-black text-brand-text">{teamMembers.length}</p>
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
             <span className="text-xs text-brand-dim">Checked In</span>
           </div>
-          <p className="text-2xl font-black text-emerald-400">{checkedInCount}</p>
+          <p className="text-2xl font-black text-emerald-600">{checkedInCount}</p>
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <Target className="w-4 h-4 text-blue-400" />
+            <Target className="w-4 h-4 text-blue-600" />
             <span className="text-xs text-brand-dim">Total Leads</span>
           </div>
           <p className="text-2xl font-black text-brand-text">{teamMembers.reduce((s, m) => s + m.leads_count, 0)}</p>
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <div className="flex items-center gap-2 mb-2">
-            <TrendingUp className="w-4 h-4 text-violet-400" />
+            <TrendingUp className="w-4 h-4 text-violet-600" />
             <span className="text-xs text-brand-dim">Deals Won</span>
           </div>
-          <p className="text-2xl font-black text-violet-400">{teamMembers.reduce((s, m) => s + m.deals_won, 0)}</p>
+          <p className="text-2xl font-black text-violet-600">{teamMembers.reduce((s, m) => s + m.deals_won, 0)}</p>
         </div>
       </div>
 
@@ -126,9 +126,9 @@ export default function TeamPage() {
             </div>
 
             {member.checked_in ? (
-              <div className="flex items-center gap-2 mb-4 px-2.5 py-1.5 bg-emerald-500/10 rounded-xl">
+              <div className="flex items-center gap-2 mb-4 px-2.5 py-1.5 bg-emerald-50 rounded-xl">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-xs text-emerald-400 font-medium">Checked in at {member.check_in_time}</span>
+                <span className="text-xs text-emerald-600 font-medium">Checked in at {member.check_in_time}</span>
               </div>
             ) : (
               <div className="flex items-center gap-2 mb-4 px-2.5 py-1.5 bg-brand-surface rounded-xl">
@@ -139,15 +139,15 @@ export default function TeamPage() {
 
             <div className="grid grid-cols-3 gap-2">
               <div className="text-center py-2 bg-brand-surface rounded-xl">
-                <p className="text-lg font-bold text-cyan-400">{member.leads_count}</p>
+                <p className="text-lg font-bold text-cyan-600">{member.leads_count}</p>
                 <p className="text-[10px] text-brand-dim">Leads</p>
               </div>
               <div className="text-center py-2 bg-brand-surface rounded-xl">
-                <p className="text-lg font-bold text-emerald-400">{member.deals_won}</p>
+                <p className="text-lg font-bold text-emerald-600">{member.deals_won}</p>
                 <p className="text-[10px] text-brand-dim">Won</p>
               </div>
               <div className="text-center py-2 bg-brand-surface rounded-xl">
-                <p className="text-lg font-bold text-blue-400">{member.calls_today}</p>
+                <p className="text-lg font-bold text-blue-600">{member.calls_today}</p>
                 <p className="text-[10px] text-brand-dim">Calls</p>
               </div>
             </div>

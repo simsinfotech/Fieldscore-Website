@@ -226,13 +226,13 @@ export function formatDuration(seconds: number): string {
 }
 
 export const statusColors: Record<LeadStatus, string> = {
-  new: "bg-cyan-500/15 text-cyan-400",
-  contacted: "bg-blue-500/15 text-blue-400",
-  qualified: "bg-teal-500/15 text-teal-400",
-  site_visit: "bg-amber-500/15 text-amber-400",
-  negotiation: "bg-violet-500/15 text-violet-400",
-  won: "bg-emerald-500/15 text-emerald-400",
-  lost: "bg-red-500/15 text-red-400",
+  new: "bg-cyan-50 text-cyan-700",
+  contacted: "bg-blue-50 text-blue-700",
+  qualified: "bg-teal-50 text-teal-700",
+  site_visit: "bg-amber-50 text-amber-700",
+  negotiation: "bg-violet-50 text-violet-700",
+  won: "bg-emerald-50 text-emerald-700",
+  lost: "bg-red-50 text-red-700",
 };
 
 export const statusLabels: Record<LeadStatus, string> = {
@@ -246,18 +246,18 @@ export const statusLabels: Record<LeadStatus, string> = {
 };
 
 export const priorityColors: Record<Priority, string> = {
-  low: "bg-blue-500/15 text-blue-400",
-  medium: "bg-amber-500/15 text-amber-400",
-  high: "bg-orange-500/15 text-orange-400",
-  urgent: "bg-red-500/15 text-red-400",
+  low: "bg-blue-50 text-blue-700",
+  medium: "bg-amber-50 text-amber-700",
+  high: "bg-orange-50 text-orange-700",
+  urgent: "bg-red-50 text-red-700",
 };
 
 export const taskStatusColors: Record<TaskStatus, string> = {
-  todo: "bg-slate-500/15 text-slate-400",
-  in_progress: "bg-blue-500/15 text-blue-400",
-  review: "bg-violet-500/15 text-violet-400",
-  done: "bg-emerald-500/15 text-emerald-400",
-  blocked: "bg-red-500/15 text-red-400",
+  todo: "bg-slate-100 text-slate-700",
+  in_progress: "bg-blue-50 text-blue-700",
+  review: "bg-violet-50 text-violet-700",
+  done: "bg-emerald-50 text-emerald-700",
+  blocked: "bg-red-50 text-red-700",
 };
 
 export const taskStatusLabels: Record<TaskStatus, string> = {

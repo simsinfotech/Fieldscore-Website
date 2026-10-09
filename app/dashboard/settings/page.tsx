@@ -54,7 +54,7 @@ export default function SettingsPage() {
                 key={section.id}
                 onClick={() => setActiveSection(section.id)}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                  activeSection === section.id ? "bg-cyan-500/10 text-cyan-400" : "text-brand-dim hover:text-brand-text hover:bg-brand-card-hover"
+                  activeSection === section.id ? "bg-cyan-50 text-cyan-600" : "text-brand-dim hover:text-brand-text hover:bg-brand-card-hover"
                 }`}
               >
                 <section.icon className="w-4 h-4" />
@@ -62,7 +62,7 @@ export default function SettingsPage() {
               </button>
             ))}
             <div className="border-t border-brand-border/50 mt-2 pt-2">
-              <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-400 hover:bg-red-500/10 transition-all">
+              <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-all">
                 <LogOut className="w-4 h-4" />
                 Sign Out
               </button>
@@ -208,7 +208,7 @@ export default function SettingsPage() {
                           <p className="text-xs text-brand-dim">Bangalore, India &middot; Current session</p>
                         </div>
                       </div>
-                      <span className="text-xs text-emerald-400">Active</span>
+                      <span className="text-xs text-emerald-600">Active</span>
                     </div>
                   </div>
                 </div>
@@ -226,19 +226,19 @@ export default function SettingsPage() {
                     <button
                       onClick={() => setDarkMode(true)}
                       className={`p-4 rounded-2xl border-2 transition-colors ${
-                        darkMode ? "border-cyan-500 bg-cyan-500/10" : "border-brand-border"
+                        darkMode ? "border-cyan-500 bg-cyan-50" : "border-brand-border"
                       }`}
                     >
-                      <Moon className={`w-6 h-6 mx-auto mb-2 ${darkMode ? "text-cyan-400" : "text-brand-dim"}`} />
+                      <Moon className={`w-6 h-6 mx-auto mb-2 ${darkMode ? "text-cyan-600" : "text-brand-dim"}`} />
                       <p className="text-sm font-medium text-center text-brand-text">Dark</p>
                     </button>
                     <button
                       onClick={() => setDarkMode(false)}
                       className={`p-4 rounded-2xl border-2 transition-colors ${
-                        !darkMode ? "border-cyan-500 bg-cyan-500/10" : "border-brand-border"
+                        !darkMode ? "border-cyan-500 bg-cyan-50" : "border-brand-border"
                       }`}
                     >
-                      <Sun className={`w-6 h-6 mx-auto mb-2 ${!darkMode ? "text-cyan-400" : "text-brand-dim"}`} />
+                      <Sun className={`w-6 h-6 mx-auto mb-2 ${!darkMode ? "text-cyan-600" : "text-brand-dim"}`} />
                       <p className="text-sm font-medium text-center text-brand-text">Light</p>
                     </button>
                   </div>
@@ -270,7 +270,7 @@ export default function SettingsPage() {
                     </div>
                     <button className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors ${
                       integration.connected
-                        ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                        ? "bg-emerald-50 text-emerald-600 border border-emerald-500/20"
                         : "bg-brand-card border border-brand-border text-brand-dim hover:text-brand-text"
                     }`}>
                       {integration.connected ? "Connected" : "Connect"}

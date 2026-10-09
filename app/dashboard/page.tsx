@@ -20,17 +20,17 @@ import {
 import { stats, leads, tasks, pipeline, formatCurrency, statusColors, statusLabels, priorityColors } from "@/lib/mock-data";
 
 const KPI_CARDS = [
-  { label: "Total Leads", value: stats.totalLeads.toLocaleString(), change: "+12.5%", up: true, icon: Target, gradient: "from-cyan-500 to-blue-600", bg: "bg-cyan-500/10", iconColor: "text-cyan-400" },
-  { label: "Active Deals", value: stats.activeLeads.toLocaleString(), change: "+8.3%", up: true, icon: TrendingUp, gradient: "from-blue-500 to-cyan-500", bg: "bg-blue-500/10", iconColor: "text-blue-400" },
-  { label: "Won This Month", value: stats.wonDeals.toLocaleString(), change: "+23.1%", up: true, icon: CheckCircle2, gradient: "from-emerald-500 to-teal-500", bg: "bg-emerald-500/10", iconColor: "text-emerald-400" },
-  { label: "Revenue", value: formatCurrency(stats.revenue), change: "+18.7%", up: true, icon: BarChart3, gradient: "from-violet-500 to-pink-500", bg: "bg-violet-500/10", iconColor: "text-violet-400" },
+  { label: "Total Leads", value: stats.totalLeads.toLocaleString(), change: "+12.5%", up: true, icon: Target, gradient: "from-cyan-500 to-blue-600", bg: "bg-cyan-50", iconColor: "text-cyan-600" },
+  { label: "Active Deals", value: stats.activeLeads.toLocaleString(), change: "+8.3%", up: true, icon: TrendingUp, gradient: "from-blue-500 to-cyan-500", bg: "bg-blue-50", iconColor: "text-blue-600" },
+  { label: "Won This Month", value: stats.wonDeals.toLocaleString(), change: "+23.1%", up: true, icon: CheckCircle2, gradient: "from-emerald-500 to-teal-500", bg: "bg-emerald-50", iconColor: "text-emerald-600" },
+  { label: "Revenue", value: formatCurrency(stats.revenue), change: "+18.7%", up: true, icon: BarChart3, gradient: "from-violet-500 to-pink-500", bg: "bg-violet-50", iconColor: "text-violet-600" },
 ];
 
 const QUICK_ACTIONS = [
-  { label: "Add Lead", href: "/dashboard/leads", icon: Target, color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20" },
-  { label: "New Task", href: "/dashboard/tasks", icon: CheckCircle2, color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
-  { label: "View Pipeline", href: "/dashboard/pipeline", icon: TrendingUp, color: "bg-violet-500/10 text-violet-400 border-violet-500/20" },
-  { label: "Team Status", href: "/dashboard/team", icon: Users, color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
+  { label: "Add Lead", href: "/dashboard/leads", icon: Target, color: "bg-cyan-50 text-cyan-600 border-cyan-500/20" },
+  { label: "New Task", href: "/dashboard/tasks", icon: CheckCircle2, color: "bg-blue-50 text-blue-600 border-blue-500/20" },
+  { label: "View Pipeline", href: "/dashboard/pipeline", icon: TrendingUp, color: "bg-violet-50 text-violet-600 border-violet-500/20" },
+  { label: "Team Status", href: "/dashboard/team", icon: Users, color: "bg-emerald-50 text-emerald-600 border-emerald-500/20" },
 ];
 
 export default function DashboardPage() {
@@ -45,9 +45,9 @@ export default function DashboardPage() {
           <h1 className="text-2xl font-black text-brand-text">Good morning, Arjun</h1>
           <p className="text-brand-dim text-sm mt-1">Here&apos;s your sales overview for today</p>
         </div>
-        <div className="flex items-center gap-2 px-4 py-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+        <div className="flex items-center gap-2 px-4 py-2.5 bg-emerald-50 border border-emerald-500/20 rounded-xl">
           <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-sm text-emerald-400 font-semibold">Checked In</span>
+          <span className="text-sm text-emerald-600 font-semibold">Checked In</span>
           <span className="text-xs text-emerald-500">09:15 AM</span>
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function DashboardPage() {
               <div className={`w-10 h-10 rounded-2xl ${kpi.bg} flex items-center justify-center`}>
                 <kpi.icon className={`w-5 h-5 ${kpi.iconColor}`} />
               </div>
-              <div className={`flex items-center gap-0.5 text-xs font-semibold px-2 py-0.5 rounded-full ${kpi.up ? "text-emerald-400 bg-emerald-500/10" : "text-red-400 bg-red-500/10"}`}>
+              <div className={`flex items-center gap-0.5 text-xs font-semibold px-2 py-0.5 rounded-full ${kpi.up ? "text-emerald-600 bg-emerald-50" : "text-red-600 bg-red-50"}`}>
                 {kpi.up ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
                 {kpi.change}
               </div>
@@ -133,15 +133,15 @@ export default function DashboardPage() {
               </div>
             </div>
             <div>
-              <p className="text-sm font-semibold text-emerald-400">{stats.checkedIn} Checked In</p>
+              <p className="text-sm font-semibold text-emerald-600">{stats.checkedIn} Checked In</p>
               <p className="text-xs text-brand-dim">{stats.teamSize - stats.checkedIn} not yet</p>
             </div>
           </div>
           <div className="space-y-2.5">
             {[
-              { label: "Total Calls Today", value: "121", icon: Phone, color: "text-blue-400", bg: "bg-blue-500/10" },
-              { label: "Site Visits", value: "8", icon: MapPin, color: "text-amber-400", bg: "bg-amber-500/10" },
-              { label: "Tasks Overdue", value: stats.tasksOverdue.toString(), icon: AlertTriangle, color: "text-red-400", bg: "bg-red-500/10" },
+              { label: "Total Calls Today", value: "121", icon: Phone, color: "text-blue-600", bg: "bg-blue-50" },
+              { label: "Site Visits", value: "8", icon: MapPin, color: "text-amber-500", bg: "bg-amber-50" },
+              { label: "Tasks Overdue", value: stats.tasksOverdue.toString(), icon: AlertTriangle, color: "text-red-600", bg: "bg-red-50" },
             ].map((item) => (
               <div key={item.label} className="flex items-center justify-between py-2.5 px-3 bg-brand-surface rounded-xl">
                 <div className="flex items-center gap-2.5">
@@ -169,7 +169,7 @@ export default function DashboardPage() {
           <div className="space-y-2">
             {recentLeads.map((lead) => (
               <div key={lead.id} className="flex items-center gap-3 py-3 px-3 rounded-xl hover:bg-brand-card-hover transition-colors cursor-pointer">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-600/20 flex items-center justify-center text-xs font-bold text-cyan-400 shrink-0">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-600/20 flex items-center justify-center text-xs font-bold text-cyan-600 shrink-0">
                   {lead.full_name.split(" ").map((n) => n[0]).join("")}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -221,11 +221,11 @@ export default function DashboardPage() {
         <h2 className="text-lg font-bold text-brand-text mb-5">Today&apos;s Activity</h2>
         <div className="space-y-4">
           {[
-            { time: "11:30 AM", text: "Called Rajesh Kumar - Discussed 3BHK options", icon: Phone, color: "text-blue-400", bg: "bg-blue-500/10" },
-            { time: "10:45 AM", text: "Priya Sharma moved to Site Visit stage", icon: TrendingUp, color: "text-violet-400", bg: "bg-violet-500/10" },
-            { time: "10:15 AM", text: "New lead assigned: Amit Verma from MagicBricks", icon: Target, color: "text-cyan-400", bg: "bg-cyan-500/10" },
-            { time: "09:50 AM", text: "Negotiation call with Sneha Reddy - 420 seconds", icon: Phone, color: "text-emerald-400", bg: "bg-emerald-500/10" },
-            { time: "09:15 AM", text: "Checked in at Prestige Lakeside Office", icon: MapPin, color: "text-amber-400", bg: "bg-amber-500/10" },
+            { time: "11:30 AM", text: "Called Rajesh Kumar - Discussed 3BHK options", icon: Phone, color: "text-blue-600", bg: "bg-blue-50" },
+            { time: "10:45 AM", text: "Priya Sharma moved to Site Visit stage", icon: TrendingUp, color: "text-violet-600", bg: "bg-violet-50" },
+            { time: "10:15 AM", text: "New lead assigned: Amit Verma from MagicBricks", icon: Target, color: "text-cyan-600", bg: "bg-cyan-50" },
+            { time: "09:50 AM", text: "Negotiation call with Sneha Reddy - 420 seconds", icon: Phone, color: "text-emerald-600", bg: "bg-emerald-50" },
+            { time: "09:15 AM", text: "Checked in at Prestige Lakeside Office", icon: MapPin, color: "text-amber-500", bg: "bg-amber-50" },
           ].map((activity, i) => (
             <div key={i} className="flex items-start gap-3">
               <div className={`w-9 h-9 rounded-xl ${activity.bg} flex items-center justify-center shrink-0`}>

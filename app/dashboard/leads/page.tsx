@@ -126,13 +126,13 @@ export default function LeadsPage() {
               {filteredLeads.map((lead) => (
                 <tr key={lead.id} className="cursor-pointer" onClick={() => setSelectedLead(lead)}>
                   <td>
-                    <button onClick={(e) => e.stopPropagation()} className="text-brand-dim hover:text-amber-400 transition-colors">
-                      <Star className={`w-4 h-4 ${lead.starred ? "text-amber-400 fill-amber-400" : ""}`} />
+                    <button onClick={(e) => e.stopPropagation()} className="text-brand-dim hover:text-amber-500 transition-colors">
+                      <Star className={`w-4 h-4 ${lead.starred ? "text-amber-500 fill-amber-400" : ""}`} />
                     </button>
                   </td>
                   <td>
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-600/20 flex items-center justify-center text-xs font-bold text-cyan-400 shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-600/20 flex items-center justify-center text-xs font-bold text-cyan-600 shrink-0">
                         {lead.full_name.split(" ").map((n) => n[0]).join("")}
                       </div>
                       <div>
@@ -145,15 +145,15 @@ export default function LeadsPage() {
                   <td><span className={`badge text-[10px] ${statusColors[lead.status]}`}>{statusLabels[lead.status]}</span></td>
                   <td>
                     <span className={`badge text-[10px] ${
-                      lead.category === "hot" ? "bg-red-500/10 text-red-400" :
-                      lead.category === "warm" ? "bg-amber-500/10 text-amber-400" :
-                      "bg-blue-500/10 text-blue-400"
+                      lead.category === "hot" ? "bg-red-50 text-red-600" :
+                      lead.category === "warm" ? "bg-amber-50 text-amber-500" :
+                      "bg-blue-50 text-blue-600"
                     }`}>
                       {lead.category}
                     </span>
                   </td>
                   <td><span className="text-sm text-brand-dim">{formatCurrency(lead.budget_min)} - {formatCurrency(lead.budget_max)}</span></td>
-                  <td><span className={`text-sm ${lead.assigned_to === "Unassigned" ? "text-amber-400" : "text-brand-dim"}`}>{lead.assigned_to}</span></td>
+                  <td><span className={`text-sm ${lead.assigned_to === "Unassigned" ? "text-amber-500" : "text-brand-dim"}`}>{lead.assigned_to}</span></td>
                   <td><span className="text-xs text-brand-dim">{lead.last_activity}</span></td>
                   <td>
                     <button onClick={(e) => e.stopPropagation()} className="p-1 text-brand-dim hover:text-brand-text rounded transition-colors">
@@ -230,7 +230,7 @@ export default function LeadsPage() {
                 </div>
                 <div className="flex items-center justify-between py-3 border-b border-brand-border/50">
                   <span className="text-sm text-brand-dim">Email</span>
-                  <span className="text-sm text-cyan-400">{selectedLead.email}</span>
+                  <span className="text-sm text-cyan-600">{selectedLead.email}</span>
                 </div>
                 <div className="flex items-center justify-between py-3 border-b border-brand-border/50">
                   <span className="text-sm text-brand-dim">Phone</span>
@@ -249,7 +249,7 @@ export default function LeadsPage() {
                 <button className="flex-1 btn-primary flex items-center justify-center gap-2 !py-2.5 rounded-xl text-sm">
                   <Edit className="w-4 h-4" /> Edit Lead
                 </button>
-                <button className="btn-secondary flex items-center justify-center gap-2 !py-2.5 rounded-xl text-sm text-red-400 hover:text-red-300">
+                <button className="btn-secondary flex items-center justify-center gap-2 !py-2.5 rounded-xl text-sm text-red-600 hover:text-red-300">
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>

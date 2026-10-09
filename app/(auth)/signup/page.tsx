@@ -95,23 +95,23 @@ export default function SignupPage() {
       </div>
 
       {/* Right - Decorative */}
-      <div className="hidden lg:flex flex-1 items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#060B18] via-[#0A1628] to-[#0D1B2A]">
+      <div className="hidden lg:flex flex-1 items-center justify-center relative overflow-hidden bg-gradient-to-br from-cyan-600 via-cyan-700 to-blue-700">
         <div className="absolute inset-0 dot-pattern opacity-10" />
-        <div className="orb w-[400px] h-[400px] bg-cyan-500/15 bottom-20 right-20" />
-        <div className="orb w-[300px] h-[300px] bg-blue-600/15 top-20 left-20" style={{ animationDelay: "3s" }} />
+        <div className="orb w-[400px] h-[400px] bg-cyan-100/30 bottom-20 right-20" />
+        <div className="orb w-[300px] h-[300px] bg-blue-100/30 top-20 left-20" style={{ animationDelay: "3s" }} />
         <div className="relative z-10 max-w-md text-center px-8">
-          <div className="w-20 h-20 rounded-3xl bg-cyan-500/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-8 border border-cyan-500/20 overflow-hidden">
+          <div className="w-20 h-20 rounded-3xl bg-white/15 backdrop-blur-sm flex items-center justify-center mx-auto mb-8 border border-white/20 overflow-hidden">
             <Image src="/IMG_9578.PNG" alt="FieldScore" width={80} height={80} className="w-16 h-16 object-contain" />
           </div>
-          <h2 className="text-3xl font-black mb-4 text-brand-text">Start Closing More Deals</h2>
-          <p className="text-brand-dim leading-relaxed mb-8">
+          <h2 className="text-3xl font-black mb-4 text-white">Start Closing More Deals</h2>
+          <p className="text-cyan-100 leading-relaxed mb-8">
             Join hundreds of teams using FieldScore to streamline sales operations and boost performance.
           </p>
           <div className="space-y-3 text-left max-w-xs mx-auto">
             {["Free 14-day trial, no credit card", "Set up your team in minutes", "Import leads from any source"].map((item) => (
-              <div key={item} className="flex items-center gap-3 text-brand-body text-sm">
-                <div className="w-5 h-5 rounded-full bg-cyan-500/15 flex items-center justify-center shrink-0">
-                  <Check className="w-3 h-3 text-cyan-400" />
+              <div key={item} className="flex items-center gap-3 text-white text-sm">
+                <div className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center shrink-0">
+                  <Check className="w-3 h-3 text-white" />
                 </div>
                 {item}
               </div>

@@ -18,9 +18,9 @@ import {
 import { properties, formatCurrency } from "@/lib/mock-data";
 
 const STATUS_STYLES = {
-  available: { bg: "bg-emerald-500/10", text: "text-emerald-400", label: "Available" },
-  limited: { bg: "bg-amber-500/10", text: "text-amber-400", label: "Limited Units" },
-  sold_out: { bg: "bg-red-500/15", text: "text-red-400", label: "Sold Out" },
+  available: { bg: "bg-emerald-50", text: "text-emerald-600", label: "Available" },
+  limited: { bg: "bg-amber-50", text: "text-amber-500", label: "Limited Units" },
+  sold_out: { bg: "bg-red-500/15", text: "text-red-600", label: "Sold Out" },
 };
 
 export default function PropertiesPage() {
@@ -99,7 +99,7 @@ export default function PropertiesPage() {
                   <div className="grid grid-cols-2 gap-3 mb-4">
                     <div className="bg-brand-surface rounded-xl p-2.5">
                       <p className="text-xs text-brand-dim mb-0.5">Price Range</p>
-                      <p className="text-sm font-semibold text-cyan-400">
+                      <p className="text-sm font-semibold text-cyan-600">
                         {formatCurrency(property.price_min)} - {formatCurrency(property.price_max)}
                       </p>
                     </div>
@@ -111,7 +111,7 @@ export default function PropertiesPage() {
 
                   {/* RERA */}
                   <div className="flex items-center gap-1.5 text-xs text-brand-dim mb-4">
-                    <Shield className="w-3 h-3 text-emerald-400" />
+                    <Shield className="w-3 h-3 text-emerald-600" />
                     <span className="truncate">RERA: {property.rera_id.slice(0, 25)}...</span>
                   </div>
 
@@ -119,7 +119,7 @@ export default function PropertiesPage() {
                   <div className="mb-2">
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs text-brand-dim">{property.units_available} of {property.total_units} units available</span>
-                      <span className="text-xs font-medium text-cyan-400">{availability.toFixed(0)}%</span>
+                      <span className="text-xs font-medium text-cyan-600">{availability.toFixed(0)}%</span>
                     </div>
                     <div className="h-1.5 bg-brand-surface rounded-full overflow-hidden">
                       <div className="h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full" style={{ width: `${availability}%` }} />
@@ -153,7 +153,7 @@ export default function PropertiesPage() {
                     <td><span className="text-sm text-brand-dim">{property.developer}</span></td>
                     <td><span className="text-sm text-brand-dim">{property.location}</span></td>
                     <td><span className="text-sm">{property.config}</span></td>
-                    <td><span className="text-sm text-cyan-400">{formatCurrency(property.price_min)} - {formatCurrency(property.price_max)}</span></td>
+                    <td><span className="text-sm text-cyan-600">{formatCurrency(property.price_min)} - {formatCurrency(property.price_max)}</span></td>
                     <td><span className="text-sm">{property.units_available}/{property.total_units}</span></td>
                     <td><span className={`badge text-[10px] ${style.bg} ${style.text}`}>{style.label}</span></td>
                   </tr>

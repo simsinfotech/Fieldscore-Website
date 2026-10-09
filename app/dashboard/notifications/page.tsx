@@ -16,11 +16,11 @@ import {
 import { notifications, type Notification } from "@/lib/mock-data";
 
 const TYPE_STYLES: Record<string, { icon: React.ElementType; color: string; bg: string }> = {
-  lead: { icon: Target, color: "text-cyan-400", bg: "bg-cyan-500/10" },
-  visit: { icon: MapPin, color: "text-amber-400", bg: "bg-amber-500/10" },
-  call: { icon: Phone, color: "text-blue-400", bg: "bg-blue-500/10" },
-  deal: { icon: TrendingUp, color: "text-emerald-400", bg: "bg-emerald-500/10" },
-  task: { icon: CheckSquare, color: "text-violet-400", bg: "bg-violet-500/10" },
+  lead: { icon: Target, color: "text-cyan-600", bg: "bg-cyan-50" },
+  visit: { icon: MapPin, color: "text-amber-500", bg: "bg-amber-50" },
+  call: { icon: Phone, color: "text-blue-600", bg: "bg-blue-50" },
+  deal: { icon: TrendingUp, color: "text-emerald-600", bg: "bg-emerald-50" },
+  task: { icon: CheckSquare, color: "text-violet-600", bg: "bg-violet-50" },
   system: { icon: Settings, color: "text-slate-400", bg: "bg-brand-surface" },
 };
 

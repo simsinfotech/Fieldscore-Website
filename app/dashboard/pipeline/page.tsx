@@ -47,22 +47,22 @@ export default function PipelinePage() {
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <p className="text-xs text-brand-dim mb-1">Total Pipeline Value</p>
           <p className="text-2xl font-black gradient-text">{formatCurrency(totalValue)}</p>
-          <p className="text-xs text-emerald-400 flex items-center gap-1 mt-1"><ArrowUpRight className="w-3 h-3" /> +15.3% vs last month</p>
+          <p className="text-xs text-emerald-600 flex items-center gap-1 mt-1"><ArrowUpRight className="w-3 h-3" /> +15.3% vs last month</p>
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <p className="text-xs text-brand-dim mb-1">Total Deals</p>
           <p className="text-2xl font-black text-brand-text">{totalCount}</p>
-          <p className="text-xs text-emerald-400 flex items-center gap-1 mt-1"><ArrowUpRight className="w-3 h-3" /> +8 new this week</p>
+          <p className="text-xs text-emerald-600 flex items-center gap-1 mt-1"><ArrowUpRight className="w-3 h-3" /> +8 new this week</p>
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <p className="text-xs text-brand-dim mb-1">Conversion Rate</p>
-          <p className="text-2xl font-black text-cyan-400">18.4%</p>
-          <p className="text-xs text-emerald-400 flex items-center gap-1 mt-1"><ArrowUpRight className="w-3 h-3" /> +2.1% vs last month</p>
+          <p className="text-2xl font-black text-cyan-600">18.4%</p>
+          <p className="text-xs text-emerald-600 flex items-center gap-1 mt-1"><ArrowUpRight className="w-3 h-3" /> +2.1% vs last month</p>
         </div>
         <div className="stat-card bg-brand-card border border-brand-border rounded-2xl p-5 shadow-soft">
           <p className="text-xs text-brand-dim mb-1">Avg. Deal Size</p>
           <p className="text-2xl font-black text-brand-text">{formatCurrency(63433)}</p>
-          <p className="text-xs text-emerald-400 flex items-center gap-1 mt-1"><ArrowUpRight className="w-3 h-3" /> +5.7% growth</p>
+          <p className="text-xs text-emerald-600 flex items-center gap-1 mt-1"><ArrowUpRight className="w-3 h-3" /> +5.7% growth</p>
         </div>
       </div>
 
@@ -133,9 +133,9 @@ export default function PipelinePage() {
                     <div className="flex items-center justify-between">
                       <p className="text-sm font-semibold text-brand-text">{lead.full_name}</p>
                       <span className={`badge text-[10px] ${
-                        lead.category === "hot" ? "bg-red-500/10 text-red-400" :
-                        lead.category === "warm" ? "bg-amber-500/10 text-amber-400" :
-                        "bg-blue-500/10 text-blue-400"
+                        lead.category === "hot" ? "bg-red-50 text-red-600" :
+                        lead.category === "warm" ? "bg-amber-50 text-amber-500" :
+                        "bg-blue-50 text-blue-600"
                       }`}>{lead.category}</span>
                     </div>
                     <p className="text-xs text-brand-dim mt-1">{lead.project}</p>
