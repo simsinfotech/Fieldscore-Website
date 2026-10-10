@@ -421,6 +421,8 @@ export default function LandingPage() {
           />
         </motion.div>
 
+        {/* Top fade — hides image artifacts behind nav area */}
+        <div className="absolute top-0 left-0 right-0 h-40 z-[1] bg-gradient-to-b from-brand-bg via-brand-bg/80 to-transparent" />
         {/* Left-side gradient for text readability — fades out toward right to keep image visible */}
         <div className="absolute inset-0 z-[1] bg-gradient-to-r from-brand-bg/70 via-brand-bg/40 to-transparent" />
         {/* Bottom fade — seamless blend into next section */}
