@@ -421,7 +421,9 @@ export default function LandingPage() {
           />
         </motion.div>
 
-        {/* Bottom fade only — seamless blend into next section */}
+        {/* Left-side gradient for text readability — fades out toward right to keep image visible */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-brand-bg via-brand-bg/80 to-transparent" />
+        {/* Bottom fade — seamless blend into next section */}
         <div className="absolute bottom-0 left-0 right-0 h-32 z-[1] bg-gradient-to-t from-brand-bg to-transparent" />
 
         <div className="relative z-10 w-full pt-28 pb-16 lg:pt-36 lg:pb-24 px-6 sm:px-10 lg:px-16">
@@ -437,18 +439,18 @@ export default function LandingPage() {
               Built for Real Estate Sales Teams
             </motion.div>
 
-            <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.08] mb-6">
+            <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.08] mb-6 text-white drop-shadow-lg">
               Close Deals{" "}
               <span className="gradient-text">Faster</span>
               <br />
-              <span className="text-brand-dim font-bold text-3xl sm:text-4xl lg:text-5xl">with FieldScore CRM</span>
+              <span className="text-white/80 font-bold text-3xl sm:text-4xl lg:text-5xl">with FieldScore CRM</span>
             </motion.h1>
 
-            <motion.p variants={fadeInUp} className="text-base sm:text-lg text-brand-dim max-w-xl mb-4 leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-base sm:text-lg text-white/90 max-w-xl mb-4 leading-relaxed drop-shadow-sm">
               The all-in-one platform that helps real estate teams capture leads, track pipelines, monitor attendance, and close more deals.
             </motion.p>
 
-            <motion.p variants={fadeInUp} className="text-sm text-brand-muted max-w-xl mb-8 leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-sm text-white/70 max-w-xl mb-8 leading-relaxed drop-shadow-sm">
               FieldScore adapts to your role — whether you&apos;re a sales executive on the field, a manager tracking performance, or an owner looking for complete visibility. Get the right tools to succeed from day one.
             </motion.p>
 
@@ -461,10 +463,10 @@ export default function LandingPage() {
               </Link>
             </motion.div>
 
-            <motion.p variants={fadeInUp} className="text-xs text-brand-muted">No Credit Card Required</motion.p>
+            <motion.p variants={fadeInUp} className="text-xs text-white/50">No Credit Card Required</motion.p>
 
             {/* Social proof */}
-            <motion.div variants={fadeInUp} className="flex items-center gap-6 mt-8 pt-8 border-t border-brand-border/50">
+            <motion.div variants={fadeInUp} className="flex items-center gap-6 mt-8 pt-8 border-t border-white/10">
               <div className="flex -space-x-2">
                 {["VM", "AD", "SK", "RK", "PM"].map((init, i) => (
                   <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[10px] font-bold text-white border-2 border-brand-bg">
@@ -478,7 +480,7 @@ export default function LandingPage() {
                     <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
                   ))}
                 </div>
-                <p className="text-xs text-brand-dim mt-0.5">Trusted by 500+ sales teams</p>
+                <p className="text-xs text-white/70 mt-0.5">Trusted by 500+ sales teams</p>
               </div>
             </motion.div>
           </motion.div>
