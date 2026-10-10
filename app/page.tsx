@@ -510,7 +510,7 @@ export default function LandingPage() {
       </section>
 
       {/* ========== PRODUCT SHOWCASE ========== */}
-      <section className="py-20 lg:py-28 relative overflow-hidden">
+      <section className="pt-20 lg:pt-28 pb-0 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={staggerContainer}
@@ -529,24 +529,31 @@ export default function LandingPage() {
               From closing deals to managing every call — FieldScore gives your team the edge.
             </motion.p>
           </motion.div>
-
-          <motion.div
-            variants={scaleIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="relative rounded-2xl overflow-hidden border border-brand-border shadow-elevated"
-          >
-            <Image
-              src="/FieldScore_ Track, Measure, Win.png"
-              alt="FieldScore product showcase — Close more deals and track every call"
-              width={1920}
-              height={960}
-              className="w-full h-auto"
-              unoptimized
-            />
-          </motion.div>
         </div>
+
+        {/* Full-bleed image with edge fades */}
+        <motion.div
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="relative"
+        >
+          {/* Edge gradients to blend image into site background */}
+          <div className="absolute inset-y-0 left-0 w-24 sm:w-40 z-10 bg-gradient-to-r from-brand-bg to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-24 sm:w-40 z-10 bg-gradient-to-l from-brand-bg to-transparent pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-16 z-10 bg-gradient-to-b from-brand-bg to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 right-0 h-24 z-10 bg-gradient-to-t from-brand-bg to-transparent pointer-events-none" />
+
+          <Image
+            src="/FieldScore_ Track, Measure, Win.png"
+            alt="FieldScore product showcase — Close more deals and track every call"
+            width={1920}
+            height={960}
+            className="w-full h-auto"
+            unoptimized
+          />
+        </motion.div>
       </section>
 
       {/* ========== APP SCREENSHOTS SHOWCASE ========== */}
