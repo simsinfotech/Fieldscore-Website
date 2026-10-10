@@ -421,15 +421,10 @@ export default function LandingPage() {
           />
         </motion.div>
 
-        {/* Dark gradient overlays for text readability */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-brand-bg/95 via-brand-bg/70 to-brand-bg/40" />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-brand-bg via-transparent to-brand-bg/60" />
+        {/* Bottom fade only — seamless blend into next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 z-[1] bg-gradient-to-t from-brand-bg to-transparent" />
 
-        {/* Subtle orbs on top of overlay */}
-        <motion.div style={{ y: heroOrb2Y }} className="orb w-[500px] h-[500px] bg-cyan-500/10 -bottom-40 -left-40 z-[2]" />
-        <motion.div style={{ y: heroOrb3Y }} className="orb w-[300px] h-[300px] bg-teal-500/8 top-40 right-1/4 z-[2]" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 lg:pt-36 lg:pb-24 w-full">
+        <div className="relative z-10 w-full pt-28 pb-16 lg:pt-36 lg:pb-24 px-6 sm:px-10 lg:px-16">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
