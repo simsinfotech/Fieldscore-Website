@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+  AnimatePresence,
+} from "framer-motion";
 import {
   BarChart3,
   Users,
@@ -29,6 +36,53 @@ import {
   Play,
   Check,
 } from "lucide-react";
+
+// ==========================================
+// ANIMATION VARIANTS & CONFIG
+// ==========================================
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
+const viewportOnce = { once: true, amount: 0.3 };
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+};
+
+const fadeInDown = {
+  hidden: { opacity: 0, y: -30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+};
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease } },
+};
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease } },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.7, ease } },
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+// ==========================================
+// DATA
+// ==========================================
 
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
@@ -117,14 +171,187 @@ const TESTIMONIALS = [
   { name: "Sanjay Kulkarni", role: "CEO, Prime Properties", text: "Finally a CRM that understands real estate sales. The property matching and site visit features are game-changers.", avatar: "SK" },
 ];
 
+const FAQS = [
+  {
+    q: "What is FieldScore?",
+    a: "FieldScore is an all-in-one sales CRM built specifically for real estate teams. It helps you capture leads, manage pipelines, track attendance, make calls, and close deals faster \u2014 all from your mobile device.",
+  },
+  {
+    q: "Who is FieldScore designed for?",
+    a: "FieldScore adapts to your role. Sales executives get tools for field work and lead follow-ups. Managers get performance tracking and team monitoring. Owners get complete visibility with analytics and reports.",
+  },
+  {
+    q: "Is there a free trial available?",
+    a: "Yes! You can start a 10-day free trial with no credit card required. Experience the full power of FieldScore before committing to a plan.",
+  },
+  {
+    q: "Does FieldScore work on mobile?",
+    a: "FieldScore is mobile-first. Our app is available on Google Play and is designed to work seamlessly in the field \u2014 with GPS tracking, one-tap calling, offline support, and real-time sync.",
+  },
+  {
+    q: "How does GPS attendance tracking work?",
+    a: "Team members check in and out with GPS verification. FieldScore automatically logs location, tracks active hours, detects late marks, and provides managers with real-time field visibility \u2014 no manual timesheets needed.",
+  },
+  {
+    q: "Can I import my existing leads?",
+    a: "Yes. You can import leads from spreadsheets, websites, property portals, ad campaigns, and walk-ins. FieldScore supports bulk import and automatic lead capture from multiple sources.",
+  },
+  {
+    q: "How does the call management feature work?",
+    a: "FieldScore includes an integrated dialer with one-tap calling. Every call is automatically logged to the lead timeline. AI-powered call summaries capture key details so your team never has to write manual notes.",
+  },
+  {
+    q: "Is my data secure?",
+    a: "Absolutely. FieldScore uses industry-standard encryption, role-based access controls, and secure cloud infrastructure to ensure your data is protected at all times.",
+  },
+];
+
+// ==========================================
+// ANIMATED STAT COUNTER COMPONENT
+// ==========================================
+
+function AnimatedStat({ value, label }: { value: string; label: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [display, setDisplay] = useState("0");
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          animateValue(value, setDisplay);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [value, hasAnimated]);
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeInUp}
+      className="text-center"
+    >
+      <p className="text-3xl lg:text-4xl font-black text-cyan-400">{display}</p>
+      <p className="text-sm text-brand-dim mt-1 font-medium">{label}</p>
+    </motion.div>
+  );
+}
+
+function animateValue(
+  target: string,
+  setter: (v: string) => void
+) {
+  // Parse the target: "10K+", "500+", "99.9%", "4.9/5"
+  const duration = 1500;
+  const startTime = performance.now();
+
+  if (target === "4.9/5") {
+    const endVal = 4.9;
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = eased * endVal;
+      setter(current.toFixed(1) + "/5");
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    return;
+  }
+
+  if (target === "99.9%") {
+    const endVal = 99.9;
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = eased * endVal;
+      setter(current.toFixed(1) + "%");
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    return;
+  }
+
+  // "10K+" or "500+"
+  const numMatch = target.match(/^([\d.]+)/);
+  const suffix = target.replace(/^[\d.]+/, "");
+  const endVal = numMatch ? parseFloat(numMatch[1]) : 0;
+  const isFloat = endVal % 1 !== 0;
+
+  const step = (now: number) => {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = eased * endVal;
+    setter((isFloat ? current.toFixed(1) : Math.round(current).toLocaleString()) + suffix);
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// ==========================================
+// MAIN COMPONENT
+// ==========================================
+
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  // Scroll tracking for navbar
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setHasScrolled(latest > 50);
+  });
+
+  // Hero parallax
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroOrb1Y = useTransform(heroProgress, [0, 1], [0, -200]);
+  const heroOrb2Y = useTransform(heroProgress, [0, 1], [0, -120]);
+  const heroOrb3Y = useTransform(heroProgress, [0, 1], [0, -80]);
+
+  // How it works parallax
+  const howRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: howProgress } = useScroll({
+    target: howRef,
+    offset: ["start end", "end start"],
+  });
+  const howBgY = useTransform(howProgress, [0, 1], [0, -40]);
+
+  // Screenshots parallax
+  const screenshotsRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: screenshotsProgress } = useScroll({
+    target: screenshotsRef,
+    offset: ["start end", "end start"],
+  });
+  const screenshotsY = useTransform(screenshotsProgress, [0, 1], [30, -30]);
 
   return (
     <div className="min-h-screen bg-brand-bg overflow-hidden">
       {/* ========== NAVIGATION ========== */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass">
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          hasScrolled
+            ? "bg-brand-bg/85 backdrop-blur-xl border-b border-brand-border/60 shadow-lg shadow-black/20"
+            : "bg-transparent border-b border-transparent"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
@@ -155,69 +382,81 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-brand-card border-t border-brand-border">
-            <div className="px-4 py-4 space-y-3">
-              {NAV_LINKS.map((link) => (
-                <a key={link.label} href={link.href} className="block text-sm font-medium text-brand-dim hover:text-brand-text py-2" onClick={() => setMobileMenuOpen(false)}>
-                  {link.label}
-                </a>
-              ))}
-              <div className="pt-3 border-t border-brand-border flex flex-col gap-2">
-                <Link href="/login" className="text-sm text-center py-2.5 text-brand-dim">Sign In</Link>
-                <Link href="/signup" className="btn-primary text-sm text-center !py-2.5 rounded-xl">Get Started</Link>
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease }}
+              className="md:hidden bg-brand-card border-t border-brand-border overflow-hidden"
+            >
+              <div className="px-4 py-4 space-y-3">
+                {NAV_LINKS.map((link) => (
+                  <a key={link.label} href={link.href} className="block text-sm font-medium text-brand-dim hover:text-brand-text py-2" onClick={() => setMobileMenuOpen(false)}>
+                    {link.label}
+                  </a>
+                ))}
+                <div className="pt-3 border-t border-brand-border flex flex-col gap-2">
+                  <Link href="/login" className="text-sm text-center py-2.5 text-brand-dim">Sign In</Link>
+                  <Link href="/signup" className="btn-primary text-sm text-center !py-2.5 rounded-xl">Get Started</Link>
+                </div>
               </div>
-            </div>
-          </div>
-        )}
-      </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
 
       {/* ========== HERO ========== */}
-      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
-        {/* Background decorations */}
+      <section ref={heroRef} className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
+        {/* Background decorations — parallax orbs */}
         <div className="absolute inset-0 dot-pattern opacity-40" />
-        <div className="orb w-[600px] h-[600px] bg-cyan-500/20 -top-60 -right-60" />
-        <div className="orb w-[500px] h-[500px] bg-blue-600/20 -bottom-40 -left-40" style={{ animationDelay: "2s" }} />
-        <div className="orb w-[300px] h-[300px] bg-teal-500/15 top-40 right-1/4" style={{ animationDelay: "4s" }} />
+        <motion.div style={{ y: heroOrb1Y }} className="orb w-[600px] h-[600px] bg-cyan-500/20 -top-60 -right-60" />
+        <motion.div style={{ y: heroOrb2Y }} className="orb w-[500px] h-[500px] bg-blue-600/20 -bottom-40 -left-40" />
+        <motion.div style={{ y: heroOrb3Y }} className="orb w-[300px] h-[300px] bg-teal-500/15 top-40 right-1/4" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            {/* Left side — Text content */}
-            <div>
+            {/* Left side — Text content (staggered entrance) */}
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+            >
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-semibold mb-8 shadow-soft">
+              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-semibold mb-8 shadow-soft">
                 <Sparkles className="w-4 h-4" />
                 Built for Real Estate Sales Teams
-              </div>
+              </motion.div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.08] mb-6">
+              <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.08] mb-6">
                 Close Deals{" "}
                 <span className="gradient-text">Faster</span>
                 <br />
                 <span className="text-brand-dim font-bold text-3xl sm:text-4xl lg:text-5xl">with FieldScore CRM</span>
-              </h1>
+              </motion.h1>
 
-              <p className="text-base sm:text-lg text-brand-dim max-w-xl mb-4 leading-relaxed">
+              <motion.p variants={fadeInUp} className="text-base sm:text-lg text-brand-dim max-w-xl mb-4 leading-relaxed">
                 The all-in-one platform that helps real estate teams capture leads, track pipelines, monitor attendance, and close more deals.
-              </p>
+              </motion.p>
 
-              <p className="text-sm text-brand-muted max-w-xl mb-8 leading-relaxed">
+              <motion.p variants={fadeInUp} className="text-sm text-brand-muted max-w-xl mb-8 leading-relaxed">
                 FieldScore adapts to your role — whether you&apos;re a sales executive on the field, a manager tracking performance, or an owner looking for complete visibility. Get the right tools to succeed from day one.
-              </p>
+              </motion.p>
 
-              <div className="flex flex-col sm:flex-row gap-3 mb-6">
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 mb-6">
                 <Link href="/dashboard" className="btn-secondary text-sm inline-flex items-center justify-center gap-2 !py-3.5 !px-6 rounded-xl">
                   <Play className="w-4 h-4" /> Book a Demo
                 </Link>
                 <Link href="/signup" className="btn-primary text-sm inline-flex items-center justify-center gap-2 !py-3.5 !px-6 rounded-xl shadow-glow">
                   Start 10-day Free Trial <ArrowRight className="w-4 h-4" />
                 </Link>
-              </div>
+              </motion.div>
 
-              <p className="text-xs text-brand-muted">No Credit Card Required</p>
+              <motion.p variants={fadeInUp} className="text-xs text-brand-muted">No Credit Card Required</motion.p>
 
               {/* Social proof */}
-              <div className="flex items-center gap-6 mt-8 pt-8 border-t border-brand-border/50">
+              <motion.div variants={fadeInUp} className="flex items-center gap-6 mt-8 pt-8 border-t border-brand-border/50">
                 <div className="flex -space-x-2">
                   {["VM", "AD", "SK", "RK", "PM"].map((init, i) => (
                     <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[10px] font-bold text-white border-2 border-brand-bg">
@@ -233,11 +472,17 @@ export default function LandingPage() {
                   </div>
                   <p className="text-xs text-brand-dim mt-0.5">Trusted by 500+ sales teams</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Right side — App screenshots collage */}
-            <div className="relative flex justify-center items-center lg:min-h-[520px]">
+            <motion.div
+              variants={scaleIn}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.4 }}
+              className="relative flex justify-center items-center lg:min-h-[520px]"
+            >
               {/* Glow behind */}
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-blue-500/10 to-teal-500/5 rounded-3xl blur-3xl" />
 
@@ -257,8 +502,17 @@ export default function LandingPage() {
               </div>
 
               {/* Floating stat card — top right */}
-              <div className="absolute -top-2 right-4 lg:right-0 z-20 bg-brand-card border border-brand-border rounded-xl px-4 py-3 shadow-elevated">
-                <div className="flex items-center gap-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.6, ease }}
+                className="absolute -top-2 right-4 lg:right-0 z-20 bg-brand-card border border-brand-border rounded-xl px-4 py-3 shadow-elevated"
+              >
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="flex items-center gap-2"
+                >
                   <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
                     <TrendingUp className="w-4 h-4 text-emerald-400" />
                   </div>
@@ -266,12 +520,21 @@ export default function LandingPage() {
                     <p className="text-[10px] text-brand-dim">Conversion</p>
                     <p className="text-sm font-bold text-emerald-400">+34%</p>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
               {/* Floating stat card — bottom left */}
-              <div className="absolute -bottom-2 left-4 lg:left-0 z-20 bg-brand-card border border-brand-border rounded-xl px-4 py-3 shadow-elevated">
-                <div className="flex items-center gap-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.6, ease }}
+                className="absolute -bottom-2 left-4 lg:left-0 z-20 bg-brand-card border border-brand-border rounded-xl px-4 py-3 shadow-elevated"
+              >
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  className="flex items-center gap-2"
+                >
                   <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center">
                     <Target className="w-4 h-4 text-cyan-400" />
                   </div>
@@ -279,9 +542,9 @@ export default function LandingPage() {
                     <p className="text-[10px] text-brand-dim">Active Leads</p>
                     <p className="text-sm font-bold text-cyan-400">1,247</p>
                   </div>
-                </div>
-              </div>
-            </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -289,39 +552,51 @@ export default function LandingPage() {
       {/* ========== STATS BAR ========== */}
       <section className="py-12 bg-gradient-to-r from-[#060B18] via-cyan-900/40 to-[#0D1B2A] border-y border-brand-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-8"
+          >
             {[
               { value: "10K+", label: "Leads Managed" },
               { value: "500+", label: "Deals Closed" },
               { value: "99.9%", label: "Uptime" },
               { value: "4.9/5", label: "App Rating" },
             ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-3xl lg:text-4xl font-black text-cyan-400">{stat.value}</p>
-                <p className="text-sm text-brand-dim mt-1 font-medium">{stat.label}</p>
-              </div>
+              <AnimatedStat key={stat.label} value={stat.value} label={stat.label} />
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ========== APP SCREENSHOTS SHOWCASE ========== */}
-      <section className="py-20 lg:py-28 relative overflow-hidden">
+      <section ref={screenshotsRef} className="py-20 lg:py-28 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="text-center mb-12"
+          >
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
               <Play className="w-4 h-4" /> See It in Action
-            </div>
-            <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
+            </motion.div>
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
               Designed for the <span className="gradient-text">Field</span>
-            </h2>
-            <p className="text-lg text-brand-dim max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-lg text-brand-dim max-w-2xl mx-auto">
               A mobile-first CRM that works where your team works — on the ground, in the field, closing deals.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* Phone mockups row */}
-          <div className="flex gap-6 justify-center items-end flex-wrap lg:flex-nowrap">
+          <motion.div
+            style={{ y: screenshotsY }}
+            className="flex gap-6 justify-center items-end flex-wrap lg:flex-nowrap"
+          >
             {[
               { src: "/ss-lead-mgmt.png", alt: "Lead Management", label: "Lead Management" },
               { src: "/ss-dashboard.png", alt: "Sales Dashboard", label: "Dashboard" },
@@ -329,14 +604,22 @@ export default function LandingPage() {
               { src: "/ss-call-mgmt.png", alt: "Call Management", label: "Call Tracking" },
               { src: "/ss-team-mgmt.png", alt: "Team Management", label: "Team Management" },
             ].map((screen, i) => (
-              <div key={i} className={`group flex flex-col items-center gap-3 ${i === 1 ? "lg:-mt-4" : ""}`}>
-                <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated bg-brand-card hover:shadow-glow transition-all duration-300 hover:-translate-y-2">
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={viewportOnce}
+                transition={{ duration: 0.5, delay: i * 0.1, ease }}
+                whileHover={{ y: -8 }}
+                className={`group flex flex-col items-center gap-3 ${i === 1 ? "lg:-mt-4" : ""}`}
+              >
+                <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated bg-brand-card transition-shadow duration-300 hover:shadow-glow">
                   <Image src={screen.src} alt={screen.alt} width={240} height={427} className="w-44 lg:w-48 h-auto" unoptimized />
                 </div>
                 <span className="text-xs font-semibold text-brand-dim group-hover:text-cyan-400 transition-colors">{screen.label}</span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -344,23 +627,37 @@ export default function LandingPage() {
       <section id="features" className="py-20 lg:py-28 relative">
         <div className="orb w-[400px] h-[400px] bg-cyan-500/10 top-20 -right-20" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="text-center mb-16"
+          >
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
               <Zap className="w-4 h-4" /> Powerful Features
-            </div>
-            <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
+            </motion.div>
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
               Everything Your Team <span className="gradient-text">Needs</span>
-            </h2>
-            <p className="text-lg text-brand-dim max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-lg text-brand-dim max-w-2xl mx-auto">
               From lead capture to deal closure, FieldScore covers every step of your sales journey.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 stagger-children">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-4"
+          >
             {FEATURES.map((feature, i) => (
-              <div
+              <motion.div
                 key={feature.title}
-                className={`group relative bg-brand-card border border-brand-border rounded-2xl p-6 hover:shadow-elevated transition-all duration-300 hover:-translate-y-1 ${
+                variants={fadeInUp}
+                whileHover={{ y: -4 }}
+                className={`group relative bg-brand-card border border-brand-border rounded-2xl p-6 transition-shadow duration-300 hover:shadow-elevated animated-gradient-border ${
                   i === 0 || i === 5 ? "lg:col-span-2" : ""
                 }`}
               >
@@ -370,48 +667,66 @@ export default function LandingPage() {
                 <h3 className="text-lg font-bold mb-2 text-brand-text">{feature.title}</h3>
                 <p className="text-sm text-brand-dim leading-relaxed">{feature.description}</p>
                 <div className={`absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r ${feature.gradient} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ========== HOW IT WORKS ========== */}
-      <section id="how-it-works" className="py-20 lg:py-28 bg-brand-surface relative overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-50" />
+      <section ref={howRef} id="how-it-works" className="py-20 lg:py-28 bg-brand-surface relative overflow-hidden">
+        <motion.div style={{ y: howBgY }} className="absolute inset-0 grid-pattern opacity-50" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 text-violet-400 text-sm font-semibold mb-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="text-center mb-16"
+          >
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 text-violet-400 text-sm font-semibold mb-4">
               <Activity className="w-4 h-4" /> Simple Process
-            </div>
-            <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
+            </motion.div>
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
               How <span className="gradient-text">FieldScore</span> Works
-            </h2>
-            <p className="text-lg text-brand-dim max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-lg text-brand-dim max-w-2xl mx-auto">
               Get your sales team up and running in minutes.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
             {STEPS.map((step, i) => (
-              <div key={step.step} className="relative">
+              <motion.div key={step.step} variants={fadeInUp} className="relative">
                 {i < STEPS.length - 1 && (
                   <div className="hidden lg:block absolute top-10 left-[calc(100%+0.25rem)] w-[calc(100%-2rem)]">
                     <div className="h-px bg-gradient-to-r from-brand-border to-transparent" />
                     <ChevronRight className="absolute -top-2 right-0 w-4 h-4 text-brand-muted" />
                   </div>
                 )}
-                <div className="bg-brand-card rounded-2xl p-6 border border-brand-border shadow-soft hover:shadow-elevated transition-all">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center mb-4 shadow-md`}>
+                <div className="bg-brand-card rounded-2xl p-6 border border-brand-border shadow-soft hover:shadow-elevated transition-shadow">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={viewportOnce}
+                    transition={{ type: "spring", stiffness: 200, damping: 15, delay: i * 0.12 }}
+                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center mb-4 shadow-md`}
+                  >
                     <step.icon className="w-7 h-7 text-white" />
-                  </div>
+                  </motion.div>
                   <div className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2">Step {step.step}</div>
                   <h3 className="text-lg font-bold mb-2 text-brand-text">{step.title}</h3>
                   <p className="text-sm text-brand-dim leading-relaxed">{step.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -419,17 +734,22 @@ export default function LandingPage() {
       <section className="py-20 lg:py-28 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-semibold mb-6">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
+              <motion.div variants={fadeInLeft} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-semibold mb-6">
                 <TrendingUp className="w-4 h-4" /> Real-time Insights
-              </div>
-              <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
+              </motion.div>
+              <motion.h2 variants={fadeInLeft} className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
                 Your Complete Sales Command Center
-              </h2>
-              <p className="text-brand-dim mb-8 leading-relaxed text-lg">
+              </motion.h2>
+              <motion.p variants={fadeInLeft} className="text-brand-dim mb-8 leading-relaxed text-lg">
                 Get a bird&apos;s-eye view of everything happening across your sales operation. Make decisions backed by real data.
-              </p>
-              <div className="space-y-4">
+              </motion.p>
+              <motion.div variants={staggerContainer} className="space-y-4">
                 {[
                   "Real-time dashboard with key performance indicators",
                   "Visual pipeline with deal tracking by stage",
@@ -437,25 +757,33 @@ export default function LandingPage() {
                   "Integrated calling with auto-logging",
                   "Smart notifications that prioritize follow-ups",
                 ].map((item) => (
-                  <div key={item} className="flex items-start gap-3">
+                  <motion.div key={item} variants={fadeInUp} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="w-3 h-3 text-white" />
                     </div>
                     <span className="text-sm text-brand-body">{item}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-              <Link href="/dashboard" className="inline-flex items-center gap-2 mt-8 text-cyan-400 font-semibold hover:gap-3 transition-all text-sm">
-                Explore the Dashboard <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+              </motion.div>
+              <motion.div variants={fadeInLeft}>
+                <Link href="/dashboard" className="inline-flex items-center gap-2 mt-8 text-cyan-400 font-semibold hover:gap-3 transition-all text-sm">
+                  Explore the Dashboard <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+            </motion.div>
 
-            <div className="relative flex justify-center">
+            <motion.div
+              variants={scaleIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="relative flex justify-center"
+            >
               <div className="orb w-[300px] h-[300px] bg-cyan-500/10 -top-16 -right-16" />
-              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
+              <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }} className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated transition-shadow hover:shadow-glow">
                 <Image src="/ss-dashboard.png" alt="FieldScore Sales Dashboard" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -465,22 +793,34 @@ export default function LandingPage() {
         <div className="absolute inset-0 dot-pattern opacity-20" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative flex justify-center lg:order-1">
-              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
+            <motion.div
+              variants={scaleIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="relative flex justify-center lg:order-1"
+            >
+              <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }} className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated transition-shadow hover:shadow-glow">
                 <Image src="/ss-lead-mgmt.png" alt="FieldScore Lead Management" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
-              </div>
-            </div>
-            <div className="lg:order-2">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-6">
+              </motion.div>
+            </motion.div>
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="lg:order-2"
+            >
+              <motion.div variants={fadeInRight} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-6">
                 <Target className="w-4 h-4" /> Lead Management
-              </div>
-              <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
+              </motion.div>
+              <motion.h2 variants={fadeInRight} className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
                 Never Lose a Lead <span className="gradient-text">Again</span>
-              </h2>
-              <p className="text-brand-dim mb-8 leading-relaxed text-lg">
+              </motion.h2>
+              <motion.p variants={fadeInRight} className="text-brand-dim mb-8 leading-relaxed text-lg">
                 Manage leads, make calls, schedule follow-ups and close more deals — all in one place.
-              </p>
-              <div className="space-y-4">
+              </motion.p>
+              <motion.div variants={staggerContainer} className="space-y-4">
                 {[
                   "Capture leads from multiple sources automatically",
                   "Smart categorization with custom tags and filters",
@@ -488,15 +828,15 @@ export default function LandingPage() {
                   "Set follow-up reminders that never slip",
                   "Track lead journey from first contact to close",
                 ].map((item) => (
-                  <div key={item} className="flex items-start gap-3">
+                  <motion.div key={item} variants={fadeInUp} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="w-3 h-3 text-white" />
                     </div>
                     <span className="text-sm text-brand-body">{item}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -505,17 +845,22 @@ export default function LandingPage() {
       <section className="py-20 lg:py-28 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-semibold mb-6">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
+              <motion.div variants={fadeInLeft} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-semibold mb-6">
                 <MapPin className="w-4 h-4" /> Field Tracking
-              </div>
-              <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
+              </motion.div>
+              <motion.h2 variants={fadeInLeft} className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
                 On the Ground. <span className="gradient-text">Always in Sync.</span>
-              </h2>
-              <p className="text-brand-dim mb-8 leading-relaxed text-lg">
+              </motion.h2>
+              <motion.p variants={fadeInLeft} className="text-brand-dim mb-8 leading-relaxed text-lg">
                 Track field visits, GPS location and site activities in real-time. Know exactly where your team is and what they&apos;re doing.
-              </p>
-              <div className="space-y-4">
+              </motion.p>
+              <motion.div variants={staggerContainer} className="space-y-4">
                 {[
                   "Live GPS tracking with check-in/check-out",
                   "Site visit logging with photo verification",
@@ -523,20 +868,26 @@ export default function LandingPage() {
                   "Automated attendance with geo-fencing",
                   "Route optimization for field agents",
                 ].map((item) => (
-                  <div key={item} className="flex items-start gap-3">
+                  <motion.div key={item} variants={fadeInUp} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="w-3 h-3 text-white" />
                     </div>
                     <span className="text-sm text-brand-body">{item}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
-            <div className="relative flex justify-center">
-              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
+              </motion.div>
+            </motion.div>
+            <motion.div
+              variants={scaleIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="relative flex justify-center"
+            >
+              <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }} className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated transition-shadow hover:shadow-glow">
                 <Image src="/ss-field-tracking.png" alt="FieldScore GPS Field Tracking" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -546,22 +897,34 @@ export default function LandingPage() {
         <div className="absolute inset-0 grid-pattern opacity-30" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative flex justify-center lg:order-1">
-              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
+            <motion.div
+              variants={scaleIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="relative flex justify-center lg:order-1"
+            >
+              <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }} className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated transition-shadow hover:shadow-glow">
                 <Image src="/ss-call-mgmt.png" alt="FieldScore Call Management" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
-              </div>
-            </div>
-            <div className="lg:order-2">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-sm font-semibold mb-6">
+              </motion.div>
+            </motion.div>
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="lg:order-2"
+            >
+              <motion.div variants={fadeInRight} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-sm font-semibold mb-6">
                 <Phone className="w-4 h-4" /> Call Management
-              </div>
-              <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
+              </motion.div>
+              <motion.h2 variants={fadeInRight} className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
                 Every Call Becomes <span className="gradient-text">Progress</span>
-              </h2>
-              <p className="text-brand-dim mb-8 leading-relaxed text-lg">
+              </motion.h2>
+              <motion.p variants={fadeInRight} className="text-brand-dim mb-8 leading-relaxed text-lg">
                 AI-powered call summaries automatically captured into your CRM. No more manual call notes.
-              </p>
-              <div className="space-y-4">
+              </motion.p>
+              <motion.div variants={staggerContainer} className="space-y-4">
                 {[
                   "Integrated dialer with one-tap calling",
                   "AI call summaries and transcription",
@@ -569,15 +932,15 @@ export default function LandingPage() {
                   "Call analytics with team performance metrics",
                   "Smart follow-up suggestions after every call",
                 ].map((item) => (
-                  <div key={item} className="flex items-start gap-3">
+                  <motion.div key={item} variants={fadeInUp} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="w-3 h-3 text-white" />
                     </div>
                     <span className="text-sm text-brand-body">{item}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -586,17 +949,22 @@ export default function LandingPage() {
       <section className="py-20 lg:py-28 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 text-violet-400 text-sm font-semibold mb-6">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
+              <motion.div variants={fadeInLeft} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 text-violet-400 text-sm font-semibold mb-6">
                 <Users className="w-4 h-4" /> Team Management
-              </div>
-              <h2 className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
+              </motion.div>
+              <motion.h2 variants={fadeInLeft} className="text-3xl lg:text-4xl font-black mb-6 text-brand-text">
                 Empower Your <span className="gradient-text">Team</span>
-              </h2>
-              <p className="text-brand-dim mb-8 leading-relaxed text-lg">
+              </motion.h2>
+              <motion.p variants={fadeInLeft} className="text-brand-dim mb-8 leading-relaxed text-lg">
                 Track performance, manage activity and drive better results. Give your team the tools they need to succeed.
-              </p>
-              <div className="space-y-4">
+              </motion.p>
+              <motion.div variants={staggerContainer} className="space-y-4">
                 {[
                   "Role-based access for sales teams, managers, and owners",
                   "Real-time performance leaderboards",
@@ -604,20 +972,26 @@ export default function LandingPage() {
                   "Leave management and shift scheduling",
                   "Detailed activity reports and analytics",
                 ].map((item) => (
-                  <div key={item} className="flex items-start gap-3">
+                  <motion.div key={item} variants={fadeInUp} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="w-3 h-3 text-white" />
                     </div>
                     <span className="text-sm text-brand-body">{item}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
-            <div className="relative flex justify-center">
-              <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated hover:shadow-glow transition-all">
+              </motion.div>
+            </motion.div>
+            <motion.div
+              variants={scaleIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="relative flex justify-center"
+            >
+              <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }} className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated transition-shadow hover:shadow-glow">
                 <Image src="/ss-team-mgmt.png" alt="FieldScore Team Management" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -625,17 +999,42 @@ export default function LandingPage() {
       {/* ========== TESTIMONIALS ========== */}
       <section className="py-20 lg:py-28 bg-brand-surface relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-16">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            variants={fadeInUp}
+            className="text-center mb-16"
+          >
             <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
               Loved by <span className="gradient-text">Sales Teams</span>
             </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          </motion.div>
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="grid md:grid-cols-3 gap-6"
+          >
             {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="bg-brand-card rounded-2xl p-6 border border-brand-border shadow-soft hover:shadow-elevated transition-all">
+              <motion.div
+                key={t.name}
+                variants={fadeInUp}
+                whileHover={{ y: -4 }}
+                className="bg-brand-card rounded-2xl p-6 border border-brand-border shadow-soft transition-shadow duration-300 hover:shadow-elevated"
+              >
                 <div className="flex gap-1 mb-4">
                   {[1,2,3,4,5].map((i) => (
-                    <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                    <motion.div
+                      key={i}
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={viewportOnce}
+                      transition={{ type: "spring", stiffness: 300, damping: 15, delay: i * 0.06 }}
+                    >
+                      <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                    </motion.div>
                   ))}
                 </div>
                 <p className="text-sm text-brand-body leading-relaxed mb-6">&ldquo;{t.text}&rdquo;</p>
@@ -648,9 +1047,9 @@ export default function LandingPage() {
                     <p className="text-xs text-brand-dim">{t.role}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -658,26 +1057,38 @@ export default function LandingPage() {
       <section id="results" className="py-20 lg:py-28 relative">
         <div className="orb w-[400px] h-[400px] bg-cyan-500/10 bottom-20 -left-20" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="text-center mb-16"
+          >
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
               <TrendingUp className="w-4 h-4" /> Proven Results
-            </div>
-            <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
+            </motion.div>
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
               Teams See Results <span className="gradient-text">in Weeks</span>
-            </h2>
-            <p className="text-lg text-brand-dim max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-lg text-brand-dim max-w-2xl mx-auto">
               Real estate teams using FieldScore see measurable improvements across every metric that matters.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* Before / After comparison */}
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-16">
             {/* Before */}
-            <div className="bg-brand-card border border-brand-border rounded-2xl p-8 shadow-soft relative overflow-hidden">
+            <motion.div
+              variants={fadeInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="bg-brand-card border border-brand-border rounded-2xl p-8 shadow-soft relative overflow-hidden"
+            >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500/60 to-amber-500/60" />
               <h3 className="text-lg font-bold text-brand-dim mb-1">Before FieldScore</h3>
               <p className="text-xs text-brand-muted mb-6">Common challenges faced by sales teams</p>
-              <div className="space-y-4">
+              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce} className="space-y-4">
                 {[
                   { label: "Lead Response Time", value: "4+ hours", icon: Clock },
                   { label: "Lead-to-Visit Conversion", value: "8%", icon: Target },
@@ -685,7 +1096,7 @@ export default function LandingPage() {
                   { label: "Team Accountability", value: "Manual tracking", icon: Users },
                   { label: "Pipeline Visibility", value: "Spreadsheets", icon: Layers },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-center justify-between py-3 border-b border-brand-border/50 last:border-0">
+                  <motion.div key={item.label} variants={fadeInUp} className="flex items-center justify-between py-3 border-b border-brand-border/50 last:border-0">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-xl bg-red-500/10 flex items-center justify-center">
                         <item.icon className="w-4 h-4 text-red-400" />
@@ -693,17 +1104,23 @@ export default function LandingPage() {
                       <span className="text-sm text-brand-body">{item.label}</span>
                     </div>
                     <span className="text-sm font-bold text-red-400">{item.value}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* After */}
-            <div className="bg-brand-card border border-cyan-500/20 rounded-2xl p-8 shadow-glow relative overflow-hidden">
+            <motion.div
+              variants={fadeInRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="bg-brand-card border border-cyan-500/20 rounded-2xl p-8 shadow-glow relative overflow-hidden"
+            >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-600" />
               <h3 className="text-lg font-bold text-cyan-400 mb-1">After FieldScore</h3>
               <p className="text-xs text-brand-muted mb-6">Results within the first 90 days</p>
-              <div className="space-y-4">
+              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce} className="space-y-4">
                 {[
                   { label: "Lead Response Time", value: "Under 15 min", icon: Clock },
                   { label: "Lead-to-Visit Conversion", value: "24%", icon: Target },
@@ -711,7 +1128,7 @@ export default function LandingPage() {
                   { label: "Team Accountability", value: "GPS + Live tracking", icon: Users },
                   { label: "Pipeline Visibility", value: "Real-time dashboard", icon: Layers },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-center justify-between py-3 border-b border-brand-border/50 last:border-0">
+                  <motion.div key={item.label} variants={fadeInUp} className="flex items-center justify-between py-3 border-b border-brand-border/50 last:border-0">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-xl bg-cyan-500/10 flex items-center justify-center">
                         <item.icon className="w-4 h-4 text-cyan-400" />
@@ -719,27 +1136,38 @@ export default function LandingPage() {
                       <span className="text-sm text-brand-body">{item.label}</span>
                     </div>
                     <span className="text-sm font-bold text-cyan-400">{item.value}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
 
           {/* Impact metrics */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto"
+          >
             {[
               { value: "+34%", label: "Lead Conversion", sub: "average improvement", color: "text-cyan-400", bg: "bg-cyan-500/10", border: "border-cyan-500/20" },
               { value: "3x", label: "Faster Response", sub: "to new leads", color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
               { value: "60%", label: "Less Manual Work", sub: "with automation", color: "text-violet-400", bg: "bg-violet-500/10", border: "border-violet-500/20" },
               { value: "2.5x", label: "More Site Visits", sub: "per agent per month", color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" },
             ].map((stat) => (
-              <div key={stat.label} className={`bg-brand-card border ${stat.border} rounded-2xl p-6 text-center shadow-soft hover:shadow-elevated transition-all`}>
+              <motion.div
+                key={stat.label}
+                variants={scaleIn}
+                whileHover={{ scale: 1.05 }}
+                className={`bg-brand-card border ${stat.border} rounded-2xl p-6 text-center shadow-soft transition-shadow duration-300 hover:shadow-elevated`}
+              >
                 <p className={`text-3xl lg:text-4xl font-black ${stat.color}`}>{stat.value}</p>
                 <p className="text-sm font-semibold text-brand-text mt-2">{stat.label}</p>
                 <p className="text-xs text-brand-muted mt-1">{stat.sub}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -747,74 +1175,62 @@ export default function LandingPage() {
       <section id="faq" className="py-20 lg:py-28 bg-brand-surface relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30" />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="text-center mb-16"
+          >
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
               <CheckCircle2 className="w-4 h-4" /> FAQ
-            </div>
-            <h2 className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
+            </motion.div>
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
               Frequently Asked <span className="gradient-text">Questions</span>
-            </h2>
-            <p className="text-lg text-brand-dim">
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-lg text-brand-dim">
               Everything you need to know about FieldScore.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           <div className="space-y-3">
-            {[
-              {
-                q: "What is FieldScore?",
-                a: "FieldScore is an all-in-one sales CRM built specifically for real estate teams. It helps you capture leads, manage pipelines, track attendance, make calls, and close deals faster — all from your mobile device.",
-              },
-              {
-                q: "Who is FieldScore designed for?",
-                a: "FieldScore adapts to your role. Sales executives get tools for field work and lead follow-ups. Managers get performance tracking and team monitoring. Owners get complete visibility with analytics and reports.",
-              },
-              {
-                q: "Is there a free trial available?",
-                a: "Yes! You can start a 10-day free trial with no credit card required. Experience the full power of FieldScore before committing to a plan.",
-              },
-              {
-                q: "Does FieldScore work on mobile?",
-                a: "FieldScore is mobile-first. Our app is available on Google Play and is designed to work seamlessly in the field — with GPS tracking, one-tap calling, offline support, and real-time sync.",
-              },
-              {
-                q: "How does GPS attendance tracking work?",
-                a: "Team members check in and out with GPS verification. FieldScore automatically logs location, tracks active hours, detects late marks, and provides managers with real-time field visibility — no manual timesheets needed.",
-              },
-              {
-                q: "Can I import my existing leads?",
-                a: "Yes. You can import leads from spreadsheets, websites, property portals, ad campaigns, and walk-ins. FieldScore supports bulk import and automatic lead capture from multiple sources.",
-              },
-              {
-                q: "How does the call management feature work?",
-                a: "FieldScore includes an integrated dialer with one-tap calling. Every call is automatically logged to the lead timeline. AI-powered call summaries capture key details so your team never has to write manual notes.",
-              },
-              {
-                q: "Is my data secure?",
-                a: "Absolutely. FieldScore uses industry-standard encryption, role-based access controls, and secure cloud infrastructure to ensure your data is protected at all times.",
-              },
-            ].map((faq, i) => (
-              <div
+            {FAQS.map((faq, i) => (
+              <motion.div
                 key={i}
-                className="bg-brand-card border border-brand-border rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all"
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+                className="bg-brand-card border border-brand-border rounded-2xl overflow-hidden shadow-soft transition-shadow hover:shadow-card"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between p-5 text-left"
                 >
                   <span className="text-sm font-semibold text-brand-text pr-4">{faq.q}</span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-brand-dim shrink-0 transition-transform duration-200 ${
-                      openFaq === i ? "rotate-180 text-cyan-400" : ""
-                    }`}
-                  />
+                  <motion.div
+                    animate={{ rotate: openFaq === i ? 180 : 0 }}
+                    transition={{ duration: 0.25, ease }}
+                  >
+                    <ChevronDown className={`w-5 h-5 shrink-0 ${openFaq === i ? "text-cyan-400" : "text-brand-dim"}`} />
+                  </motion.div>
                 </button>
-                {openFaq === i && (
-                  <div className="px-5 pb-5 -mt-1">
-                    <p className="text-sm text-brand-dim leading-relaxed">{faq.a}</p>
-                  </div>
-                )}
-              </div>
+                <AnimatePresence initial={false}>
+                  {openFaq === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 -mt-1">
+                        <p className="text-sm text-brand-dim leading-relaxed">{faq.a}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -826,33 +1242,55 @@ export default function LandingPage() {
         <div className="absolute inset-0 dot-pattern opacity-10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left">
-              <h2 className="text-3xl lg:text-5xl font-black mb-6 text-brand-text">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="text-center lg:text-left"
+            >
+              <motion.h2 variants={fadeInLeft} className="text-3xl lg:text-5xl font-black mb-6 text-brand-text">
                 Ready to Transform Your Sales?
-              </h2>
-              <p className="text-lg text-brand-dim mb-10 max-w-xl">
+              </motion.h2>
+              <motion.p variants={fadeInLeft} className="text-lg text-brand-dim mb-10 max-w-xl">
                 Choose your role and get started. FieldScore adapts to sales teams, managers, and owners — giving everyone the right tools to succeed.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link href="/signup" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-base px-10 py-4 rounded-2xl hover:shadow-glow-strong transition-all shadow-glow active:scale-[0.98]">
-                  Get Started for Free <ArrowRight className="w-5 h-5" />
-                </Link>
-                <a href="https://play.google.com/store/apps/details?id=com.simsinfotech.workspace" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-brand-card border border-brand-border text-brand-text font-bold text-base px-8 py-4 rounded-2xl hover:border-cyan-500/30 transition-all">
-                  <Play className="w-4 h-4" /> Download App
-                </a>
-              </div>
-            </div>
-            <div className="flex justify-center">
+              </motion.p>
+              <motion.div variants={fadeInLeft} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                  <Link href="/signup" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-base px-10 py-4 rounded-2xl hover:shadow-glow-strong transition-shadow shadow-glow">
+                    Get Started for Free <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                  <a href="https://play.google.com/store/apps/details?id=com.simsinfotech.workspace" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-brand-card border border-brand-border text-brand-text font-bold text-base px-8 py-4 rounded-2xl hover:border-cyan-500/30 transition-all">
+                    <Play className="w-4 h-4" /> Download App
+                  </a>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+            <motion.div
+              variants={scaleIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="flex justify-center"
+            >
               <div className="relative rounded-2xl border border-brand-border overflow-hidden shadow-elevated">
                 <Image src="/ss-role-select.png" alt="Choose Your Role - FieldScore" width={300} height={600} className="w-64 lg:w-72 h-auto" unoptimized />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* ========== FOOTER ========== */}
-      <footer className="bg-brand-surface border-t border-brand-border">
+      <motion.footer
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.8, ease }}
+        className="bg-brand-surface border-t border-brand-border"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main footer grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6 py-16">
@@ -936,7 +1374,7 @@ export default function LandingPage() {
             </p>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 }
