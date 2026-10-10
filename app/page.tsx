@@ -422,7 +422,7 @@ export default function LandingPage() {
         </motion.div>
 
         {/* Left-side gradient for text readability — fades out toward right to keep image visible */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-brand-bg via-brand-bg/80 to-transparent" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-brand-bg/70 via-brand-bg/40 to-transparent" />
         {/* Bottom fade — seamless blend into next section */}
         <div className="absolute bottom-0 left-0 right-0 h-32 z-[1] bg-gradient-to-t from-brand-bg to-transparent" />
 
