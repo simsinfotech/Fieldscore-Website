@@ -507,6 +507,46 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ========== PRODUCT SHOWCASE ========== */}
+      <section className="py-20 lg:py-28 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="text-center mb-12"
+          >
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-4">
+              <Sparkles className="w-4 h-4" /> The FieldScore Advantage
+            </motion.div>
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-5xl font-black mb-4 text-brand-text">
+              Track. Measure. <span className="gradient-text">Win.</span>
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-lg text-brand-dim max-w-2xl mx-auto">
+              From closing deals to managing every call — FieldScore gives your team the edge.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            variants={scaleIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="relative rounded-2xl overflow-hidden border border-brand-border shadow-elevated"
+          >
+            <Image
+              src="/FieldScore_ Track, Measure, Win.png"
+              alt="FieldScore product showcase — Close more deals and track every call"
+              width={1920}
+              height={960}
+              className="w-full h-auto"
+              unoptimized
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* ========== APP SCREENSHOTS SHOWCASE ========== */}
       <section ref={screenshotsRef} className="py-20 lg:py-28 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
