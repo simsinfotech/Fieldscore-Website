@@ -408,144 +408,85 @@ export default function LandingPage() {
       </motion.nav>
 
       {/* ========== HERO ========== */}
-      <section ref={heroRef} className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
-        {/* Background decorations — parallax orbs */}
-        <div className="absolute inset-0 dot-pattern opacity-40" />
-        <motion.div style={{ y: heroOrb1Y }} className="orb w-[600px] h-[600px] bg-cyan-500/20 -top-60 -right-60" />
-        <motion.div style={{ y: heroOrb2Y }} className="orb w-[500px] h-[500px] bg-blue-600/20 -bottom-40 -left-40" />
-        <motion.div style={{ y: heroOrb3Y }} className="orb w-[300px] h-[300px] bg-teal-500/15 top-40 right-1/4" />
+      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* Background cityscape image with parallax */}
+        <motion.div style={{ y: heroOrb1Y }} className="absolute inset-0 z-0">
+          <Image
+            src="/Futuristic Real Estate CRM Cityscape.png"
+            alt=""
+            fill
+            className="object-cover object-center"
+            priority
+            quality={90}
+          />
+        </motion.div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            {/* Left side — Text content (staggered entrance) */}
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
-            >
-              {/* Badge */}
-              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-semibold mb-8 shadow-soft">
-                <Sparkles className="w-4 h-4" />
-                Built for Real Estate Sales Teams
-              </motion.div>
+        {/* Dark gradient overlays for text readability */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-brand-bg/95 via-brand-bg/70 to-brand-bg/40" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-brand-bg via-transparent to-brand-bg/60" />
 
-              <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.08] mb-6">
-                Close Deals{" "}
-                <span className="gradient-text">Faster</span>
-                <br />
-                <span className="text-brand-dim font-bold text-3xl sm:text-4xl lg:text-5xl">with FieldScore CRM</span>
-              </motion.h1>
+        {/* Subtle orbs on top of overlay */}
+        <motion.div style={{ y: heroOrb2Y }} className="orb w-[500px] h-[500px] bg-cyan-500/10 -bottom-40 -left-40 z-[2]" />
+        <motion.div style={{ y: heroOrb3Y }} className="orb w-[300px] h-[300px] bg-teal-500/8 top-40 right-1/4 z-[2]" />
 
-              <motion.p variants={fadeInUp} className="text-base sm:text-lg text-brand-dim max-w-xl mb-4 leading-relaxed">
-                The all-in-one platform that helps real estate teams capture leads, track pipelines, monitor attendance, and close more deals.
-              </motion.p>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 lg:pt-36 lg:pb-24 w-full">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="max-w-2xl"
+          >
+            {/* Badge */}
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-semibold mb-8 shadow-soft backdrop-blur-sm">
+              <Sparkles className="w-4 h-4" />
+              Built for Real Estate Sales Teams
+            </motion.div>
 
-              <motion.p variants={fadeInUp} className="text-sm text-brand-muted max-w-xl mb-8 leading-relaxed">
-                FieldScore adapts to your role — whether you&apos;re a sales executive on the field, a manager tracking performance, or an owner looking for complete visibility. Get the right tools to succeed from day one.
-              </motion.p>
+            <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.08] mb-6">
+              Close Deals{" "}
+              <span className="gradient-text">Faster</span>
+              <br />
+              <span className="text-brand-dim font-bold text-3xl sm:text-4xl lg:text-5xl">with FieldScore CRM</span>
+            </motion.h1>
 
-              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 mb-6">
-                <Link href="/dashboard" className="btn-secondary text-sm inline-flex items-center justify-center gap-2 !py-3.5 !px-6 rounded-xl">
-                  <Play className="w-4 h-4" /> Book a Demo
-                </Link>
-                <Link href="/signup" className="btn-primary text-sm inline-flex items-center justify-center gap-2 !py-3.5 !px-6 rounded-xl shadow-glow">
-                  Start 10-day Free Trial <ArrowRight className="w-4 h-4" />
-                </Link>
-              </motion.div>
+            <motion.p variants={fadeInUp} className="text-base sm:text-lg text-brand-dim max-w-xl mb-4 leading-relaxed">
+              The all-in-one platform that helps real estate teams capture leads, track pipelines, monitor attendance, and close more deals.
+            </motion.p>
 
-              <motion.p variants={fadeInUp} className="text-xs text-brand-muted">No Credit Card Required</motion.p>
+            <motion.p variants={fadeInUp} className="text-sm text-brand-muted max-w-xl mb-8 leading-relaxed">
+              FieldScore adapts to your role — whether you&apos;re a sales executive on the field, a manager tracking performance, or an owner looking for complete visibility. Get the right tools to succeed from day one.
+            </motion.p>
 
-              {/* Social proof */}
-              <motion.div variants={fadeInUp} className="flex items-center gap-6 mt-8 pt-8 border-t border-brand-border/50">
-                <div className="flex -space-x-2">
-                  {["VM", "AD", "SK", "RK", "PM"].map((init, i) => (
-                    <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[10px] font-bold text-white border-2 border-brand-bg">
-                      {init}
-                    </div>
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 mb-6">
+              <Link href="/dashboard" className="btn-secondary text-sm inline-flex items-center justify-center gap-2 !py-3.5 !px-6 rounded-xl backdrop-blur-sm">
+                <Play className="w-4 h-4" /> Book a Demo
+              </Link>
+              <Link href="/signup" className="btn-primary text-sm inline-flex items-center justify-center gap-2 !py-3.5 !px-6 rounded-xl shadow-glow">
+                Start 10-day Free Trial <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+
+            <motion.p variants={fadeInUp} className="text-xs text-brand-muted">No Credit Card Required</motion.p>
+
+            {/* Social proof */}
+            <motion.div variants={fadeInUp} className="flex items-center gap-6 mt-8 pt-8 border-t border-brand-border/50">
+              <div className="flex -space-x-2">
+                {["VM", "AD", "SK", "RK", "PM"].map((init, i) => (
+                  <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[10px] font-bold text-white border-2 border-brand-bg">
+                    {init}
+                  </div>
+                ))}
+              </div>
+              <div className="text-left">
+                <div className="flex items-center gap-1">
+                  {[1,2,3,4,5].map((i) => (
+                    <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
                   ))}
                 </div>
-                <div className="text-left">
-                  <div className="flex items-center gap-1">
-                    {[1,2,3,4,5].map((i) => (
-                      <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
-                    ))}
-                  </div>
-                  <p className="text-xs text-brand-dim mt-0.5">Trusted by 500+ sales teams</p>
-                </div>
-              </motion.div>
+                <p className="text-xs text-brand-dim mt-0.5">Trusted by 500+ sales teams</p>
+              </div>
             </motion.div>
-
-            {/* Right side — App screenshots collage */}
-            <motion.div
-              variants={scaleIn}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.4 }}
-              className="relative flex justify-center items-center lg:min-h-[520px]"
-            >
-              {/* Glow behind */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-blue-500/10 to-teal-500/5 rounded-3xl blur-3xl" />
-
-              {/* Main center screenshot */}
-              <div className="relative z-10 rounded-2xl border border-brand-border overflow-hidden shadow-elevated">
-                <Image src="/ss-dashboard.png" alt="FieldScore Dashboard" width={240} height={427} className="w-48 sm:w-56 h-auto" unoptimized />
-              </div>
-
-              {/* Left screenshot — offset behind */}
-              <div className="absolute left-0 sm:left-4 lg:-left-2 top-8 z-0 rounded-2xl border border-brand-border overflow-hidden shadow-elevated opacity-75 -rotate-6">
-                <Image src="/ss-lead-mgmt.png" alt="Lead Management" width={240} height={427} className="w-40 sm:w-44 h-auto" unoptimized />
-              </div>
-
-              {/* Right screenshot — offset behind */}
-              <div className="absolute right-0 sm:right-4 lg:-right-2 top-8 z-0 rounded-2xl border border-brand-border overflow-hidden shadow-elevated opacity-75 rotate-6">
-                <Image src="/ss-call-mgmt.png" alt="Call Management" width={240} height={427} className="w-40 sm:w-44 h-auto" unoptimized />
-              </div>
-
-              {/* Floating stat card — top right */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.6, ease }}
-                className="absolute -top-2 right-4 lg:right-0 z-20 bg-brand-card border border-brand-border rounded-xl px-4 py-3 shadow-elevated"
-              >
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="flex items-center gap-2"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                    <TrendingUp className="w-4 h-4 text-emerald-400" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-brand-dim">Conversion</p>
-                    <p className="text-sm font-bold text-emerald-400">+34%</p>
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              {/* Floating stat card — bottom left */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.0, duration: 0.6, ease }}
-                className="absolute -bottom-2 left-4 lg:left-0 z-20 bg-brand-card border border-brand-border rounded-xl px-4 py-3 shadow-elevated"
-              >
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="flex items-center gap-2"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center">
-                    <Target className="w-4 h-4 text-cyan-400" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-brand-dim">Active Leads</p>
-                    <p className="text-sm font-bold text-cyan-400">1,247</p>
-                  </div>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
