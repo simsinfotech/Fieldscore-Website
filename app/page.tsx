@@ -408,25 +408,27 @@ export default function LandingPage() {
       </motion.nav>
 
       {/* ========== HERO ========== */}
-      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section ref={heroRef} className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden">
         {/* Background cityscape image with parallax */}
         <motion.div style={{ y: heroOrb1Y }} className="absolute inset-0 z-0">
           <Image
             src="/Futuristic Real Estate CRM Cityscape.png"
             alt=""
             fill
-            className="object-cover object-center"
+            className="object-cover object-right lg:object-center"
             priority
             quality={90}
           />
         </motion.div>
 
+        {/* Mobile: stronger full overlay so text is readable over the busy image */}
+        <div className="absolute inset-0 z-[1] bg-brand-bg/80 lg:hidden" />
+        {/* Desktop: left-side gradient only */}
+        <div className="absolute inset-0 z-[1] hidden lg:block bg-gradient-to-r from-brand-bg/70 via-brand-bg/40 to-transparent" />
         {/* Top fade — hides image artifacts behind nav area */}
-        <div className="absolute top-0 left-0 right-0 h-40 z-[1] bg-gradient-to-b from-brand-bg via-brand-bg/80 to-transparent" />
-        {/* Left-side gradient for text readability — fades out toward right to keep image visible */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-brand-bg/70 via-brand-bg/40 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-40 z-[2] bg-gradient-to-b from-brand-bg via-brand-bg/80 to-transparent" />
         {/* Bottom fade — seamless blend into next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 z-[1] bg-gradient-to-t from-brand-bg to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 z-[2] bg-gradient-to-t from-brand-bg to-transparent" />
 
         <div className="relative z-10 w-full pt-28 pb-16 lg:pt-36 lg:pb-24 px-6 sm:px-10 lg:px-16">
           <motion.div
