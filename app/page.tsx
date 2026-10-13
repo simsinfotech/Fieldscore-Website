@@ -459,7 +459,7 @@ export default function LandingPage() {
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 mb-6">
-              <Link href="/dashboard" className="btn-secondary text-sm inline-flex items-center justify-center gap-2 !py-3.5 !px-6 rounded-xl backdrop-blur-sm">
+              <Link href="/login" className="btn-secondary text-sm inline-flex items-center justify-center gap-2 !py-3.5 !px-6 rounded-xl backdrop-blur-sm">
                 <Play className="w-4 h-4" /> Book a Demo
               </Link>
               <Link href="/signup" className="btn-primary text-sm inline-flex items-center justify-center gap-2 !py-3.5 !px-6 rounded-xl shadow-glow">
@@ -755,7 +755,7 @@ export default function LandingPage() {
                 ))}
               </motion.div>
               <motion.div variants={fadeInLeft}>
-                <Link href="/dashboard" className="inline-flex items-center gap-2 mt-8 text-cyan-400 font-semibold hover:gap-3 transition-all text-sm">
+                <Link href="/login" className="inline-flex items-center gap-2 mt-8 text-cyan-400 font-semibold hover:gap-3 transition-all text-sm">
                   Explore the Dashboard <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>
