@@ -24,6 +24,7 @@
     { "source": "/payroll/:path*", "destination": "https://attendance-web-app-sable.vercel.app/payroll/:path*" },
     { "source": "/appraisals/:path*", "destination": "https://attendance-web-app-sable.vercel.app/appraisals/:path*" },
     { "source": "/api/:path*", "destination": "https://attendance-web-app-sable.vercel.app/api/:path*" },
-    { "source": "/auth/:path*", "destination": "https://attendance-web-app-sable.vercel.app/auth/:path*" }
+    { "source": "/auth/:path*", "destination": "https://attendance-web-app-sable.vercel.app/auth/:path*" },
+    { "source": "/:path*", "destination": "https://attendance-web-app-sable.vercel.app/:path*" }
   ]
 }
