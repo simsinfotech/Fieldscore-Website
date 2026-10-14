@@ -33,6 +33,7 @@ import {
   TbBell,
   TbLayoutKanban,
   TbChartBar,
+  TbLogout,
 } from "react-icons/tb"
 
 type NavCtx = { isAdmin: boolean; role?: string }
@@ -74,21 +75,28 @@ export function MobileSidebar() {
           <TbMenu2 className="h-5 w-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-[280px] p-0 border-r border-[#1A2B45] bg-[#0A1628]">
+      <SheetContent
+        side="left"
+        hideClose
+        className="w-[280px] p-0 border-r border-[#1A2B45] bg-[#0A1628] flex flex-col"
+      >
         <SheetTitle className="sr-only">Navigation</SheetTitle>
-        <div className="flex items-center h-[72px] px-4 border-b border-[#1A2B45]">
-          <div className="w-10 h-10 flex items-center justify-center mr-3 overflow-hidden rounded-xl shrink-0">
-            <Image src="/IMG_9578.PNG" alt="FieldScore" width={40} height={40} className="w-10 h-10 object-contain" />
+
+        {/* Header - fixed at top */}
+        <div className="flex items-center h-16 px-4 border-b border-[#1A2B45] shrink-0">
+          <div className="w-9 h-9 flex items-center justify-center mr-3 overflow-hidden rounded-xl shrink-0">
+            <Image src="/IMG_9578.PNG" alt="FieldScore" width={36} height={36} className="w-9 h-9 object-contain" />
           </div>
           <div className="flex flex-col">
-            <Image src="/image.png" alt="FieldScore" width={110} height={24} className="h-5 w-auto" />
-            <span className="text-[11px] tracking-wide leading-tight mt-0.5 text-[#8094B0]">
+            <Image src="/image.png" alt="FieldScore" width={100} height={22} className="h-[18px] w-auto" />
+            <span className="text-[10px] tracking-wide leading-tight mt-0.5 text-[#8094B0]">
               {isAdmin ? "Admin panel" : "Employee portal"}
             </span>
           </div>
         </div>
 
-        <nav className="space-y-1 p-3 overflow-y-auto flex-1 min-h-0">
+        {/* Scrollable navigation */}
+        <nav className="flex-1 overflow-y-auto overscroll-contain p-3 space-y-0.5">
           {nav.map((item) => {
             const isActive = pathname === item.href
             return (
@@ -107,6 +115,21 @@ export function MobileSidebar() {
             )
           })}
         </nav>
+
+        {/* Footer - user info, fixed at bottom */}
+        {employee && (
+          <div className="shrink-0 border-t border-[#1A2B45] p-3">
+            <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-[#060B18]/50">
+              <div className="w-8 h-8 rounded-full bg-[#1A2B45] flex items-center justify-center text-[#00E5FF] text-xs font-semibold shrink-0">
+                {employee.name?.charAt(0)?.toUpperCase() || "?"}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-[#F1F5F9] truncate">{employee.name}</p>
+                <p className="text-[10px] text-[#8094B0] truncate capitalize">{employee.role || "Employee"}</p>
+              </div>
+            </div>
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   )
