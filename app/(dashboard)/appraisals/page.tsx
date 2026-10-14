@@ -80,9 +80,9 @@ export default function AppraisalsPage() {
   }
 
   const statusStyles: Record<string, string> = {
-    pending_self: "bg-[#EDE9FE] text-foreground rounded-full",
-    pending_manager: "bg-[#00BCD4]/25 text-[#1E40AF] rounded-full",
-    completed: "bg-[#DBEAFE] text-foreground rounded-full",
+    pending_self: "bg-[#7C4DFF]/10 text-foreground rounded-full",
+    pending_manager: "bg-[#00BCD4]/25 text-[#00E5FF] rounded-full",
+    completed: "bg-[#00BCD4]/10 text-foreground rounded-full",
   }
 
   const statusLabels: Record<string, string> = {

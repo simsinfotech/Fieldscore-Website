@@ -82,10 +82,10 @@ const WORK_STATUS_LABEL: Record<string, string> = {
   approved: "Approved", blocked: "Blocked", done: "Done", cancelled: "Cancelled",
 }
 const WORK_STATUS_BADGE: Record<string, string> = {
-  done: "bg-[#DBEAFE] text-[#0F172A]",
-  approved: "bg-[#DBEAFE] text-[#0F172A]",
-  in_progress: "bg-[#00BCD4]/25 text-[#1E40AF]",
-  review: "bg-[#EDE9FE] text-[#0F172A]",
+  done: "bg-[#00BCD4]/10 text-[#F1F5F9]",
+  approved: "bg-[#00BCD4]/10 text-[#F1F5F9]",
+  in_progress: "bg-[#00BCD4]/25 text-[#00E5FF]",
+  review: "bg-[#7C4DFF]/10 text-[#F1F5F9]",
   blocked: "bg-destructive/15 text-destructive",
   todo: "bg-secondary text-muted-foreground",
   backlog: "bg-secondary text-muted-foreground",
@@ -225,9 +225,9 @@ export default function EodReportsPage() {
   }, {})
 
   const STATUS_BADGE: Record<string, string> = {
-    completed: "bg-[#DBEAFE] text-[#0F172A]",
-    in_progress: "bg-[#00BCD4]/25 text-[#1E40AF]",
-    partial: "bg-[#EDE9FE] text-[#0F172A]",
+    completed: "bg-[#00BCD4]/10 text-[#F1F5F9]",
+    in_progress: "bg-[#00BCD4]/25 text-[#00E5FF]",
+    partial: "bg-[#7C4DFF]/10 text-[#F1F5F9]",
   }
 
   return (
@@ -235,7 +235,7 @@ export default function EodReportsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0F172A] text-white">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1A2B45] text-white">
             <TbFileText className="h-6 w-6 text-white" />
           </div>
           <div>
@@ -279,7 +279,7 @@ export default function EodReportsPage() {
       {reports.length === 0 ? (
         /* Empty state */
         <div className="flex flex-col items-center justify-center py-20 rounded-3xl border border-dashed border-border bg-[#0D1B2A] shadow-soft">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#0F172A] text-white mb-4">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1A2B45] text-white mb-4">
             <TbInbox className="h-8 w-8 text-white" />
           </div>
           <p className="text-muted-foreground font-medium mb-1">
@@ -314,7 +314,7 @@ export default function EodReportsPage() {
                 {/* Date header with timeline dot */}
                 <div className="flex items-center gap-4 mb-4">
                   <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#00BCD4] text-white shrink-0">
-                    <TbCalendar className="h-4 w-4 text-[#0F172A]" />
+                    <TbCalendar className="h-4 w-4 text-[#F1F5F9]" />
                   </div>
                   <div className="flex items-center gap-3">
                     <h2 className="text-sm font-semibold">
@@ -354,7 +354,7 @@ export default function EodReportsPage() {
                         >
                           <div className="flex items-center gap-3">
                             {(isAdmin || isManager) && author && (
-                              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0F172A] text-white">
+                              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1A2B45] text-white">
                                 <span className="text-xs font-semibold text-white">
                                   {getInitials(author.full_name)}
                                 </span>
@@ -371,12 +371,12 @@ export default function EodReportsPage() {
                                     </span>
                                   )}
                                   {orphaned && author.reports_to && (
-                                    <span className="rounded-full bg-[#00BCD4]/15 px-2 py-0.5 text-[10px] text-[#1E40AF]">
+                                    <span className="rounded-full bg-[#00BCD4]/15 px-2 py-0.5 text-[10px] text-[#00E5FF]">
                                       awaiting {empById.get(author.reports_to)?.full_name?.split(" ")[0] ?? "manager"}
                                     </span>
                                   )}
                                   {report.review_status === "reviewed" ? (
-                                    <Badge variant="secondary" className="bg-[#DBEAFE] text-[#0F172A] rounded-full">Reviewed</Badge>
+                                    <Badge variant="secondary" className="bg-[#00BCD4]/10 text-[#F1F5F9] rounded-full">Reviewed</Badge>
                                   ) : (
                                     <Badge variant="outline" className="text-muted-foreground rounded-full">Pending review</Badge>
                                   )}
@@ -421,7 +421,7 @@ export default function EodReportsPage() {
                             {report.metrics && Object.keys(report.metrics).length > 0 && (
                               <div className="pt-4">
                                 <div className="flex items-center gap-2 mb-3">
-                                  <TbChartBar className="h-4 w-4 text-[#0F172A]" />
+                                  <TbChartBar className="h-4 w-4 text-[#F1F5F9]" />
                                   <h4 className="text-xs font-semibold text-foreground">Today&apos;s numbers</h4>
                                   {report.department && (
                                     <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] capitalize text-muted-foreground">{report.department}</span>
@@ -444,7 +444,7 @@ export default function EodReportsPage() {
                             {(report.task_progress?.length ?? 0) > 0 && (
                               <div className="pt-4">
                                 <div className="flex items-center gap-2 mb-3">
-                                  <TbListCheck className="h-4 w-4 text-[#0F172A]" />
+                                  <TbListCheck className="h-4 w-4 text-[#F1F5F9]" />
                                   <h4 className="text-xs font-semibold text-foreground">Task progress</h4>
                                 </div>
                                 <div className="space-y-1.5">
@@ -479,7 +479,7 @@ export default function EodReportsPage() {
                                       key={i}
                                       className="flex items-center gap-3 rounded-2xl bg-secondary px-3.5 py-2.5"
                                     >
-                                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#0F172A] text-[10px] font-semibold text-white shrink-0">
+                                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1A2B45] text-[10px] font-semibold text-white shrink-0">
                                         {i + 1}
                                       </span>
                                       <span className="text-sm flex-1">
@@ -487,7 +487,7 @@ export default function EodReportsPage() {
                                       </span>
                                       {t.status && (
                                         <span
-                                          className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${STATUS_BADGE[t.status] || "bg-[#DBEAFE] text-[#0F172A]"}`}
+                                          className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${STATUS_BADGE[t.status] || "bg-[#00BCD4]/10 text-[#F1F5F9]"}`}
                                         >
                                           {t.status.replace("_", " ")}
                                         </span>
@@ -525,8 +525,8 @@ export default function EodReportsPage() {
                                     Tomorrow&apos;s Plan
                                   </h4>
                                 </div>
-                                <div className="rounded-2xl bg-[#DBEAFE] px-4 py-3">
-                                  <p className="text-sm text-[#0F172A] leading-relaxed">
+                                <div className="rounded-2xl bg-[#00BCD4]/10 px-4 py-3">
+                                  <p className="text-sm text-[#F1F5F9] leading-relaxed">
                                     {report.tomorrow_plan}
                                   </p>
                                 </div>
@@ -537,7 +537,7 @@ export default function EodReportsPage() {
                             {nesting && isMgr && (
                               <div className="rounded-2xl border border-border p-3">
                                 <div className="flex items-center gap-2 mb-2">
-                                  <TbUsers className="h-4 w-4 text-[#0F172A]" />
+                                  <TbUsers className="h-4 w-4 text-[#F1F5F9]" />
                                   <h4 className="text-xs font-semibold text-foreground">
                                     Team reports · {teamMembers.length} {teamMembers.length === 1 ? "person" : "people"}
                                   </h4>
@@ -569,7 +569,7 @@ export default function EodReportsPage() {
 
                             {/* Manager review / forwarded note */}
                             {report.review_status === "reviewed" && report.manager_comment && (
-                              <div className="rounded-2xl bg-[#EDE9FE] px-4 py-3">
+                              <div className="rounded-2xl bg-[#7C4DFF]/10 px-4 py-3">
                                 <p className="text-xs font-semibold text-foreground mb-1">Review note</p>
                                 <p className="text-sm text-foreground">{report.manager_comment}</p>
                               </div>
@@ -582,7 +582,7 @@ export default function EodReportsPage() {
                                   onChange={(e) => setReviewComment((c) => ({ ...c, [report.id]: e.target.value }))}
                                   placeholder={isAdmin ? "Note (optional)…" : "Note to admin (optional)…"}
                                 />
-                                <Button size="sm" onClick={() => submitReview(report.id)} disabled={reviewing === report.id} className="w-full bg-[#0F172A] text-white hover:bg-[#0F172A]">
+                                <Button size="sm" onClick={() => submitReview(report.id)} disabled={reviewing === report.id} className="w-full bg-[#1A2B45] text-white hover:bg-[#1A2B45]">
                                   {reviewing === report.id ? <TbLoader2 className="h-4 w-4 animate-spin mr-2" /> : null}
                                   {isAdmin ? "Mark reviewed" : "Review & forward to admin"}
                                 </Button>
@@ -707,7 +707,7 @@ function NewEodDialog({
       <DialogContent className="max-w-lg">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#0F172A] text-white">
+            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#1A2B45] text-white">
               <TbFileText className="h-4 w-4 text-white" />
             </div>
             <div>
@@ -725,10 +725,10 @@ function NewEodDialog({
           ) : template ? (
             <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-2">
-                <TbChartBar className="h-4 w-4 text-[#0F172A]" />
+                <TbChartBar className="h-4 w-4 text-[#F1F5F9]" />
                 <Label className="text-xs font-semibold capitalize text-foreground">{department} — today&apos;s numbers</Label>
                 {department === "sales" && (
-                  <span className="rounded-full bg-[#DBEAFE] px-2 py-0.5 text-[10px] text-[#0F172A]">auto-filled from your activity — edit if needed</span>
+                  <span className="rounded-full bg-[#00BCD4]/10 px-2 py-0.5 text-[10px] text-[#F1F5F9]">auto-filled from your activity — edit if needed</span>
                 )}
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -756,7 +756,7 @@ function NewEodDialog({
           {!prefilling && workTasks.length > 0 && (
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <TbListCheck className="h-4 w-4 text-[#0F172A]" />
+                <TbListCheck className="h-4 w-4 text-[#F1F5F9]" />
                 <Label className="text-xs font-semibold text-foreground">Task progress</Label>
                 <span className="text-[10px] text-muted-foreground">from your Work board</span>
               </div>

@@ -42,7 +42,7 @@ export function ImageLightbox({
   return createPortal(
     <div
       onClick={onClose}
-      className="fixed inset-0 z-[10000] flex items-center justify-center bg-[#0F172A]/85 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-[10000] flex items-center justify-center bg-[#1A2B45]/85 p-4 backdrop-blur-sm"
     >
       <div className="absolute right-4 top-4 flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
         {actions && actions.length > 0 && (

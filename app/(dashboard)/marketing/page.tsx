@@ -66,7 +66,7 @@ export default function MarketingPage() {
           {/* Per-source summary */}
           <GlassCard className="space-y-3">
             <div className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-2xl bg-[#0F172A] text-white border border-border"><TbChartBar className="h-4 w-4" /></div>
+              <div className="flex h-7 w-7 items-center justify-center rounded-2xl bg-[#1A2B45] text-white border border-border"><TbChartBar className="h-4 w-4" /></div>
               <p className="text-sm font-semibold">By source</p>
             </div>
             <div className="overflow-x-auto">

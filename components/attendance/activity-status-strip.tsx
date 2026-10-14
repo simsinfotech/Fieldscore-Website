@@ -41,7 +41,7 @@ export function ActivityStatusStrip() {
   const hasSession = !!openSession
   const statusText = !hasSession ? "Offline" : isIdle ? "Idle" : "Active"
   const dotColor = !hasSession
-    ? "bg-slate-300"
+    ? "bg-[#4A6080]"
     : isIdle
       ? "bg-amber-400"
       : "bg-[#34D399]"
@@ -60,8 +60,8 @@ export function ActivityStatusStrip() {
   }
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="inline-flex items-center gap-4 px-5 py-2.5 rounded-full bg-[#0D1B2A] border border-border shadow-soft text-sm">
+    <div className="flex items-center justify-center px-2">
+      <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl sm:rounded-full bg-[#0D1B2A] border border-border shadow-soft text-xs sm:text-sm">
         {/* Status dot */}
         <div className="flex items-center gap-2">
           <span className="relative flex h-2.5 w-2.5">
@@ -73,7 +73,7 @@ export function ActivityStatusStrip() {
           <span className="font-medium text-foreground">{statusText}</span>
         </div>
 
-        <span className="text-border">|</span>
+        <span className="hidden sm:inline text-border">|</span>
 
         {/* Active time */}
         <div className="flex items-center gap-1.5 text-foreground">
@@ -81,7 +81,7 @@ export function ActivityStatusStrip() {
           <span className="tabular-nums">{activeLabel}</span>
         </div>
 
-        <span className="text-border">|</span>
+        <span className="hidden sm:inline text-border">|</span>
 
         {/* Idle time */}
         <div className="flex items-center gap-1.5 text-muted-foreground">
@@ -91,7 +91,7 @@ export function ActivityStatusStrip() {
 
         {openSession && (
           <>
-            <span className="text-border">|</span>
+            <span className="hidden sm:inline text-border">|</span>
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <TbEye className="h-3.5 w-3.5" />
               <span className="text-xs">{lastActiveLabel}</span>

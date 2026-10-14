@@ -236,7 +236,7 @@ export function AddSheetDialog({ onSuccess }: AddSheetDialogProps) {
             <Button
               onClick={handlePreview}
               disabled={!url || loading}
-              className="w-full bg-[#0F172A] hover:bg-[#0F172A] text-white"
+              className="w-full bg-[#1A2B45] hover:bg-[#1A2B45] text-white"
             >
               {loading ? (
                 <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -275,7 +275,7 @@ export function AddSheetDialog({ onSuccess }: AddSheetDialogProps) {
             <Button
               onClick={handleRetryAfterShare}
               disabled={loading}
-              className="w-full bg-[#0F172A] hover:bg-[#0F172A] text-white"
+              className="w-full bg-[#1A2B45] hover:bg-[#1A2B45] text-white"
             >
               {loading ? (
                 <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -369,7 +369,7 @@ export function AddSheetDialog({ onSuccess }: AddSheetDialogProps) {
               </Button>
               <Button
                 onClick={() => setStep("preview")}
-                className="flex-1 bg-[#0F172A] hover:bg-[#0F172A] text-white"
+                className="flex-1 bg-[#1A2B45] hover:bg-[#1A2B45] text-white"
               >
                 Preview Data
                 <TbArrowRight className="ml-2 h-4 w-4" />
@@ -448,7 +448,7 @@ export function AddSheetDialog({ onSuccess }: AddSheetDialogProps) {
         {step === "done" && (
           <div className="text-center py-6 space-y-3">
             <div className="flex h-14 w-14 mx-auto items-center justify-center rounded-full bg-[#00BCD4] border border-border">
-              <TbCheck className="h-7 w-7 text-[#0F172A]" />
+              <TbCheck className="h-7 w-7 text-[#F1F5F9]" />
             </div>
             <h3 className="font-semibold">Sheet Connected!</h3>
             <p className="text-sm text-muted-foreground">
@@ -459,7 +459,7 @@ export function AddSheetDialog({ onSuccess }: AddSheetDialogProps) {
                 setOpen(false)
                 resetForm()
               }}
-              className="bg-[#0F172A] hover:bg-[#0F172A] text-white"
+              className="bg-[#1A2B45] hover:bg-[#1A2B45] text-white"
             >
               Done
             </Button>

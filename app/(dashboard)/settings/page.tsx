@@ -151,7 +151,7 @@ export default function SettingsPage() {
       {/* Profile Hero Card */}
       <GlassCard className="overflow-hidden p-0">
         {/* Banner gradient */}
-        <div className="h-28 sm:h-36 bg-[#0F172A] relative overflow-hidden">
+        <div className="h-28 sm:h-36 bg-[#1A2B45] relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
           <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#0D1B2A]/10" />
           <div className="absolute -bottom-8 -right-4 w-28 h-28 rounded-full bg-[#0D1B2A]/5" />
@@ -176,7 +176,7 @@ export default function SettingsPage() {
                   ) : employee?.avatar_url ? (
                     <img src={employee.avatar_url} alt={employee.full_name} className="h-full w-full object-cover" />
                   ) : (
-                    <div className="h-full w-full flex items-center justify-center text-2xl sm:text-3xl font-semibold text-white bg-[#0F172A]">
+                    <div className="h-full w-full flex items-center justify-center text-2xl sm:text-3xl font-semibold text-white bg-[#1A2B45]">
                       {initials}
                     </div>
                   )}
@@ -201,7 +201,7 @@ export default function SettingsPage() {
             <div className="mt-4">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">{employee?.full_name}</h2>
-                <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold ${employee?.is_admin ? "bg-[#0F172A] text-white" : "bg-[#00BCD4] text-white"}`}>
+                <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold ${employee?.is_admin ? "bg-[#1A2B45] text-white" : "bg-[#00BCD4] text-white"}`}>
                   <TbShield className="h-3.5 w-3.5" />
                   {employee?.is_admin ? "Admin" : "Employee"}
                 </span>
@@ -218,7 +218,7 @@ export default function SettingsPage() {
 
           {/* Upload actions */}
           {preview && (
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 p-4 rounded-2xl bg-[#DBEAFE] border border-border">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 p-4 rounded-2xl bg-[#00BCD4]/10 border border-border">
               <div className="flex items-center gap-2 flex-1">
                 <TbPhotoPlus className="h-5 w-5 text-foreground shrink-0" />
                 <p className="text-sm sm:text-base text-foreground">New photo selected. Upload to save.</p>
@@ -228,7 +228,7 @@ export default function SettingsPage() {
                   size="sm"
                   onClick={handleUpload}
                   disabled={uploading}
-                  className="h-9 px-4 text-sm bg-[#0F172A] hover:brightness-110 text-white border border-border"
+                  className="h-9 px-4 text-sm bg-[#1A2B45] hover:brightness-110 text-white border border-border"
                 >
                   {uploading ? <TbLoader2 className="mr-2 h-4 w-4 animate-spin" /> : <TbUpload className="mr-2 h-4 w-4" />}
                   Upload
@@ -265,7 +265,7 @@ export default function SettingsPage() {
           {/* Profile details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 pt-5 border-t border-border">
             <div className="flex items-center gap-3 p-3 rounded-2xl bg-secondary/60 border border-border">
-              <div className="flex items-center justify-center h-9 w-9 rounded-2xl shrink-0 bg-[#0F172A] text-white">
+              <div className="flex items-center justify-center h-9 w-9 rounded-2xl shrink-0 bg-[#1A2B45] text-white">
                 <TbMail className="h-4 w-4" />
               </div>
               <div className="min-w-0">
@@ -274,7 +274,7 @@ export default function SettingsPage() {
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 rounded-2xl bg-secondary/60 border border-border">
-              <div className="flex items-center justify-center h-9 w-9 rounded-2xl shrink-0 bg-[#0F172A] text-white">
+              <div className="flex items-center justify-center h-9 w-9 rounded-2xl shrink-0 bg-[#1A2B45] text-white">
                 <TbBriefcase className="h-4 w-4" />
               </div>
               <div className="min-w-0">
@@ -283,7 +283,7 @@ export default function SettingsPage() {
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 rounded-2xl bg-secondary/60 border border-border">
-              <div className="flex items-center justify-center h-9 w-9 rounded-2xl shrink-0 bg-[#0F172A] text-white">
+              <div className="flex items-center justify-center h-9 w-9 rounded-2xl shrink-0 bg-[#1A2B45] text-white">
                 <TbUser className="h-4 w-4" />
               </div>
               <div className="min-w-0">
@@ -292,7 +292,7 @@ export default function SettingsPage() {
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 rounded-2xl bg-secondary/60 border border-border">
-              <div className="flex items-center justify-center h-9 w-9 rounded-2xl shrink-0 bg-[#0F172A] text-white">
+              <div className="flex items-center justify-center h-9 w-9 rounded-2xl shrink-0 bg-[#1A2B45] text-white">
                 <TbBuilding className="h-4 w-4" />
               </div>
               <div className="min-w-0">
@@ -307,7 +307,7 @@ export default function SettingsPage() {
       {/* Office Timings */}
       <GlassCard className="space-y-5 p-5 sm:p-6">
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center h-10 w-10 rounded-2xl bg-[#0F172A] text-white shadow-soft">
+          <div className="flex items-center justify-center h-10 w-10 rounded-2xl bg-[#1A2B45] text-white shadow-soft">
             <TbClock className="h-5 w-5" />
           </div>
           <h3 className="text-lg font-semibold">Office Timings</h3>
@@ -335,7 +335,7 @@ export default function SettingsPage() {
       {/* Change Password */}
       <GlassCard className="space-y-5 p-5 sm:p-6">
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center h-10 w-10 rounded-2xl bg-[#0F172A] text-white shadow-soft">
+          <div className="flex items-center justify-center h-10 w-10 rounded-2xl bg-[#1A2B45] text-white shadow-soft">
             <TbShield className="h-5 w-5" />
           </div>
           <h3 className="text-lg font-semibold">Security</h3>
@@ -370,7 +370,7 @@ export default function SettingsPage() {
       {/* Data & Privacy (DPDP) */}
       <GlassCard className="space-y-5 p-5 sm:p-6">
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center h-10 w-10 rounded-2xl bg-[#0F172A] text-white shadow-soft">
+          <div className="flex items-center justify-center h-10 w-10 rounded-2xl bg-[#1A2B45] text-white shadow-soft">
             <TbShieldCheck className="h-5 w-5" />
           </div>
           <h3 className="text-lg font-semibold">Data &amp; Privacy</h3>

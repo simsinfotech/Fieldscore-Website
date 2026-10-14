@@ -14,7 +14,7 @@ export default function DashboardError({
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6">
       <div className="glass rounded-2xl p-8 text-center max-w-md space-y-4">
-        <div className="mx-auto w-14 h-14 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center">
+        <div className="mx-auto w-14 h-14 rounded-2xl bg-[#1A2B45] text-white flex items-center justify-center">
           <TbAlertTriangle className="h-7 w-7 text-white" />
         </div>
         <h2 className="text-xl font-semibold">Something went wrong</h2>

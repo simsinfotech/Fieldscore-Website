@@ -94,7 +94,7 @@ function TreeNode({ node, depth = 0 }: { node: OrgNode; depth?: number }) {
             className="h-8 w-8 rounded-full object-cover shrink-0"
           />
         ) : (
-          <div className="h-8 w-8 rounded-full bg-[#0F172A] text-white flex items-center justify-center text-xs font-semibold shrink-0">
+          <div className="h-8 w-8 rounded-full bg-[#1A2B45] text-white flex items-center justify-center text-xs font-semibold shrink-0">
             {initials}
           </div>
         )}
@@ -128,7 +128,7 @@ function MemberRow({ emp }: { emp: OrgChartProps["employees"][number] }) {
       {emp.avatar_url ? (
         <img src={emp.avatar_url} alt={emp.full_name} className="h-8 w-8 rounded-full object-cover shrink-0" />
       ) : (
-        <div className="h-8 w-8 rounded-full bg-[#0F172A] text-white flex items-center justify-center text-xs font-semibold shrink-0">
+        <div className="h-8 w-8 rounded-full bg-[#1A2B45] text-white flex items-center justify-center text-xs font-semibold shrink-0">
           {initials}
         </div>
       )}

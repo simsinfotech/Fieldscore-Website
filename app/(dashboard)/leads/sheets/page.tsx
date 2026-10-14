@@ -46,7 +46,7 @@ export default function SheetsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0F172A] text-white border border-border">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1A2B45] text-white border border-border">
             <TbCloudDownload className="h-5 w-5 text-white" />
           </div>
           <div>
@@ -69,7 +69,7 @@ export default function SheetsPage() {
       ) : sources.length === 0 ? (
         <GlassCard className="flex flex-col items-center justify-center py-16 text-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#00BCD4] border border-border mb-4">
-            <TbCloudDownload className="h-7 w-7 text-[#0F172A]" />
+            <TbCloudDownload className="h-7 w-7 text-[#F1F5F9]" />
           </div>
           <h3 className="text-base font-semibold text-foreground">
             No sheets connected

@@ -8,15 +8,15 @@ const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
   },
   contacted: {
     label: "Contacted",
-    className: "bg-[#EDE9FE] text-foreground border-transparent",
+    className: "bg-[#7C4DFF]/10 text-foreground border-transparent",
   },
   qualified: {
     label: "Interested",
-    className: "bg-[#DBEAFE] text-foreground border-transparent",
+    className: "bg-[#00BCD4]/10 text-foreground border-transparent",
   },
   site_visit: {
     label: "Site Visit",
-    className: "bg-[#DBEAFE] text-foreground border-transparent",
+    className: "bg-[#00BCD4]/10 text-foreground border-transparent",
   },
   negotiation: {
     label: "Negotiation",
@@ -28,11 +28,11 @@ const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
   },
   lost: {
     label: "Lost",
-    className: "bg-[#F1F5F9] text-muted-foreground border-transparent",
+    className: "bg-[#0A1628] text-muted-foreground border-transparent",
   },
   junk: {
     label: "Not Interested",
-    className: "bg-[#F1F5F9] text-muted-foreground border-transparent",
+    className: "bg-[#0A1628] text-muted-foreground border-transparent",
   },
 }
 

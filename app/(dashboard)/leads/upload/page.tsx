@@ -227,7 +227,7 @@ export default function UploadLeadsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0F172A] text-white border border-border">
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1A2B45] text-white border border-border">
           <TbFileUpload className="h-5 w-5 text-white" />
         </div>
         <div>
@@ -277,9 +277,9 @@ export default function UploadLeadsPage() {
           >
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#00BCD4] border border-border mb-4">
               {uploading ? (
-                <TbCloudUpload className="h-7 w-7 text-[#0F172A] animate-bounce" />
+                <TbCloudUpload className="h-7 w-7 text-[#F1F5F9] animate-bounce" />
               ) : (
-                <TbUpload className="h-7 w-7 text-[#0F172A]" />
+                <TbUpload className="h-7 w-7 text-[#F1F5F9]" />
               )}
             </div>
             <h3 className="text-base font-semibold text-foreground">
@@ -360,8 +360,8 @@ export default function UploadLeadsPage() {
                   key={row.row_number}
                   className={cn(
                     "px-4 py-3 space-y-1 rounded-xl",
-                    row.is_valid && "bg-[#DBEAFE]",
-                    row.is_duplicate && "bg-[#F1F5F9]",
+                    row.is_valid && "bg-[#00BCD4]/10",
+                    row.is_duplicate && "bg-[#0A1628]",
                     !row.is_valid && !row.is_duplicate && row.errors.length > 0 && "bg-destructive/10 text-destructive"
                   )}
                 >
@@ -417,8 +417,8 @@ export default function UploadLeadsPage() {
                       key={row.row_number}
                       className={cn(
                         "border-border",
-                        row.is_valid && "bg-[#DBEAFE]",
-                        row.is_duplicate && "bg-[#F1F5F9]",
+                        row.is_valid && "bg-[#00BCD4]/10",
+                        row.is_duplicate && "bg-[#0A1628]",
                         !row.is_valid && !row.is_duplicate && row.errors.length > 0 && "bg-destructive/10 text-destructive"
                       )}
                     >
@@ -483,7 +483,7 @@ export default function UploadLeadsPage() {
       {step === "done" && commitResult && (
         <GlassCard className="flex flex-col items-center justify-center py-12 text-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#00BCD4] border border-border mb-4">
-            <TbCheck className="h-8 w-8 text-[#0F172A]" />
+            <TbCheck className="h-8 w-8 text-[#F1F5F9]" />
           </div>
           <h2 className="text-xl font-semibold text-foreground">Upload Complete</h2>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -496,7 +496,7 @@ export default function UploadLeadsPage() {
             </Button>
             <a
               href="/leads"
-              className="inline-flex items-center justify-center rounded-full bg-[#0F172A] px-4 py-2 text-sm font-medium text-white border border-border hover:bg-[#0F172A] transition-all"
+              className="inline-flex items-center justify-center rounded-full bg-[#1A2B45] px-4 py-2 text-sm font-medium text-white border border-border hover:bg-[#1A2B45] transition-all"
             >
               View Leads
             </a>
@@ -523,9 +523,9 @@ export default function UploadLeadsPage() {
                   <span
                     className={cn(
                       "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border shrink-0 ml-2",
-                      b.status === "committed" && "bg-[#DBEAFE] text-foreground border-border",
+                      b.status === "committed" && "bg-[#00BCD4]/10 text-foreground border-border",
                       b.status === "validated" && "bg-[#0D1B2A] text-foreground border-border",
-                      b.status === "pending" && "bg-[#EDE9FE] text-muted-foreground border-border",
+                      b.status === "pending" && "bg-[#7C4DFF]/10 text-muted-foreground border-border",
                       b.status === "failed" && "bg-destructive/15 text-destructive border-border"
                     )}
                   >
@@ -572,9 +572,9 @@ export default function UploadLeadsPage() {
                       <span
                         className={cn(
                           "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border",
-                          b.status === "committed" && "bg-[#DBEAFE] text-foreground border-border",
+                          b.status === "committed" && "bg-[#00BCD4]/10 text-foreground border-border",
                           b.status === "validated" && "bg-[#0D1B2A] text-foreground border-border",
-                          b.status === "pending" && "bg-[#EDE9FE] text-muted-foreground border-border",
+                          b.status === "pending" && "bg-[#7C4DFF]/10 text-muted-foreground border-border",
                           b.status === "failed" && "bg-destructive/15 text-destructive border-border"
                         )}
                       >
@@ -614,12 +614,12 @@ function StepBadge({
     <div className={cn(
       "flex items-center gap-2 rounded-full px-3 py-1.5 text-sm transition-colors border border-border",
       active && "bg-[#00BCD4] text-white font-medium",
-      done && "bg-[#0F172A] text-white",
+      done && "bg-[#1A2B45] text-white",
       !active && !done && "bg-[#0D1B2A] text-muted-foreground"
     )}>
       <span className={cn(
         "flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold border border-border",
-        active && "bg-[#0F172A] text-white",
+        active && "bg-[#1A2B45] text-white",
         done && "bg-[#00BCD4] text-white",
         !active && !done && "bg-[#0D1B2A] text-foreground"
       )}>
@@ -641,8 +641,8 @@ function MiniStat({
 }) {
   const colors = {
     blue: "text-foreground border-border bg-[#0D1B2A]",
-    emerald: "text-[#0F172A] border-border bg-[#DBEAFE]",
-    amber: "text-[#0F172A] border-border bg-[#EDE9FE]",
+    emerald: "text-[#F1F5F9] border-border bg-[#00BCD4]/10",
+    amber: "text-[#F1F5F9] border-border bg-[#7C4DFF]/10",
     red: "text-destructive border-border bg-destructive/10",
   }
 

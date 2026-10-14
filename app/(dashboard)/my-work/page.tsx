@@ -251,9 +251,9 @@ export default function MyWorkPage() {
 /* ── Stat tile ── */
 const TILE_TONES: Record<string, string> = {
   red: "bg-destructive/10 text-destructive",
-  amber: "bg-[#00BCD4]/20 text-[#1E40AF]",
-  soon: "bg-[#EDE9FE] text-[#0F172A]",
-  sage: "bg-[#DBEAFE] text-[#0F172A]",
+  amber: "bg-[#00BCD4]/20 text-[#00E5FF]",
+  soon: "bg-[#7C4DFF]/10 text-[#F1F5F9]",
+  sage: "bg-[#00BCD4]/10 text-[#F1F5F9]",
 }
 function StatTile({ icon, label, value, tone }: { icon: React.ReactNode; label: string; value: number; tone: string }) {
   return (
@@ -268,12 +268,12 @@ function StatTile({ icon, label, value, tone }: { icon: React.ReactNode; label: 
 /* ── Section shell + title ── */
 const DOT_TONES: Record<string, string> = {
   red: "bg-destructive/15 text-destructive",
-  amber: "bg-[#00BCD4]/25 text-[#1E40AF]",
-  soon: "bg-[#EDE9FE] text-[#0F172A]",
-  sage: "bg-[#DBEAFE] text-[#0F172A]",
-  lavender: "bg-[#EDE9FE] text-[#0F172A]",
+  amber: "bg-[#00BCD4]/25 text-[#00E5FF]",
+  soon: "bg-[#7C4DFF]/10 text-[#F1F5F9]",
+  sage: "bg-[#00BCD4]/10 text-[#F1F5F9]",
+  lavender: "bg-[#7C4DFF]/10 text-[#F1F5F9]",
   primary: "bg-[#00BCD4] text-white",
-  dark: "bg-[#0F172A] text-white",
+  dark: "bg-[#1A2B45] text-white",
 }
 function Section({ icon, label, count, tone, children }: { icon: React.ReactNode; label: string; count: number; tone: string; children: React.ReactNode }) {
   return (
@@ -299,7 +299,7 @@ function Empty({ text }: { text: string }) {
 /* ── Work list + row ── */
 const DUE_BADGE: Record<string, string> = {
   red: "bg-destructive/15 text-destructive",
-  amber: "bg-[#00BCD4]/20 text-[#1E40AF]",
+  amber: "bg-[#00BCD4]/20 text-[#00E5FF]",
   soon: "bg-secondary text-foreground",
   none: "bg-secondary text-muted-foreground",
 }

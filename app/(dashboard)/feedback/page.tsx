@@ -132,7 +132,7 @@ export default function FeedbackPage() {
       {/* ---- Header ---- */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0F172A] text-white">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1A2B45] text-white">
             <TbMessage className="h-6 w-6 text-white" />
           </div>
           <div>
@@ -206,7 +206,7 @@ export default function FeedbackPage() {
 function EmptyFeedback({ message, description }: { message: string; description: string }) {
   return (
     <GlassCard className="flex flex-col items-center justify-center py-16 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#0F172A] text-white mb-4">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#1A2B45] text-white mb-4">
         <TbMessage className="h-8 w-8 text-white" />
       </div>
       <h3 className="text-lg font-semibold mb-1">{message}</h3>
@@ -234,20 +234,20 @@ function FeedbackCard({
         <div className="flex items-center gap-3">
           <div className={`flex h-10 w-10 items-center justify-center rounded-full ${
             isAnonymous
-              ? "bg-[#EDE9FE]"
+              ? "bg-[#7C4DFF]/10"
               : "bg-[#00BCD4]"
           }`}>
             {isAnonymous ? (
-              <TbEyeOff className="h-4.5 w-4.5 text-[#0F172A]" />
+              <TbEyeOff className="h-4.5 w-4.5 text-[#F1F5F9]" />
             ) : (
-              <TbUserCircle className="h-5 w-5 text-[#0F172A]" />
+              <TbUserCircle className="h-5 w-5 text-[#F1F5F9]" />
             )}
           </div>
           <div>
             <p className="text-sm font-medium">
               {personLabel}
               {isAnonymous && (
-                <Badge className="ml-2 bg-[#EDE9FE] text-[#0F172A] rounded-full text-[10px] font-medium">
+                <Badge className="ml-2 bg-[#7C4DFF]/10 text-[#F1F5F9] rounded-full text-[10px] font-medium">
                   Anonymous
                 </Badge>
               )}
@@ -265,21 +265,21 @@ function FeedbackCard({
       {/* Strengths and Improvements */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {feedback.strengths && (
-          <div className="rounded-2xl bg-[#DBEAFE] p-3.5">
+          <div className="rounded-2xl bg-[#00BCD4]/10 p-3.5">
             <div className="flex items-center gap-2 mb-2">
-              <TbTrendingUp className="h-3.5 w-3.5 text-[#0F172A]" />
-              <span className="text-[11px] font-semibold text-[#0F172A]">Strengths</span>
+              <TbTrendingUp className="h-3.5 w-3.5 text-[#F1F5F9]" />
+              <span className="text-[11px] font-semibold text-[#F1F5F9]">Strengths</span>
             </div>
-            <p className="text-sm text-[#0F172A] leading-relaxed">{feedback.strengths}</p>
+            <p className="text-sm text-[#F1F5F9] leading-relaxed">{feedback.strengths}</p>
           </div>
         )}
         {feedback.improvements && (
-          <div className="rounded-2xl bg-[#EDE9FE] p-3.5">
+          <div className="rounded-2xl bg-[#7C4DFF]/10 p-3.5">
             <div className="flex items-center gap-2 mb-2">
-              <TbArrowUpRight className="h-3.5 w-3.5 text-[#0F172A]" />
-              <span className="text-[11px] font-semibold text-[#0F172A]">Growth Areas</span>
+              <TbArrowUpRight className="h-3.5 w-3.5 text-[#F1F5F9]" />
+              <span className="text-[11px] font-semibold text-[#F1F5F9]">Growth Areas</span>
             </div>
-            <p className="text-sm text-[#0F172A] leading-relaxed">{feedback.improvements}</p>
+            <p className="text-sm text-[#F1F5F9] leading-relaxed">{feedback.improvements}</p>
           </div>
         )}
       </div>
@@ -357,7 +357,7 @@ function NewFeedbackDialog({
       <DialogContent className="max-w-md">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#0F172A] text-white">
+            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#1A2B45] text-white">
               <TbMessage className="h-4.5 w-4.5 text-white" />
             </div>
             <div>
@@ -379,7 +379,7 @@ function NewFeedbackDialog({
                 {employees.map((e) => (
                   <SelectItem key={e.id} value={e.id}>
                     <span className="flex items-center gap-2">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#0F172A] text-white text-[10px] font-semibold">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1A2B45] text-white text-[10px] font-semibold">
                         {e.full_name.charAt(0)}
                       </span>
                       {e.full_name}

@@ -77,9 +77,9 @@ export function AttendanceTable({ records, showEmployee }: AttendanceTableProps)
 
 function StatusBadge({ status }: { status: string }) {
   const styles: Record<string, string> = {
-    present: "bg-[#DBEAFE] text-foreground rounded-full",
-    late: "bg-[#EDE9FE] text-foreground rounded-full",
-    half_day: "bg-[#EDE9FE] text-foreground rounded-full",
+    present: "bg-[#00BCD4]/10 text-foreground rounded-full",
+    late: "bg-[#7C4DFF]/10 text-foreground rounded-full",
+    half_day: "bg-[#7C4DFF]/10 text-foreground rounded-full",
     absent: "bg-destructive/15 text-destructive rounded-full",
   }
   return (

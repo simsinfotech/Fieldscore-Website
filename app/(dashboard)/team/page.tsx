@@ -316,7 +316,7 @@ export default function TeamPage() {
                     </div>
                   ) : (
                     <div className="flex items-center gap-1.5">
-                      <div className={`h-2 w-2 rounded-full ${m.is_active ? "bg-[#34D399]" : "bg-[#F1F5F9] border border-border"}`} />
+                      <div className={`h-2 w-2 rounded-full ${m.is_active ? "bg-[#34D399]" : "bg-[#0A1628] border border-border"}`} />
                       <span className={`text-[11px] font-medium ${m.is_active ? "text-foreground" : "text-muted-foreground"}`}>
                         {m.is_active ? "Active" : "Inactive"}
                       </span>
@@ -327,7 +327,7 @@ export default function TeamPage() {
                 {/* Avatar */}
                 <div className="flex flex-col items-center text-center mb-4">
                   <div className="relative mb-3">
-                    <div className="h-[72px] w-[72px] rounded-full bg-[#0F172A] p-[2.5px]">
+                    <div className="h-[72px] w-[72px] rounded-full bg-[#1A2B45] p-[2.5px]">
                       {m.avatar_url ? (
                         <img
                           src={m.avatar_url}
@@ -1084,7 +1084,7 @@ function EditEmployeeDialog({
                     type="button"
                     onClick={handleResetPassword}
                     disabled={resetting}
-                    className="flex-1 bg-[#0F172A] hover:bg-[#0F172A] text-white"
+                    className="flex-1 bg-[#1A2B45] hover:bg-[#1A2B45] text-white"
                   >
                     {resetting && <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />}
                     Update Password

@@ -182,7 +182,7 @@ export function LeaveRequestForm({ balance, onSuccess, editRequest, onEditClose 
 
         {submittedRef ? (
           <div className="space-y-5 py-2 text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#DBEAFE]">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#00BCD4]/10">
               <TbCircleCheck className="h-7 w-7 text-foreground" />
             </div>
             <div className="space-y-1">

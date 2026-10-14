@@ -105,8 +105,8 @@ export default function MyDashboardPage() {
         <GlassCard className="group transition-all duration-300 hover:translate-y-[-2px] overflow-hidden relative">
           <div className="relative">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-11 h-11 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center border border-border">
-                <TbCalendarOff className="h-5 w-5 text-white" />
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#1A2B45] text-[#00E5FF] flex items-center justify-center border border-[#1A2B45]">
+                <TbCalendarOff className="h-5 w-5" />
               </div>
               <div>
                 <p className="text-sm font-semibold">Leave Balance</p>
@@ -127,7 +127,7 @@ export default function MyDashboardPage() {
                   used={leaveBalance.casual_used}
                   total={leaveBalance.casual_total}
                   color="bg-[#00BCD4]"
-                  trackColor="bg-[#F1F5F9]"
+                  trackColor="bg-[#1A2B45]"
                 />
               </div>
             ) : (
@@ -164,9 +164,9 @@ export default function MyDashboardPage() {
                 tasks.map((t) => {
                   const priorityConfig: Record<string, { dot: string; bg: string }> = {
                     urgent: { dot: "bg-destructive", bg: "bg-destructive/15 text-destructive" },
-                    high: { dot: "bg-[#0F172A]", bg: "bg-[#EDE9FE] text-[#0F172A]" },
+                    high: { dot: "bg-[#1A2B45]", bg: "bg-[#7C4DFF]/10 text-[#F1F5F9]" },
                     normal: { dot: "bg-[#00BCD4]", bg: "bg-[#00BCD4] text-white" },
-                    low: { dot: "bg-[#34D399]", bg: "bg-[#DBEAFE] text-[#0F172A]" },
+                    low: { dot: "bg-[#34D399]", bg: "bg-[#00BCD4]/10 text-[#F1F5F9]" },
                   }
                   const pc = priorityConfig[t.priority] ?? priorityConfig.normal
 
@@ -192,8 +192,8 @@ export default function MyDashboardPage() {
         <GlassCard className="group transition-all duration-300 hover:translate-y-[-2px] overflow-hidden relative">
           <div className="relative">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-11 h-11 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center border border-border">
-                <TbSpeakerphone className="h-5 w-5 text-white" />
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#1A2B45] text-[#00E5FF] flex items-center justify-center border border-[#1A2B45]">
+                <TbSpeakerphone className="h-5 w-5" />
               </div>
               <div>
                 <p className="text-sm font-semibold">Announcements</p>
@@ -218,7 +218,7 @@ export default function MyDashboardPage() {
                     >
                       <div className="flex items-center gap-1.5">
                         {a.is_pinned && (
-                          <TbPin className="h-3 w-3 text-[#0F172A] shrink-0 fill-[#00BCD4]" />
+                          <TbPin className="h-3 w-3 text-[#F1F5F9] shrink-0 fill-[#00BCD4]" />
                         )}
                         <p className="text-sm font-medium truncate">{a.title}</p>
                       </div>

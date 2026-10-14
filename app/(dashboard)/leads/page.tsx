@@ -180,7 +180,7 @@ export default function LeadsPage() {
       {/* Header */}
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0F172A] text-white border border-border">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1A2B45] text-white border border-border">
             <TbAddressBook className="h-5 w-5 text-white" />
           </div>
           <div>
@@ -286,7 +286,7 @@ export default function LeadsPage() {
       {isAdmin && unassignedCount > 0 && (
         <GlassCard className="flex flex-col sm:flex-row sm:items-center gap-3 border border-border bg-[#00BCD4]">
           <div className="flex items-center gap-2 text-sm">
-            <TbUserShare className="h-4 w-4 text-[#0F172A]" />
+            <TbUserShare className="h-4 w-4 text-[#F1F5F9]" />
             <span><b>{unassignedCount}</b> unassigned lead(s){labelFilter !== "all" ? " in this sheet" : ""}</span>
           </div>
           <div className="flex items-center gap-2 sm:ml-auto">
@@ -313,7 +313,7 @@ export default function LeadsPage() {
       {isManager && myPending.length > 0 && (
         <GlassCard className="flex flex-col sm:flex-row sm:items-center gap-3 border border-border bg-[#00BCD4]">
           <div className="flex items-center gap-2 text-sm">
-            <TbUserCheck className="h-4 w-4 text-[#0F172A]" />
+            <TbUserCheck className="h-4 w-4 text-[#F1F5F9]" />
             <span><b>{myPending.length}</b> lead(s) awaiting your approval</span>
           </div>
           <div className="flex items-center gap-2 sm:ml-auto">
@@ -409,16 +409,16 @@ function StatCard({
 }) {
   const palette = {
     blue: {
-      icon: "text-white bg-[#0F172A]",
+      icon: "text-white bg-[#1A2B45]",
     },
     emerald: {
-      icon: "text-[#0F172A] bg-[#DBEAFE]",
+      icon: "text-[#F1F5F9] bg-[#00BCD4]/10",
     },
     amber: {
-      icon: "text-[#0F172A] bg-[#EDE9FE]",
+      icon: "text-[#F1F5F9] bg-[#7C4DFF]/10",
     },
     red: {
-      icon: "text-[#0F172A] bg-[#00BCD4]",
+      icon: "text-[#F1F5F9] bg-[#00BCD4]",
     },
   }
   const c = palette[color]
@@ -444,7 +444,7 @@ function EmptyState() {
   return (
     <GlassCard className="flex flex-col items-center justify-center py-16 text-center">
       <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#00BCD4] border border-border mb-4">
-        <TbAddressBook className="h-7 w-7 text-[#0F172A]" />
+        <TbAddressBook className="h-7 w-7 text-[#F1F5F9]" />
       </div>
       <h3 className="text-base font-semibold text-foreground">No leads yet</h3>
       <p className="mt-1 max-w-xs text-sm text-muted-foreground">

@@ -179,7 +179,7 @@ export default function OverviewPage() {
           label="Checked-In Today"
           value={checkedInCount}
           subtitle={employees.length > 0 ? `${Math.round((checkedInCount / employees.length) * 100)}% of team` : "No employees"}
-          iconBg="bg-[#DBEAFE] text-[#0F172A]"
+          iconBg="bg-[#00BCD4]/10 text-[#F1F5F9]"
           href="/attendance"
         />
         <StatCard
@@ -187,7 +187,7 @@ export default function OverviewPage() {
           label="Pending Leaves"
           value={pendingLeaves}
           subtitle="Awaiting approval"
-          iconBg="bg-[#EDE9FE] text-[#0F172A]"
+          iconBg="bg-[#7C4DFF]/10 text-[#F1F5F9]"
           href="/leave"
         />
         <StatCard
@@ -195,7 +195,7 @@ export default function OverviewPage() {
           label="Payroll Status"
           value={`${payrollSummary.paid}/${payrollSummary.total}`}
           subtitle="Processed this month"
-          iconBg="bg-[#0F172A] text-white"
+          iconBg="bg-[#1A2B45] text-white"
           href="/payroll"
         />
       </div>
@@ -248,13 +248,13 @@ export default function OverviewPage() {
                     >
                       {/* Avatar */}
                       <div className="relative shrink-0">
-                        <div className="w-10 h-10 rounded-full bg-[#0F172A] flex items-center justify-center text-white text-xs font-semibold border border-border">
+                        <div className="w-10 h-10 rounded-full bg-[#1A2B45] flex items-center justify-center text-white text-xs font-semibold border border-border">
                           {initials}
                         </div>
                         <div className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border border-border ${
                           a.status === "present" ? "bg-[#00BCD4]" :
-                          a.status === "late" ? "bg-[#EDE9FE]" :
-                          a.status === "half_day" ? "bg-[#EDE9FE]" : "bg-destructive"
+                          a.status === "late" ? "bg-[#7C4DFF]/10" :
+                          a.status === "half_day" ? "bg-[#7C4DFF]/10" : "bg-destructive"
                         }`} />
                       </div>
 
@@ -315,7 +315,7 @@ export default function OverviewPage() {
       {announcements.length > 0 && (
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center border border-border">
+            <div className="w-8 h-8 rounded-2xl bg-[#1A2B45] text-white flex items-center justify-center border border-border">
               <TbSpeakerphone className="h-4 w-4" />
             </div>
             <h3 className="text-base font-semibold">Announcements</h3>
@@ -339,7 +339,7 @@ export default function OverviewPage() {
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <div className="flex items-center gap-2 min-w-0">
                       {a.is_pinned && (
-                        <TbPin className="h-3.5 w-3.5 text-[#0F172A] shrink-0 fill-[#00BCD4]" />
+                        <TbPin className="h-3.5 w-3.5 text-[#F1F5F9] shrink-0 fill-[#00BCD4]" />
                       )}
                       <h4 className="text-sm font-semibold truncate">{a.title}</h4>
                     </div>
@@ -496,7 +496,7 @@ function EmployeeActivityDialog({
       <DialogContent className="sm:max-w-lg max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#0F172A] flex items-center justify-center text-white text-xs font-semibold border border-border">
+            <div className="w-10 h-10 rounded-full bg-[#1A2B45] flex items-center justify-center text-white text-xs font-semibold border border-border">
               {(emp?.full_name ?? "?").split(" ").map((n: string) => n[0]).join("").slice(0, 2).toUpperCase()}
             </div>
             <div className="min-w-0">
@@ -626,12 +626,12 @@ function EmployeeActivityDialog({
 function StatusBadge({ status }: { status: string }) {
   const config: Record<string, { bg: string; text: string; label: string }> = {
     present: { bg: "bg-[#00BCD4]", text: "text-white", label: "Present" },
-    late: { bg: "bg-[#EDE9FE]", text: "text-white", label: "Late" },
-    half_day: { bg: "bg-[#EDE9FE]", text: "text-white", label: "Half Day" },
+    late: { bg: "bg-[#7C4DFF]/10", text: "text-white", label: "Late" },
+    half_day: { bg: "bg-[#7C4DFF]/10", text: "text-white", label: "Half Day" },
     absent: { bg: "bg-destructive/15", text: "text-destructive", label: "Absent" },
   }
 
-  const c = config[status] ?? { bg: "bg-[#F1F5F9]", text: "text-foreground", label: status }
+  const c = config[status] ?? { bg: "bg-[#0A1628]", text: "text-foreground", label: status }
 
   return (
     <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium ${c.bg} ${c.text}`}>

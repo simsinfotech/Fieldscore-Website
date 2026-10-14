@@ -52,19 +52,19 @@ const priorityConfig: Record<
   high: {
     dot: "bg-[#00BCD4]",
     border: "border-l-[#00BCD4]",
-    badge: "bg-[#00BCD4]/25 text-[#1E40AF]",
+    badge: "bg-[#00BCD4]/25 text-[#00E5FF]",
     label: "High",
   },
   normal: {
-    dot: "bg-[#DBEAFE]",
+    dot: "bg-[#00BCD4]/10",
     border: "border-l-border",
-    badge: "bg-[#DBEAFE] text-foreground",
+    badge: "bg-[#00BCD4]/10 text-foreground",
     label: "Normal",
   },
   low: {
-    dot: "bg-[#F1F5F9]",
+    dot: "bg-[#0A1628]",
     border: "border-l-border",
-    badge: "bg-[#F1F5F9] text-muted-foreground",
+    badge: "bg-[#0A1628] text-muted-foreground",
     label: "Low",
   },
 }
@@ -133,7 +133,7 @@ export default function AnnouncementsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0F172A] text-white border border-border">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1A2B45] text-white border border-border">
             <TbSpeakerphone className="h-6 w-6 text-white" />
           </div>
           <div>
@@ -369,8 +369,8 @@ function NewAnnouncementDialog({
   }
 
   const priorities = [
-    { value: "low", label: "Low", color: "bg-[#F1F5F9]", ring: "ring-[#00BCD4]" },
-    { value: "normal", label: "Normal", color: "bg-[#DBEAFE]", ring: "ring-[#00BCD4]" },
+    { value: "low", label: "Low", color: "bg-[#0A1628]", ring: "ring-[#00BCD4]" },
+    { value: "normal", label: "Normal", color: "bg-[#00BCD4]/10", ring: "ring-[#00BCD4]" },
     { value: "high", label: "High", color: "bg-[#00BCD4]", ring: "ring-[#00BCD4]" },
     { value: "urgent", label: "Urgent", color: "bg-destructive", ring: "ring-[#00BCD4]" },
   ]

@@ -105,7 +105,7 @@ export default function AssignmentsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0F172A] text-white border border-border">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1A2B45] text-white border border-border">
             <TbArrowsShuffle className="h-5 w-5 text-white" />
           </div>
           <div>
@@ -128,7 +128,7 @@ export default function AssignmentsPage() {
       ) : rules.length === 0 ? (
         <GlassCard className="flex flex-col items-center justify-center py-16 text-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#00BCD4] border border-border mb-4">
-            <TbArrowsShuffle className="h-7 w-7 text-[#0F172A]" />
+            <TbArrowsShuffle className="h-7 w-7 text-[#F1F5F9]" />
           </div>
           <h3 className="text-base font-semibold text-foreground">
             No assignment rules yet
@@ -152,7 +152,7 @@ export default function AssignmentsPage() {
                       className={`h-2.5 w-2.5 rounded-full ${
                         rule.is_active
                           ? "bg-[#00BCD4]"
-                          : "bg-[#EDE9FE]"
+                          : "bg-[#7C4DFF]/10"
                       }`}
                     />
                     <h3 className="font-semibold text-sm">{rule.label}</h3>
@@ -165,8 +165,8 @@ export default function AssignmentsPage() {
                   variant="secondary"
                   className={`text-[10px] rounded-full border border-border ${
                     rule.is_active
-                      ? "bg-[#DBEAFE] text-foreground"
-                      : "bg-[#EDE9FE] text-muted-foreground"
+                      ? "bg-[#00BCD4]/10 text-foreground"
+                      : "bg-[#7C4DFF]/10 text-muted-foreground"
                   }`}
                 >
                   {rule.is_active ? "Active" : "Paused"}
@@ -324,7 +324,7 @@ function CreateRuleDialog({ onSuccess }: { onSuccess: () => void }) {
           <Button
             type="submit"
             disabled={loading || !label}
-            className="w-full bg-[#0F172A] hover:bg-[#0F172A] text-white border border-border rounded-xl"
+            className="w-full bg-[#1A2B45] hover:bg-[#1A2B45] text-white border border-border rounded-xl"
           >
             {loading && <TbLoader2 className="mr-2 h-4 w-4 animate-spin" />}
             Create Rule

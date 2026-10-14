@@ -103,7 +103,7 @@ export function CheckinCard() {
             <p className="text-muted-foreground mt-2 text-sm tracking-wide">
               {time ? format(time, "EEEE, MMMM d, yyyy") : "\u00A0"}
             </p>
-            <div className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full bg-[#DBEAFE] text-xs text-[#1E40AF] font-medium">
+            <div className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full bg-[#00BCD4]/10 text-xs text-[#00E5FF] font-medium border border-[#00BCD4]/20">
               <TbBuilding className="h-3 w-3" />
               Office Hours: {OFFICE_TIMINGS.label}
             </div>
@@ -117,30 +117,30 @@ export function CheckinCard() {
                 <span className="text-sm text-muted-foreground">Loading status...</span>
               </div>
             ) : isCheckedOut ? (
-              <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#EDE9FE]">
-                <div className="w-2 h-2 rounded-full bg-[#0F172A]" />
-                <span className="text-sm font-medium text-foreground">
-                  Day Complete -- {todayRecord?.work_hours?.toFixed(1)}h worked
+              <div className="flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 rounded-full bg-[#7C4DFF]/10 border border-[#7C4DFF]/20">
+                <div className="w-2 h-2 rounded-full bg-[#7C4DFF]" />
+                <span className="text-xs sm:text-sm font-medium text-[#CBD5E1]">
+                  Day Complete — {todayRecord?.work_hours?.toFixed(1)}h worked
                 </span>
               </div>
             ) : isCheckedIn ? (
-              <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#DBEAFE]">
-                <TbWifi className="h-3.5 w-3.5 text-foreground" />
-                <span className="text-sm font-medium text-foreground">
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 rounded-full bg-[#00BCD4]/10 border border-[#00BCD4]/20">
+                <TbWifi className="h-3.5 w-3.5 text-[#00E5FF]" />
+                <span className="text-xs sm:text-sm font-medium text-[#CBD5E1]">
                   Working since {format(new Date(todayRecord!.check_in), "hh:mm a")}
                 </span>
                 {getWorkingDuration() && (
                   <>
-                    <span className="text-foreground/30">|</span>
-                    <TbClock className="h-3.5 w-3.5 text-foreground/70" />
-                    <span className="text-sm text-foreground/70 tabular-nums">{getWorkingDuration()}</span>
+                    <span className="hidden sm:inline text-[#1A2B45]">|</span>
+                    <TbClock className="h-3.5 w-3.5 text-[#8094B0]" />
+                    <span className="text-xs sm:text-sm text-[#8094B0] tabular-nums">{getWorkingDuration()}</span>
                   </>
                 )}
               </div>
             ) : (
-              <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#F1F5F9] border border-border">
-                <div className="w-2 h-2 rounded-full bg-slate-300" />
-                <span className="text-sm text-muted-foreground">Not checked in yet</span>
+              <div className="flex items-center gap-3 px-4 sm:px-5 py-2.5 rounded-full bg-[#0A1628] border border-[#1A2B45]">
+                <div className="w-2 h-2 rounded-full bg-[#4A6080]" />
+                <span className="text-xs sm:text-sm text-[#8094B0]">Not checked in yet</span>
               </div>
             )}
           </div>
@@ -155,7 +155,7 @@ export function CheckinCard() {
                   disabled={isLoading || loading}
                   className={`relative w-full max-w-[16rem] sm:w-56 h-14 text-base font-semibold rounded-full shadow-soft transition-all duration-300 ${
                     isCheckedIn
-                      ? "bg-[#0F172A] hover:bg-[#0F172A] text-white"
+                      ? "bg-[#1A2B45] hover:bg-[#1A2B45] text-white"
                       : "bg-[#00BCD4] hover:bg-[#2563EB] text-white"
                   }`}
                 >

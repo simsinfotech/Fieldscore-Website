@@ -42,7 +42,7 @@ const MentionList = forwardRef<
           onMouseDown={(e) => { e.preventDefault(); command(item) }}
           className={`flex w-full items-center gap-2 px-3 py-1.5 text-left text-sm ${i === index ? "bg-secondary" : "hover:bg-secondary/60"}`}
         >
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#0F172A] text-[10px] font-semibold text-white">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1A2B45] text-[10px] font-semibold text-white">
             {item.label.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()}
           </span>
           {item.label}

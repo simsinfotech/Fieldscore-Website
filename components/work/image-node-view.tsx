@@ -57,7 +57,7 @@ export function ImageNodeView({ node, deleteNode, editor }: NodeViewProps) {
       />
       {editable && (
         <div
-          className={`absolute right-2 top-2 flex items-center gap-1 rounded-lg bg-[#0F172A]/70 p-1 backdrop-blur-sm transition-opacity group-hover:opacity-100 ${showControls ? "opacity-100" : "opacity-0"}`}
+          className={`absolute right-2 top-2 flex items-center gap-1 rounded-lg bg-[#1A2B45]/70 p-1 backdrop-blur-sm transition-opacity group-hover:opacity-100 ${showControls ? "opacity-100" : "opacity-0"}`}
         >
           <button
             onClick={(e) => { e.stopPropagation(); setOpen(true) }}

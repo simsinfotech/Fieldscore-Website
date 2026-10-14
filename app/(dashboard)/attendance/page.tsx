@@ -298,13 +298,13 @@ function StatCard({
       icon: "bg-[#00BCD4] text-white",
     },
     orange: {
-      icon: "bg-[#DBEAFE] text-[#0F172A]",
+      icon: "bg-[#00BCD4]/10 text-[#F1F5F9]",
     },
     red: {
       icon: "bg-destructive/15 text-destructive",
     },
     amber: {
-      icon: "bg-[#EDE9FE] text-[#0F172A]",
+      icon: "bg-[#7C4DFF]/10 text-[#F1F5F9]",
     },
   }
   const c = palette[color]
@@ -331,7 +331,7 @@ function EmptyState({ message }: { message?: string }) {
   return (
     <GlassCard className="flex flex-col items-center justify-center py-16 text-center">
       <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#00BCD4] text-white border border-border mb-4">
-        <TbClock className="h-7 w-7 text-[#0F172A]" />
+        <TbClock className="h-7 w-7 text-[#F1F5F9]" />
       </div>
       <h3 className="text-base font-semibold text-foreground">No records found</h3>
       <p className="mt-1 max-w-xs text-sm text-muted-foreground">

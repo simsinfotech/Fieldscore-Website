@@ -50,14 +50,14 @@ export function RoleSelector({ value, onChange, disabled }: RoleSelectorProps) {
 export function RoleBadge({ role }: { role: EmployeeRole }) {
   const colors: Record<EmployeeRole, string> = {
     admin:
-      "bg-[#0F172A] text-white",
+      "bg-[#1A2B45] text-white",
     sales_admin:
-      "bg-[#0F172A] text-white",
+      "bg-[#1A2B45] text-white",
     manager:
-      "bg-[#0F172A] text-white",
+      "bg-[#1A2B45] text-white",
     setter:
       "bg-[#00BCD4] text-white",
-    viewer: "bg-[#F1F5F9] text-foreground border border-border",
+    viewer: "bg-[#0A1628] text-foreground border border-border",
   }
 
   return (

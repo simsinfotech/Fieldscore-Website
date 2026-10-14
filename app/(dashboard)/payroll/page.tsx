@@ -139,7 +139,7 @@ export default function PayrollPage() {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center shadow-soft">
+            <div className="w-10 h-10 rounded-2xl bg-[#1A2B45] text-white flex items-center justify-center shadow-soft">
               <TbWallet className="h-5 w-5 text-white" />
             </div>
             <div>
@@ -213,7 +213,7 @@ export default function PayrollPage() {
             value={`₹${totalBasic.toLocaleString("en-IN")}`}
             subtitle="Basic + HRA + Allowances"
             icon={<TbTrendingUp className="h-5 w-5" />}
-            gradient="bg-[#DBEAFE] text-[#0F172A]"
+            gradient="bg-[#00BCD4]/10 text-[#F1F5F9]"
             shadowColor=""
             trend="up"
           />
@@ -222,7 +222,7 @@ export default function PayrollPage() {
             value={`₹${totalDeductions.toLocaleString("en-IN")}`}
             subtitle="Tax + PF + Other"
             icon={<TbDiscount className="h-5 w-5" />}
-            gradient="bg-[#0F172A] text-white"
+            gradient="bg-[#1A2B45] text-white"
             shadowColor=""
             trend="down"
           />
@@ -231,7 +231,7 @@ export default function PayrollPage() {
             value={`${paidCount}/${payrolls.length}`}
             subtitle={pendingCount > 0 ? `${pendingCount} pending` : "All processed"}
             icon={<TbCircleCheck className="h-5 w-5" />}
-            gradient="bg-[#EDE9FE] text-[#0F172A]"
+            gradient="bg-[#7C4DFF]/10 text-[#F1F5F9]"
             shadowColor=""
           />
         </div>
@@ -263,7 +263,7 @@ export default function PayrollPage() {
               >
                 <div className="relative p-4 sm:p-5 flex items-center gap-4">
                   {/* Avatar */}
-                  <div className="flex-shrink-0 w-11 h-11 rounded-full bg-[#0F172A] flex items-center justify-center">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-full bg-[#1A2B45] flex items-center justify-center">
                     <span className="text-sm font-semibold text-white">
                       {(p.employee?.full_name || "?").split(" ").map((n: string) => n[0]).join("").slice(0, 2)}
                     </span>
@@ -411,10 +411,10 @@ function PayslipCard({ payroll: p }: { payroll: Payroll }) {
         <div className="relative p-6 flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <TbReceipt className="h-5 w-5 text-[#0F172A]" />
-              <h3 className="font-semibold text-lg text-[#0F172A]">Payslip</h3>
+              <TbReceipt className="h-5 w-5 text-[#F1F5F9]" />
+              <h3 className="font-semibold text-lg text-[#F1F5F9]">Payslip</h3>
             </div>
-            <p className="text-[#0F172A] text-sm mt-1">
+            <p className="text-[#F1F5F9] text-sm mt-1">
               {MONTHS[p.month - 1]} {p.year}
             </p>
           </div>
@@ -456,7 +456,7 @@ function PayslipCard({ payroll: p }: { payroll: Payroll }) {
         {/* Deductions section */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-2 h-2 rounded-full bg-[#0F172A]" />
+            <div className="w-2 h-2 rounded-full bg-[#1A2B45]" />
             <h4 className="text-sm font-medium text-foreground">Deductions</h4>
             <span className="ml-auto text-sm font-semibold text-foreground">
               -₹{deductAmount.toLocaleString("en-IN")}
@@ -473,7 +473,7 @@ function PayslipCard({ payroll: p }: { payroll: Payroll }) {
             <span>Earnings vs Deductions</span>
             <span>{gross > 0 ? Math.round((deductAmount / gross) * 100) : 0}% deducted</span>
           </div>
-          <div className="h-2 rounded-full bg-[#F1F5F9] border border-border overflow-hidden">
+          <div className="h-2 rounded-full bg-[#0A1628] border border-border overflow-hidden">
             <div
               className="h-full rounded-full bg-[#00BCD4] transition-all duration-700"
               style={{ width: `${gross > 0 ? Math.round(((gross - deductAmount) / gross) * 100) : 0}%` }}
@@ -518,7 +518,7 @@ function PayslipDetail({ payroll: p }: { payroll: Payroll }) {
     <div className="space-y-5">
       {/* Employee info */}
       <div className="flex items-center gap-3 p-3 rounded-2xl bg-secondary/60 border border-border">
-        <div className="w-10 h-10 rounded-full bg-[#0F172A] flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full bg-[#1A2B45] flex items-center justify-center">
           <span className="text-sm font-semibold text-white">
             {(p.employee?.full_name || "?").split(" ").map((n: string) => n[0]).join("").slice(0, 2)}
           </span>
@@ -584,9 +584,9 @@ function DetailRow({
 /* ───────── Status Badge ───────── */
 function PayrollStatusBadge({ status, large }: { status: string; large?: boolean }) {
   const styles: Record<string, string> = {
-    draft: "bg-[#F1F5F9] text-muted-foreground border-border",
-    pending: "bg-[#EDE9FE] text-[#0F172A] border-border",
-    paid: "bg-[#DBEAFE] text-[#0F172A] border-border",
+    draft: "bg-[#0A1628] text-muted-foreground border-border",
+    pending: "bg-[#7C4DFF]/10 text-[#F1F5F9] border-border",
+    paid: "bg-[#00BCD4]/10 text-[#F1F5F9] border-border",
   }
 
   const icons: Record<string, React.ReactNode> = {
@@ -616,11 +616,11 @@ function EmptyState({
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center">
       <div className="relative mb-6">
-        <div className="w-20 h-20 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center shadow-soft">
+        <div className="w-20 h-20 rounded-2xl bg-[#1A2B45] text-white flex items-center justify-center shadow-soft">
           <TbWallet className="h-8 w-8 text-white" />
         </div>
         <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#00BCD4] border border-border flex items-center justify-center">
-          <TbCurrencyRupee className="h-3 w-3 text-[#0F172A]" />
+          <TbCurrencyRupee className="h-3 w-3 text-[#F1F5F9]" />
         </div>
       </div>
       <h3 className="font-semibold text-lg">{title}</h3>
@@ -707,7 +707,7 @@ function RunPayrollDialog({
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center shadow-soft">
+            <div className="w-8 h-8 rounded-2xl bg-[#1A2B45] text-white flex items-center justify-center shadow-soft">
               <TbPlus className="h-4 w-4 text-white" />
             </div>
             Add Payroll — {MONTHS[month - 1]} {year}

@@ -41,7 +41,7 @@ export default function LeadReportPage() {
           <TbArrowLeft className="h-5 w-5" />
         </Button>
         <div className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0F172A] text-white border border-border">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1A2B45] text-white border border-border">
             <TbReportAnalytics className="h-5 w-5 text-white" />
           </div>
           <div>

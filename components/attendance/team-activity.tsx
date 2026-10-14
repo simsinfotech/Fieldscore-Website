@@ -183,8 +183,8 @@ function SortableTh({
 
 const STATUS_COLOR: Record<string, string> = {
   online: "bg-[#34D399]",
-  checked_out: "bg-[#0F172A]",
-  offline: "bg-slate-300",
+  checked_out: "bg-[#1A2B45]",
+  offline: "bg-[#4A6080]",
 }
 
 function TeamActivityRow({

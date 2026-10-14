@@ -94,7 +94,7 @@ export function ActivityHeatmap() {
 
       <div className="relative">
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-11 h-11 rounded-2xl bg-[#0F172A] text-white shadow-soft flex items-center justify-center">
+          <div className="w-11 h-11 rounded-2xl bg-[#1A2B45] text-white shadow-soft flex items-center justify-center">
             <TbFlame className="h-5 w-5 text-white" />
           </div>
           <div>

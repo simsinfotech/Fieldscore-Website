@@ -156,7 +156,7 @@ export default function LeavePage() {
       {/* ── Header ── */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0F172A] text-white border border-border">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#1A2B45] text-white border border-border">
             <TbCalendarHeart className="h-5 w-5 text-white" />
           </div>
           <div>
@@ -213,7 +213,7 @@ export default function LeavePage() {
                 <TbInbox className="h-3.5 w-3.5" />
                 Pending
                 {pending.length > 0 && (
-                  <span className="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[#0F172A] px-1.5 text-[10px] font-semibold text-white">
+                  <span className="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[#1A2B45] px-1.5 text-[10px] font-semibold text-white">
                     {pending.length}
                   </span>
                 )}
@@ -305,7 +305,7 @@ export default function LeavePage() {
                         <TableRow key={b.id} className="border-border transition-colors hover:bg-secondary">
                           <TableCell>
                             <div className="flex items-center gap-3">
-                              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0F172A] text-xs font-semibold text-white border border-border">
+                              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1A2B45] text-xs font-semibold text-white border border-border">
                                 {b.employee?.full_name?.split(" ").map((n: string) => n[0]).join("").slice(0, 2)}
                               </div>
                               <span className="font-medium">{b.employee?.full_name}</span>
@@ -384,21 +384,21 @@ function BalanceCard({
     blue: {
       cardBg: "bg-[#00BCD4]/20",
       bar: "bg-[#00BCD4]",
-      barTrack: "bg-[#F1F5F9]",
+      barTrack: "bg-[#0A1628]",
       text: "text-foreground",
       iconBg: "bg-[#00BCD4] text-white",
     },
     orange: {
-      cardBg: "bg-[#DBEAFE]",
+      cardBg: "bg-[#00BCD4]/10",
       bar: "bg-[#00BCD4]",
-      barTrack: "bg-[#F1F5F9]",
+      barTrack: "bg-[#0A1628]",
       text: "text-foreground",
-      iconBg: "bg-[#0F172A] text-white",
+      iconBg: "bg-[#1A2B45] text-white",
     },
     green: {
       cardBg: "bg-[#00BCD4]/20",
       bar: "bg-[#00BCD4]",
-      barTrack: "bg-[#F1F5F9]",
+      barTrack: "bg-[#0A1628]",
       text: "text-foreground",
       iconBg: "bg-[#00BCD4] text-white",
     },
@@ -452,9 +452,9 @@ function BalancePill({
   const remaining = total - used
   const percent = total > 0 ? (used / total) * 100 : 0
   const palette = {
-    blue: { bar: "bg-[#00BCD4]", track: "bg-[#F1F5F9]", text: "text-foreground" },
-    orange: { bar: "bg-[#00BCD4]", track: "bg-[#F1F5F9]", text: "text-foreground" },
-    green: { bar: "bg-[#00BCD4]", track: "bg-[#F1F5F9]", text: "text-foreground" },
+    blue: { bar: "bg-[#00BCD4]", track: "bg-[#0A1628]", text: "text-foreground" },
+    orange: { bar: "bg-[#00BCD4]", track: "bg-[#0A1628]", text: "text-foreground" },
+    green: { bar: "bg-[#00BCD4]", track: "bg-[#0A1628]", text: "text-foreground" },
   }
   const c = palette[color]
 
@@ -482,9 +482,9 @@ function PendingCard({
   onReview: () => void
 }) {
   const leaveTypeConfig: Record<string, { label: string; color: string; bg: string }> = {
-    casual: { label: "Casual", color: "text-[#0F172A]", bg: "bg-[#00BCD4]/25" },
-    sick: { label: "Sick", color: "text-foreground", bg: "bg-[#DBEAFE]" },
-    earned: { label: "Earned", color: "text-[#0F172A]", bg: "bg-[#00BCD4]/25" },
+    casual: { label: "Casual", color: "text-[#F1F5F9]", bg: "bg-[#00BCD4]/25" },
+    sick: { label: "Sick", color: "text-foreground", bg: "bg-[#00BCD4]/10" },
+    earned: { label: "Earned", color: "text-[#F1F5F9]", bg: "bg-[#00BCD4]/25" },
   }
   const lt = leaveTypeConfig[request.leave_type] ?? leaveTypeConfig.casual
 
@@ -511,7 +511,7 @@ function PendingCard({
       {/* Top: avatar + name + type badge */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0F172A] text-sm font-semibold text-white border border-border">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1A2B45] text-sm font-semibold text-white border border-border">
             {initials}
           </div>
           <div>
@@ -579,12 +579,12 @@ function RequestsTable({
     pending: {
       icon: <TbClock className="h-3 w-3" />,
       color: "text-muted-foreground",
-      bg: "bg-[#EDE9FE]",
+      bg: "bg-[#7C4DFF]/10",
     },
     approved: {
       icon: <TbCircleCheck className="h-3 w-3" />,
       color: "text-foreground",
-      bg: "bg-[#DBEAFE]",
+      bg: "bg-[#00BCD4]/10",
     },
     rejected: {
       icon: <TbCircleX className="h-3 w-3" />,
@@ -632,7 +632,7 @@ function RequestsTable({
               {showEmployee && (
                 <TableCell>
                   <div className="flex items-center gap-2.5">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#0F172A] text-[10px] font-semibold text-white border border-border">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1A2B45] text-[10px] font-semibold text-white border border-border">
                       {r.employee?.full_name?.split(" ").map((n: string) => n[0]).join("").slice(0, 2)}
                     </div>
                     <span className="font-medium">{r.employee?.full_name}</span>
@@ -714,7 +714,7 @@ function RequestsTable({
 function LeaveEmptyState({ message }: { message?: string }) {
   return (
     <GlassCard className="flex flex-col items-center justify-center py-16 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#0F172A] text-white border border-border mb-4">
+      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1A2B45] text-white border border-border mb-4">
         <TbCalendarHeart className="h-7 w-7 text-white" />
       </div>
       <h3 className="text-base font-semibold text-foreground">Nothing here yet</h3>

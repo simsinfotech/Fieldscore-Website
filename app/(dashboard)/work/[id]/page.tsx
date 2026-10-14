@@ -215,7 +215,7 @@ export default function WorkDetailPage() {
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <span className="rounded-full bg-secondary px-2.5 py-0.5 font-mono font-semibold text-foreground">{item.reference}</span>
           <span className="rounded-full border border-border px-2.5 py-0.5 capitalize text-muted-foreground">{item.type}</span>
-          <span className="rounded-full bg-[#00BCD4]/20 px-2.5 py-0.5 font-medium text-[#1E40AF]">P{item.priority}</span>
+          <span className="rounded-full bg-[#00BCD4]/20 px-2.5 py-0.5 font-medium text-[#00E5FF]">P{item.priority}</span>
           {item.recurrence && item.recurrence !== "none" && (
             <span className="inline-flex items-center gap-1 rounded-full bg-[#8B5CF6]/15 px-2.5 py-0.5 font-medium text-[#6D28D9]">
               <TbRepeat className="h-3 w-3" /> {item.recurrence === "daily" ? "Daily" : "Weekly"}
@@ -380,7 +380,7 @@ function PeopleControl({
           title={`${p.name}${p.role === "owner" ? " · owner" : p.role === "assignee" ? " · assignee" : ""}`}
           className="group inline-flex items-center gap-1.5 rounded-full bg-secondary py-0.5 pl-0.5 pr-2.5 text-xs"
         >
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#0F172A] text-[9px] font-semibold text-white">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1A2B45] text-[9px] font-semibold text-white">
             {initials(p.name)}
           </span>
           <span className="font-medium">{p.name.split(" ")[0]}</span>
@@ -409,7 +409,7 @@ function PeopleControl({
                   onClick={() => { onAdd(p.id); setOpen(false) }}
                   className="flex w-full items-center gap-2 px-3 py-1.5 text-left text-sm hover:bg-secondary"
                 >
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#0F172A] text-[9px] font-semibold text-white">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1A2B45] text-[9px] font-semibold text-white">
                     {initials(p.full_name)}
                   </span>
                   {p.full_name}

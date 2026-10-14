@@ -80,7 +80,7 @@ function KRProgressBar({ percent }: { percent: number }) {
   const barColor = percent >= 70 ? "bg-[#34D399]" : "bg-[#00BCD4]"
 
   return (
-    <div className="relative h-2 w-full rounded-full bg-[#F1F5F9] overflow-hidden">
+    <div className="relative h-2 w-full rounded-full bg-[#0A1628] overflow-hidden">
       <div
         className={`absolute inset-y-0 left-0 rounded-full ${barColor} transition-all duration-500 ease-out`}
         style={{ width: `${Math.min(percent, 100)}%` }}
@@ -161,10 +161,10 @@ export default function OkrsPage() {
   }
 
   const statusConfig: Record<string, { label: string; bg: string; text: string; dot: string }> = {
-    on_track: { label: "On Track", bg: "bg-[#DBEAFE]", text: "text-white", dot: "bg-[#34D399]" },
-    at_risk: { label: "At Risk", bg: "bg-[#EDE9FE]", text: "text-white", dot: "bg-[#0F172A]" },
+    on_track: { label: "On Track", bg: "bg-[#00BCD4]/10", text: "text-white", dot: "bg-[#34D399]" },
+    at_risk: { label: "At Risk", bg: "bg-[#7C4DFF]/10", text: "text-white", dot: "bg-[#1A2B45]" },
     behind: { label: "Behind", bg: "bg-destructive/15", text: "text-destructive", dot: "bg-destructive" },
-    completed: { label: "Completed", bg: "bg-[#00BCD4]", text: "text-white", dot: "bg-[#0F172A]" },
+    completed: { label: "Completed", bg: "bg-[#00BCD4]", text: "text-white", dot: "bg-[#1A2B45]" },
   }
 
   return (
@@ -172,7 +172,7 @@ export default function OkrsPage() {
       {/* ---- Header ---- */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0F172A] text-white">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1A2B45] text-white">
             <TbTarget className="h-6 w-6 text-white" />
           </div>
           <div>
@@ -226,7 +226,7 @@ export default function OkrsPage() {
         {okrs.length === 0 ? (
           /* Empty state */
           <GlassCard className="flex flex-col items-center justify-center py-16 text-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#0F172A] text-white mb-4">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#1A2B45] text-white mb-4">
               <TbTarget className="h-8 w-8 text-white" />
             </div>
             <h3 className="text-lg font-semibold mb-1">No OKRs for {selectedQuarter} {selectedYear}</h3>
@@ -422,7 +422,7 @@ function NewOkrDialog({
       <DialogContent className="max-w-lg">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#0F172A] text-white">
+            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#1A2B45] text-white">
               <TbTarget className="h-4.5 w-4.5 text-white" />
             </div>
             <div>

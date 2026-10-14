@@ -53,7 +53,7 @@ export default function DashboardLayout({
           )}
         >
           <Topbar />
-          <main className="relative z-0 p-4 lg:p-6">{children}</main>
+          <main className="relative z-0 px-3 py-4 sm:p-4 lg:p-6">{children}</main>
         </div>
       </div>
       </ActivityHeartbeatProvider>
