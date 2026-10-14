@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Inter } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "FieldScore - Sales CRM for Real Estate Teams",
@@ -17,9 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-brand-bg text-brand-text antialiased">
+    <html lang="en" className={inter.variable}>
+      <body className="min-h-screen bg-[#060B18] text-[#F1F5F9] antialiased">
         {children}
+        <Toaster />
       </body>
     </html>
   );

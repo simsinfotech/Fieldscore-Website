@@ -1,30 +1,8 @@
 {
-  "rewrites": [
-    { "source": "/login", "destination": "https://attendance-web-app-sable.vercel.app/login" },
-    { "source": "/reset-password", "destination": "https://attendance-web-app-sable.vercel.app/reset-password" },
-    { "source": "/join", "destination": "https://attendance-web-app-sable.vercel.app/join" },
-    { "source": "/delete-account", "destination": "https://attendance-web-app-sable.vercel.app/delete-account" },
-    { "source": "/my-dashboard/:path*", "destination": "https://attendance-web-app-sable.vercel.app/my-dashboard/:path*" },
-    { "source": "/overview/:path*", "destination": "https://attendance-web-app-sable.vercel.app/overview/:path*" },
-    { "source": "/my-work/:path*", "destination": "https://attendance-web-app-sable.vercel.app/my-work/:path*" },
-    { "source": "/notifications/:path*", "destination": "https://attendance-web-app-sable.vercel.app/notifications/:path*" },
-    { "source": "/team/:path*", "destination": "https://attendance-web-app-sable.vercel.app/team/:path*" },
-    { "source": "/attendance/:path*", "destination": "https://attendance-web-app-sable.vercel.app/attendance/:path*" },
-    { "source": "/calls/:path*", "destination": "https://attendance-web-app-sable.vercel.app/calls/:path*" },
-    { "source": "/leave/:path*", "destination": "https://attendance-web-app-sable.vercel.app/leave/:path*" },
-    { "source": "/work/:path*", "destination": "https://attendance-web-app-sable.vercel.app/work/:path*" },
-    { "source": "/eod-reports/:path*", "destination": "https://attendance-web-app-sable.vercel.app/eod-reports/:path*" },
-    { "source": "/leads/:path*", "destination": "https://attendance-web-app-sable.vercel.app/leads/:path*" },
-    { "source": "/marketing/:path*", "destination": "https://attendance-web-app-sable.vercel.app/marketing/:path*" },
-    { "source": "/okrs/:path*", "destination": "https://attendance-web-app-sable.vercel.app/okrs/:path*" },
-    { "source": "/feedback/:path*", "destination": "https://attendance-web-app-sable.vercel.app/feedback/:path*" },
-    { "source": "/announcements/:path*", "destination": "https://attendance-web-app-sable.vercel.app/announcements/:path*" },
-    { "source": "/settings/:path*", "destination": "https://attendance-web-app-sable.vercel.app/settings/:path*" },
-    { "source": "/tasks/:path*", "destination": "https://attendance-web-app-sable.vercel.app/tasks/:path*" },
-    { "source": "/payroll/:path*", "destination": "https://attendance-web-app-sable.vercel.app/payroll/:path*" },
-    { "source": "/appraisals/:path*", "destination": "https://attendance-web-app-sable.vercel.app/appraisals/:path*" },
-    { "source": "/api/:path*", "destination": "https://attendance-web-app-sable.vercel.app/api/:path*" },
-    { "source": "/auth/:path*", "destination": "https://attendance-web-app-sable.vercel.app/auth/:path*" },
-    { "source": "/:path*", "destination": "https://attendance-web-app-sable.vercel.app/:path*" }
+  "crons": [
+    { "path": "/api/attendance/rollup", "schedule": "29 18 * * *" },
+    { "path": "/api/attendance/rollup", "schedule": "30 20 * * *" },
+    { "path": "/api/reports/daily-summary", "schedule": "0 15 * * *" },
+    { "path": "/api/leads/escalation-check", "schedule": "0 0 * * *" }
   ]
 }

@@ -4,6 +4,47 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
+/* ==========================================
+   CSS VARIABLES FOR SHADCN (FieldScore Dark)
+   ========================================== */
+@layer base {
+  :root {
+    --background: 222 47% 7%;         /* #060B18 */
+    --foreground: 213 27% 94%;        /* #F1F5F9 */
+    --card: 210 43% 11%;              /* #0D1B2A */
+    --card-foreground: 213 27% 94%;   /* #F1F5F9 */
+    --popover: 210 43% 11%;           /* #0D1B2A */
+    --popover-foreground: 213 27% 94%;
+    --primary: 186 100% 50%;          /* #00E5FF */
+    --primary-foreground: 222 47% 7%; /* #060B18 */
+    --secondary: 210 40% 14%;         /* #0A1628 */
+    --secondary-foreground: 213 27% 94%;
+    --muted: 210 40% 14%;             /* #0A1628 */
+    --muted-foreground: 210 19% 55%;  /* #8094B0 */
+    --accent: 186 100% 50%;           /* #00E5FF */
+    --accent-foreground: 222 47% 7%;
+    --destructive: 0 72% 63%;         /* #FF5252 */
+    --destructive-foreground: 0 0% 100%;
+    --border: 212 31% 17%;            /* #1A2B45 */
+    --input: 212 31% 17%;             /* #1A2B45 */
+    --ring: 186 100% 50%;             /* #00E5FF */
+    --radius: 0.75rem;
+    --chart-1: 186 100% 50%;
+    --chart-2: 160 84% 39%;
+    --chart-3: 210 100% 56%;
+    --chart-4: 263 70% 58%;
+    --chart-5: 36 100% 50%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -112,6 +153,26 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(26, 43, 69, 0.5);
+}
+
+.glass-strong {
+  background: #0D1B2A;
+  border: 1px solid #1A2B45;
+  border-radius: 2rem;
+}
+
+.glass-subtle {
+  background: rgba(13, 27, 42, 0.6);
+  border: 1px solid #1A2B45;
+  border-radius: 1.25rem;
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.15);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
 }
 
 /* ==========================================
@@ -294,7 +355,6 @@ body {
    ANIMATIONS
    ========================================== */
 
-/* Animated gradient border on hover (used by bento feature cards) */
 .animated-gradient-border {
   position: relative;
 }
@@ -318,7 +378,6 @@ body {
   opacity: 1;
 }
 
-/* Shimmer for loading states */
 .shimmer {
   background: linear-gradient(90deg, #0A1628 25%, #1A2B45 37%, #0A1628 63%);
   background-size: 200% 100%;
