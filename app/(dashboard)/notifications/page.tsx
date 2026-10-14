@@ -1,12 +1,11 @@
 "use client"
 
 import { useCallback, useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { useUser } from "@/hooks/use-user"
 import { PageHeader } from "@/components/shared/page-header"
 import { Button } from "@/components/ui/button"
-import { TbBell, TbLoader2, TbAt, TbChecklist, TbCalendarOff, TbClipboardList, TbChevronRight } from "react-icons/tb"
+import { TbBell, TbLoader2, TbAt, TbChecklist, TbCalendarOff, TbClipboardList, TbChevronDown, TbChevronRight } from "react-icons/tb"
 import { formatDistanceToNow } from "date-fns"
 import type { Notification } from "@/types"
 
@@ -20,10 +19,10 @@ function iconFor(type: string) {
 
 export default function NotificationsPage() {
   const { employee } = useUser()
-  const router = useRouter()
   const supabase = createClient()
   const [items, setItems] = useState<Notification[]>([])
   const [loading, setLoading] = useState(true)
+  const [expandedId, setExpandedId] = useState<string | null>(null)
 
   const load = useCallback(async () => {
     if (!employee) return
@@ -47,16 +46,12 @@ export default function NotificationsPage() {
     return () => { supabase.removeChannel(channel) }
   }, [employee?.id, load, supabase])
 
-  async function open(n: Notification) {
+  async function toggle(n: Notification) {
     if (!n.is_read) {
       await supabase.from("fs_notifications").update({ is_read: true }).eq("id", n.id)
       setItems((prev) => prev.map((x) => (x.id === n.id ? { ...x, is_read: true } : x)))
     }
-    if (n.link) {
-      // /leads/{uuid} → /leads (no detail page exists)
-      const cleaned = n.link.replace(/^\/leads\/[0-9a-f-]+$/i, "/leads")
-      router.push(cleaned)
-    }
+    setExpandedId((prev) => (prev === n.id ? null : n.id))
   }
 
   async function markAllRead() {
@@ -85,26 +80,36 @@ export default function NotificationsPage() {
         </div>
       ) : (
         <div className="overflow-hidden rounded-2xl border border-border bg-[#0D1B2A] shadow-soft">
-          {items.map((n) => (
-            <button
-              key={n.id}
-              onClick={() => open(n)}
-              className={`flex w-full items-start gap-3 border-b border-border/70 px-4 py-3.5 text-left transition-colors last:border-0 hover:bg-secondary/50 ${!n.is_read ? "bg-[#00BCD4]/10" : ""}`}
-            >
-              <div className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${!n.is_read ? "bg-[#00BCD4] text-white" : "bg-secondary text-muted-foreground"}`}>
-                {iconFor(n.type)}
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2">
-                  <p className="text-sm font-medium">{n.title}</p>
-                  {!n.is_read && <span className="h-1.5 w-1.5 rounded-full bg-[#00BCD4]" />}
+          {items.map((n) => {
+            const isExpanded = expandedId === n.id
+            return (
+              <button
+                key={n.id}
+                onClick={() => toggle(n)}
+                className={`block w-full border-b border-border/70 px-4 py-3.5 text-left transition-colors last:border-0 hover:bg-secondary/50 ${!n.is_read ? "bg-[#00BCD4]/10" : ""}`}
+              >
+                <div className="flex items-start gap-3">
+                  <div className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${!n.is_read ? "bg-[#00BCD4] text-white" : "bg-secondary text-muted-foreground"}`}>
+                    {iconFor(n.type)}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-medium">{n.title}</p>
+                      {!n.is_read && <span className="h-1.5 w-1.5 rounded-full bg-[#00BCD4]" />}
+                    </div>
+                    <p className={`mt-0.5 text-sm text-muted-foreground ${isExpanded ? "whitespace-pre-wrap" : "truncate"}`}>
+                      {n.message}
+                    </p>
+                    <p className="mt-1 text-[11px] text-muted-foreground">{formatDistanceToNow(new Date(n.created_at), { addSuffix: true })}</p>
+                  </div>
+                  {isExpanded
+                    ? <TbChevronDown className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />
+                    : <TbChevronRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />
+                  }
                 </div>
-                <p className="mt-0.5 truncate text-sm text-muted-foreground">{n.message}</p>
-                <p className="mt-1 text-[11px] text-muted-foreground">{formatDistanceToNow(new Date(n.created_at), { addSuffix: true })}</p>
-              </div>
-              {n.link && <TbChevronRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />}
-            </button>
-          ))}
+              </button>
+            )
+          })}
         </div>
       )}
     </div>
