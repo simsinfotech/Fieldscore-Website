@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server"
-import { after } from "next/server"
 import { resolveEmployee } from "@/lib/attendance/resolve-employee"
 import { getSupabaseAdmin } from "@/lib/supabase/admin"
 import { transcribeAndSummarize } from "@/lib/calls/transcribe"
@@ -78,18 +77,16 @@ export async function POST(request: NextRequest) {
       .update({ status: "transcribing" })
       .eq("id", body.recording_id)
 
-    // Use after() so Vercel keeps the function alive until transcription completes
-    after(async () => {
-      try {
-        await transcribeAndSummarize(recording.call_id)
-      } catch (err) {
-        console.error("transcription pipeline error:", err)
-        admin
-          .from("recordings")
-          .update({ status: "failed", error_code: "transcription_failed", retry_count: 1 })
-          .eq("id", body.recording_id)
-      }
-    })
+    // Run transcription pipeline synchronously (maxDuration = 60s)
+    try {
+      await transcribeAndSummarize(recording.call_id)
+    } catch (err) {
+      console.error("transcription pipeline error:", err)
+      await admin
+        .from("recordings")
+        .update({ status: "failed", error_code: "transcription_failed", retry_count: 1 })
+        .eq("id", body.recording_id)
+    }
   }
 
   // Increment usage meters

@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server"
-import { after } from "next/server"
 import { getSupabaseAdmin } from "@/lib/supabase/admin"
 import { transcribeAndSummarize } from "@/lib/calls/transcribe"
 
@@ -58,15 +57,12 @@ export async function POST(request: NextRequest) {
 
     console.log(`Plivo recording saved for call ${callRow.id}: ${recordingUrl}`)
 
-    // Trigger transcription using after() so Vercel keeps the function alive
-    // until the pipeline completes (download → Whisper → DeepSeek → save).
-    after(async () => {
-      try {
-        await transcribeAndSummarize(callRow.id)
-      } catch (err) {
-        console.error("Transcription failed:", err)
-      }
-    })
+    // Run transcription pipeline synchronously (maxDuration = 60s)
+    try {
+      await transcribeAndSummarize(callRow.id)
+    } catch (err) {
+      console.error("Transcription failed:", err)
+    }
 
     return NextResponse.json({ status: "ok" })
   } catch (err) {

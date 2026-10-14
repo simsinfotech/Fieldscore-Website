@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server"
-import { after } from "next/server"
 import { resolveEmployee } from "@/lib/attendance/resolve-employee"
 import { getSupabaseAdmin } from "@/lib/supabase/admin"
 import { transcribeAndSummarize } from "@/lib/calls/transcribe"
@@ -110,14 +109,12 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  // Use after() so Vercel keeps the function alive until transcription completes
-  after(async () => {
-    try {
-      await transcribeAndSummarize(callLog.id)
-    } catch (err) {
-      console.error("upload-recording: transcription failed", err)
-    }
-  })
+  // Run transcription pipeline synchronously (maxDuration = 60s)
+  try {
+    await transcribeAndSummarize(callLog.id)
+  } catch (err) {
+    console.error("upload-recording: transcription failed", err)
+  }
 
   return NextResponse.json(
     { callId: callLog.id, status: "processing" },

@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server"
-import { after } from "next/server"
 import { getSupabaseAdmin } from "@/lib/supabase/admin"
 import { transcribeAndSummarize } from "@/lib/calls/transcribe"
 
@@ -111,13 +110,11 @@ export async function POST(request: NextRequest) {
 
     // Trigger transcription if recording exists and call was connected
     if (recordingUrl && disposition === "connected") {
-      after(async () => {
-        try {
-          await transcribeAndSummarize(callRow.id)
-        } catch (err) {
-          console.error("Transcription failed:", err)
-        }
-      })
+      try {
+        await transcribeAndSummarize(callRow.id)
+      } catch (err) {
+        console.error("Transcription failed:", err)
+      }
     }
 
     return NextResponse.json({ status: "ok" })
