@@ -43,11 +43,11 @@ function GpsMapInner({ points, height = "400px", className }: GpsMapProps) {
       points.length > 0 ? 13 : 5
     )
 
-    // Light tile layer
+    // Dark tile layer (free, no API key required)
     L.tileLayer(
-      "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       {
-        attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         maxZoom: 19,
       }
     ).addTo(map)
