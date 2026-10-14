@@ -52,7 +52,11 @@ export default function NotificationsPage() {
       await supabase.from("fs_notifications").update({ is_read: true }).eq("id", n.id)
       setItems((prev) => prev.map((x) => (x.id === n.id ? { ...x, is_read: true } : x)))
     }
-    if (n.link) router.push(n.link)
+    if (n.link) {
+      // /leads/{uuid} → /leads (no detail page exists)
+      const cleaned = n.link.replace(/^\/leads\/[0-9a-f-]+$/i, "/leads")
+      router.push(cleaned)
+    }
   }
 
   async function markAllRead() {
