@@ -104,7 +104,7 @@ export async function POST(request: NextRequest) {
         ingest_source: ingestSource,
         source: "telephony_bridge",
         provider_call_id: callRef.providerCallId,
-        lead_id: leadId ?? null,
+        lead_id: leadId || null,
       })
       .select("id")
       .single()

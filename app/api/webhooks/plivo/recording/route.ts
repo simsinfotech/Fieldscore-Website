@@ -57,6 +57,13 @@ export async function POST(request: NextRequest) {
 
     console.log(`Plivo recording saved for call ${callRow.id}: ${recordingUrl}`)
 
+    // Skip transcription for 0-duration recordings (busy/unanswered calls)
+    const recDuration = parseInt(payload.RecordingDuration || "0", 10)
+    if (recDuration < 1) {
+      console.log(`Plivo recording skipped transcription: duration=${recDuration}s (busy/unanswered)`)
+      return NextResponse.json({ status: "ok", reason: "zero duration recording" })
+    }
+
     // Run transcription pipeline synchronously (maxDuration = 60s)
     try {
       await transcribeAndSummarize(callRow.id)
