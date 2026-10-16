@@ -1,6 +1,7 @@
 import { google, type sheets_v4 } from "googleapis"
 
 let _sheets: sheets_v4.Sheets | null = null
+let _sheetsRW: sheets_v4.Sheets | null = null
 
 function getServiceAccountCredentials() {
   const b64 = process.env.GOOGLE_SERVICE_ACCOUNT_JSON_B64
@@ -23,6 +24,19 @@ function getSheetsClient(): sheets_v4.Sheets {
 
   _sheets = google.sheets({ version: "v4", auth })
   return _sheets
+}
+
+function getSheetsClientRW(): sheets_v4.Sheets {
+  if (_sheetsRW) return _sheetsRW
+
+  const creds = getServiceAccountCredentials()
+  const auth = new google.auth.GoogleAuth({
+    credentials: creds,
+    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+  })
+
+  _sheetsRW = google.sheets({ version: "v4", auth })
+  return _sheetsRW
 }
 
 /**
@@ -130,4 +144,23 @@ export async function fetchSheetPreview(
   )
 
   return { headers, rows }
+}
+
+/**
+ * Append a single row to a Google Sheet.
+ * Uses the read-write scoped client.
+ */
+export async function appendSheetRow(
+  spreadsheetId: string,
+  sheetName: string,
+  values: string[]
+) {
+  const sheets = getSheetsClientRW()
+  await sheets.spreadsheets.values.append({
+    spreadsheetId,
+    range: `'${sheetName}'!A1`,
+    valueInputOption: "USER_ENTERED",
+    insertDataOption: "INSERT_ROWS",
+    requestBody: { values: [values] },
+  })
 }
